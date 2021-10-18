@@ -1,9 +1,18 @@
 [
     {
-        "id": "01",
+        "id": 1000,
+        "allowed": 0,
+        "activated": 1,
         "productName": "Entrepà Bacó-Formatge",
         "imageId": "./assets/images/id",
-        "price": "1.50",
-        "Activated": 1
+        "price": "1.50"
+    },
+    {
+        "id": 2000,
+        "allowed": 0,
+        "activated": 1,
+        "productName": "Coca-Cola",
+        "imageId": "./assets/images/id",
+        "price": "1.50"
     }
 ]
