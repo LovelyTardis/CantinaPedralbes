@@ -7,6 +7,7 @@
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Ordenar</title>
 </head>
+
 <body>
     <h1>PICKUP PAGE (WIP)</h1>
     <form method="GET" action="./confirmation.php">
@@ -14,3 +15,4 @@
     </form>
 </body>
 </html>
+
