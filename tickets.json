@@ -1,5 +1,7 @@
-[{
-    "username": "Eric",
-    "email": "a19ericlecas@inspedralbes.cat",
-    "phone": "123456789"
-}]
+[
+    {
+        "username": "Eric",
+        "email": "a19ericlecas@inspedralbes.cat",
+        "phone": "123456789"
+    }
+]

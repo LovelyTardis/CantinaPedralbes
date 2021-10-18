@@ -7,7 +7,6 @@
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Ordenar</title>
     <?php
-    $HTML_products = "";
     $products = file_get_contents("products.json");
     $products = json_decode($products,true);
     $HTML_products = LoadProductsHTML($products);
