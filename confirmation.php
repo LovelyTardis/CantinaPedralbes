@@ -9,20 +9,19 @@
 </head>
 <body>
     <h1>CONFIRMATION PAGE (WIP)</h1>
-    <form method="GET" action="./checkout.html">
+    <form method="POST" action="./checkout.php">
     <table>
         <tr>
             <td><label for="name">Nom: </label></td>
-            <td><input type="text" name="name" id="name"></td>
+            <td><input type="text" name="name" id="name" require></td>
         </tr>
         <tr>
-            
             <td><label for="email">Correu electrònic: </label></td>
-            <td><input type="email" name="email" id="email"></td>
+            <td><input type="email" name="email" id="email" require></td>
         </tr>
         <tr>
             <td><label for="phone">Telèfon: </label></td>
-            <td><input type="tel" name="phone" id="phone"></td>
+            <td><input type="tel" name="phone" id="phone" require></td>
         </tr>
     </table>
         <button type="submit">Confirmar comanda</button>

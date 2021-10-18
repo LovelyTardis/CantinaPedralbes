@@ -10,7 +10,7 @@
 
 <body>
     <h1>PICKUP PAGE (WIP)</h1>
-    <form method="GET" action="./confirmation.php">
+    <form method="POST" action="./confirmation.php">
         <button type="submit">Següent</button>
     </form>
 </body>
