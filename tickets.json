@@ -1,7 +1,20 @@
 [
     {
-        "username": "Eric",
-        "email": "a19ericlecas@inspedralbes.cat",
-        "phone": "123456789"
+        "username": "Albert",
+        "email": "albert@gmail.com",
+        "phone": "123456789",
+        "products": {
+            "producto": "Coca-Cola",
+            "producto2": "BeiconQueso"
+        }
+    },
+    {
+        "username": "Albertasda",
+        "email": "sdf@gmail.com",
+        "phone": "123456789",
+        "products": {
+            "producto": "Coca-Cola",
+            "producto2": "BeiconQueso"
+        }
     }
 ]

@@ -7,16 +7,19 @@
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Confirmat!</title>
     <?php
-        $tmp = file_get_contents("tickets.json");
-        echo $tmp;
+        
         $username = $_POST["name"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
+        $productList = array("producto" => "Coca-Cola", "producto2" => "BeiconQueso"); //poner el array con los productos escogidos en pickup.php
+
+        $ticket = array("username" => $username, "email" => $email, "phone" => $phone, "products" => $productList);
+
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
-            // guardar ticket
-            $array = array($username, $email, $phone);
-            
+            $arrayTicket = json_decode(file_get_contents("tickets.json"), true);
+            array_push($arrayTicket, $ticket);
+            file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
         }
     ?>
 </head>
