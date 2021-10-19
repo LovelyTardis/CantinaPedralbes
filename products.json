@@ -103,4 +103,20 @@
         "imageId": "./assets/images/id",
         "price": "1.50"
     },
+    {
+        "id": 2001,
+        "allowed": 0,
+        "activated": 1,
+        "productName": "Pepsi",
+        "imageId": "./assets/images/id",
+        "price": "1.50"
+    },
+    {
+        "id": 2001,
+        "allowed": 0,
+        "activated": 1,
+        "productName": "Pepsi",
+        "imageId": "./assets/images/id",
+        "price": "1.50"
+    },
 ]
