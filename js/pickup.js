@@ -30,12 +30,13 @@ function Decrease(button, parent)
     let quantity = parent.querySelector("td > span");
     quantity.innerHTML =  parseInt(quantity.innerHTML)-1;
     console.log("Decrease");
-    if(parseInt(presio.innerHTML) <= 0)
+    if(parseInt(quantity.innerHTML) <= 0)
     {
         button.setAttribute("disabled","");
         // Por si acaso
         quantity.innerHTML = "0";
     } 
+    RemoveFromTicket(quantity.id, parseInt(quantity.innerHTML), quantity.getAttribute("price"))
 }
 
 
@@ -55,7 +56,15 @@ function AddToTicket(id, quantity, price)
     }
 }
 
-function RemoveFromTicket()
+function RemoveFromTicket(id, quantity, price)
 {
-
+    productNode = document.getElementById("Ticket-"+id);
+    if(quantity == 0)
+    {
+        productNode.remove();
+    }
+    else
+    {
+        productNode.innerHTML = `${id} | ${parseFloat(price)*quantity} | ${quantity}€`;
+    }
 }

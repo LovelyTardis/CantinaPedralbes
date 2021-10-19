@@ -9,42 +9,42 @@
     <?php
     include 'header.php';
     ?>
+    <script>
+        <?php
+        $products = file_get_contents("products.json");
+        $products = json_decode($products,true);
+        $HTML_products = LoadProductsHTML($products);
+        function LoadProductsHTML($productsLoad) : string
+        {
+            $str = "";
+            //
+            $str .="<table id='products'>";
+            for ($i=0; $i < count($productsLoad); $i++) { 
+                $str .="<tr><td>id:".$productsLoad[$i]["id"]."</td>".
+                "<td>Nombre:".$productsLoad[$i]["productName"]."</td>".
+                "<td><span>Precio:".$productsLoad[$i]["price"]."</span></td></tr>".
+                "<tr><td><button type='button' class='Decrease' disabled>-</button><span id=".$productsLoad[$i]["id"]."  price=".$productsLoad[$i]["price"].">0</span><button type='button' class='Increase'>+</button></td></tr>";
+            }
+            $str .="</table>";
+            //
+            return $str;
+        }
+        ?>
+    </script>
 </head>
 
 <body>
     <h1>PICKUP PAGE (WIP)</h1>
-    <script>
-        <?php echo $HTML_products ?>
-    </script>
+    <?php echo $HTML_products ?>
     <form method="POST" action="./confirmation.php">
         <button type="submit">Següent</button>
     </form>
+    <div id="ticket"></div>
     <?php 
     include 'footer.php'
     ?>
+    <script src="/js/pickup.js"></script>
 </body>
-<script>
-    <?php
-    $products = file_get_contents("products.json");
-    $products = json_decode($products,true);
-    $HTML_products = LoadProductsHTML($products);
-    function LoadProductsHTML($productsLoad) : string
-    {
-        $str = "";
-        //
-        $str .="<table id='products'>";
-        for ($i=0; $i < count($productsLoad); $i++) { 
-            $str .="<tr><td>id:".$productsLoad[$i]["id"]."</td>".
-            "<td>Nombre:".$productsLoad[$i]["productName"]."</td>".
-            "<td><span>Precio:".$productsLoad[$i]["price"]."</span></td></tr>".
-            "<tr><td><button type='button' class='Decrease' disabled>-</button><span id=".$productsLoad[$i]["id"].">0</span><button type='button' class='Increase'>+</button></td></tr>";
-        }
-        $str .="</table>";
-        //
-        return $str;
-    }
-    
-    ?>
-</script>
+
 </html>
 
