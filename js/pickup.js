@@ -1,13 +1,12 @@
 let productButtons = document.getElementById('products');
+let ticketNode = document.getElementById('ticket');
 console.log(productButtons);
 
 productButtons.addEventListener('click', e => {
     if(e.target.classList.contains('Increase')){
-      //document.getElementById("i"+e.target.parentNode.id).value = parseInt(document.getElementById("i"+e.target.parentNode.id).value) + 1;
         Increase(e.target.parentNode);
     }
-    else if(e.target.classList.contains('Decrease')){
-      //document.getElementById("i"+e.target.parentNode.id).value = parseInt(document.getElementById("i"+e.target.parentNode.id).value) < 1 ? 0 : (parseInt(document.getElementById("i"+e.target.parentNode.id).value) - 1);
+    else if(e.target.classList.contains('Decrease')){ 
         Decrease(e.target,e.target.parentNode);
     }
   });
@@ -15,24 +14,48 @@ productButtons.addEventListener('click', e => {
 
 function Increase(parent)
 {
-    let presio = parent.querySelector("td > span");
-    if(parseInt(presio.innerHTML) == 0)
+    let quantity = parent.querySelector("td > span");
+
+    if(parseInt(quantity.innerHTML) == 0)
     {
         let decreaseButton = parent.querySelector("td>button.Decrease");
         decreaseButton.removeAttribute("disabled");
     }
-    presio.innerHTML = parseInt(presio.innerHTML)+1;
+    quantity.innerHTML = parseInt(quantity.innerHTML)+1;
     console.log("Increase");
+    AddToTicket(quantity.id, parseInt(quantity.innerHTML), quantity.getAttribute("price"));
 }
 function Decrease(button, parent)
 {
-    let presio = parent.querySelector("td > span");
-    presio.innerHTML =  parseInt(presio.innerHTML)-1;
+    let quantity = parent.querySelector("td > span");
+    quantity.innerHTML =  parseInt(quantity.innerHTML)-1;
     console.log("Decrease");
     if(parseInt(presio.innerHTML) <= 0)
     {
         button.setAttribute("disabled","");
         // Por si acaso
-        presio.innerHTML = "0";
+        quantity.innerHTML = "0";
     } 
+}
+
+
+function AddToTicket(id, quantity, price)
+{
+    productNode = document.getElementById("Ticket-"+id);
+    if(productNode == null)
+    {
+        let newProduct = document.createElement('div');
+        newProduct.setAttribute("id", ("Ticket-"+id));
+        newProduct.innerHTML = `${id} | ${price} | ${quantity}€`;
+        ticketNode.appendChild(newProduct);
+    }
+    else
+    {
+        productNode.innerHTML = `${id} | ${parseFloat(price)*quantity}€ | ${quantity}`;
+    }
+}
+
+function RemoveFromTicket()
+{
+
 }
