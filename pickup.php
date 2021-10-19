@@ -14,12 +14,12 @@
     {
         $str = "";
         //
-        $str .="<table>";
+        $str .="<table id='products'>";
         for ($i=0; $i < count($productsLoad); $i++) { 
             $str .="<tr><td>id:".$productsLoad[$i]["id"]."</td>".
             "<td>Nombre:".$productsLoad[$i]["productName"]."</td>".
-            "<td>Precio:".$productsLoad[$i]["price"]."</td></tr>".
-            "<tr><td><button type='button' class='restar'>-</button><span id=".$productsLoad[$i]["id"].">0</span><button type='button' class='sumar'>+</button></td></tr>";
+            "<td><span>Precio:".$productsLoad[$i]["price"]."</span></td></tr>".
+            "<tr><td><button type='button' class='Decrease' disabled>-</button><span id=".$productsLoad[$i]["id"].">0</span><button type='button' class='Increase'>+</button></td></tr>";
         }
         $str .="</table>";
         //
@@ -35,6 +35,7 @@
     <form method="POST" action="./confirmation.php">
         <button type="submit">Següent</button>
     </form>
+    <script src="./js/pickup.js"></script>
 </body>
 </html>
 
