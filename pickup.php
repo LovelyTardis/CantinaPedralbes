@@ -11,6 +11,7 @@
     ?>
     <script>
         <?php
+        session_start();
         $products = file_get_contents("products.json");
         $products = json_decode($products,true);
         $HTML_products = LoadProductsHTML($products);
@@ -28,6 +29,7 @@
             $str .="</table>";
             //
             return $str;
+            
         }
         ?>
     </script>
@@ -37,6 +39,7 @@
     <h1>PICKUP PAGE (WIP)</h1>
     <?php echo $HTML_products ?>
     <form method="POST" action="./confirmation.php">
+        
         <button type="submit">Següent</button>
     </form>
     <div id="ticket"></div>
@@ -44,6 +47,9 @@
     include 'footer.php'
     ?>
     <script src="/js/pickup.js"></script>
+    <script type="text/javascript">
+        $_SESSION['ticketArray'] = "";
+    </script>
 </body>
 
 </html>

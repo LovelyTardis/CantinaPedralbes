@@ -33,4 +33,8 @@
     include 'footer.php'
     ?>
 </body>
+<?php
+    session_start();
+    echo "<div>" . $_SESSION['ticketArray'] . "</div>";
+?>
 </html>
