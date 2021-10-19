@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Confirmació</title>
+    <?php
+    include 'header.php';
+    ?>
 </head>
 <body>
     <h1>CONFIRMATION PAGE (WIP)</h1>
@@ -26,6 +29,8 @@
     </table>
         <button type="submit">Confirmar comanda</button>
     </form>
-
+    <?php 
+    include 'footer.php'
+    ?>
 </body>
 </html>

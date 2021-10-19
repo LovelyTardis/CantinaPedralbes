@@ -7,6 +7,24 @@
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Ordenar</title>
     <?php
+    include 'header.php';
+    ?>
+</head>
+
+<body>
+    <h1>PICKUP PAGE (WIP)</h1>
+    <script>
+        <?php echo $HTML_products ?>
+    </script>
+    <form method="POST" action="./confirmation.php">
+        <button type="submit">Següent</button>
+    </form>
+    <?php 
+    include 'footer.php'
+    ?>
+</body>
+<script>
+    <?php
     $products = file_get_contents("products.json");
     $products = json_decode($products,true);
     $HTML_products = LoadProductsHTML($products);
@@ -27,15 +45,6 @@
     }
     
     ?>
-</head>
-
-<body>
-    <h1>PICKUP PAGE (WIP)</h1>
-    <?php echo $HTML_products ?>
-    <form method="POST" action="./confirmation.php">
-        <button type="submit">Següent</button>
-    </form>
-    <script src="./js/pickup.js"></script>
-</body>
+</script>
 </html>
 

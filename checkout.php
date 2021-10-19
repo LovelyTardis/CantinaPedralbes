@@ -7,6 +7,21 @@
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Confirmat!</title>
     <?php
+    include 'header.php';
+    ?>
+</head>
+<body>
+    <h1>CHECKOUT PAGE (WIP)</h1>
+    <p>La teva comanda ha estat realitzada correctament.</p>
+    <a href="./index.php">
+        <input type="button" value="Tornar al menú inicial">
+    </a>
+    <?php 
+    include 'footer.php'
+    ?>
+</body>
+<script>
+    <?php
         
         $username = $_POST["name"];
         $email = $_POST["email"];
@@ -22,12 +37,5 @@
             file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
         }
     ?>
-</head>
-<body>
-    <h1>CHECKOUT PAGE (WIP)</h1>
-    <p>La teva comanda ha estat realitzada correctament.</p>
-    <a href="./index.html">
-        <input type="button" value="Tornar al menú inicial">
-    </a>
-</body>
+</script>
 </html>
