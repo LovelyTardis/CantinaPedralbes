@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +37,6 @@
     ?>
 </body>
 <?php
-    session_start();
     echo "<div>" . $_SESSION['ticketArray'] . "</div>";
 ?>
 </html>

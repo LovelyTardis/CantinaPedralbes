@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,26 +14,37 @@
     ?>
     <script>
         <?php
-        session_start();
-        $products = file_get_contents("products.json");
-        $products = json_decode($products,true);
-        $HTML_products = LoadProductsHTML($products);
-        function LoadProductsHTML($productsLoad) : string
+        
+        $jsonProducts = file_get_contents("products.json");
+        $productsObject = json_decode($jsonProducts,true);
+        $HTML_products = LoadProductsHTML($jsonProducts,$productsObject);
+        function LoadProductsHTML($json, $productsLoad) : string
         {
             $str = "";
             //
-            $str .="<table id='products'>";
+            $str .="<table id='product-box'><tr>";
+        
             for ($i=0; $i < count($productsLoad); $i++) { 
-                $str .="<tr><td>id:".$productsLoad[$i]["id"]."</td>".
-                "<td>Nombre:".$productsLoad[$i]["productName"]."</td>".
-                "<td><span>Precio:".$productsLoad[$i]["price"]."</span></td></tr>".
-                "<tr><td><button type='button' class='Decrease' disabled>-</button><span id=".$productsLoad[$i]["id"]."  price=".$productsLoad[$i]["price"].">0</span><button type='button' class='Increase'>+</button></td></tr>";
-            }
-            $str .="</table>";
+                $str .= CellProduct($productsLoad[$i]);
+            }         
+
+            $str .="</tr></table>";
+            $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
+
             //
             return $str;
             
         }
+
+        function CellProduct(array $product) : string
+        {
+            return "<td><div><p>id:".$product["id"]."</p>".
+            "<p>Nombre:".$product["productName"]."<p>".
+            "<p><span>Precio:".$product["price"]."</span><p></div>".
+            "<div><p><button value=".$product["id"]." type='button' class='Decrease'  disabled>-</button><span>0</span><button value=".$product["id"]." type='button' class='Increase'>+</button></p></div></td>";
+        }
+
+        $_SESSION['ticketArray'] = "";
         ?>
     </script>
 </head>
@@ -48,7 +62,7 @@
     ?>
     <script src="/js/pickup.js"></script>
     <script type="text/javascript">
-        $_SESSION['ticketArray'] = "";
+
     </script>
 </body>
 

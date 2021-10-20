@@ -1,6 +1,8 @@
-let productButtons = document.getElementById('products');
+let productButtons = document.getElementById('product-box');
 let ticketNode = document.getElementById('ticket');
-console.log(productButtons);
+
+menu = JSON.parse(document.getElementById('JsonProducts').value);
+console.log(menu);
 
 productButtons.addEventListener('click', e => {
     if(e.target.classList.contains('Increase')){
@@ -14,11 +16,11 @@ productButtons.addEventListener('click', e => {
 
 function Increase(parent)
 {
-    let quantity = parent.querySelector("td > span");
+    let quantity = parent.querySelector("p > span");
 
     if(parseInt(quantity.innerHTML) == 0)
     {
-        let decreaseButton = parent.querySelector("td>button.Decrease");
+        let decreaseButton = parent.querySelector("p>button.Decrease");
         decreaseButton.removeAttribute("disabled");
     }
     quantity.innerHTML = parseInt(quantity.innerHTML)+1;
@@ -27,7 +29,7 @@ function Increase(parent)
 }
 function Decrease(button, parent)
 {
-    let quantity = parent.querySelector("td > span");
+    let quantity = parent.querySelector("p > span");
     quantity.innerHTML =  parseInt(quantity.innerHTML)-1;
     console.log("Decrease");
     if(parseInt(quantity.innerHTML) <= 0)
