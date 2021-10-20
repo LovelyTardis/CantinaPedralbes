@@ -8,6 +8,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/confirmation.css">
     <title>Cantina - Confirmació</title>
     <?php
     include 'header.php';
@@ -16,21 +17,18 @@ session_start();
 <body>
     <h1>CONFIRMATION PAGE (WIP)</h1>
     <form method="POST" action="./checkout.php">
-    <table>
-        <tr>
-            <td><label for="name">Nom: </label></td>
-            <td><input type="text" name="name" id="name" value="Albert" require></td>
-        </tr>
-        <tr>
-            <td><label for="email">Correu electrònic: </label></td>
-            <td><input type="email" name="email" id="email" value="albert@gmail.com"require></td>
-        </tr>
-        <tr>
-            <td><label for="phone">Telèfon: </label></td>
-            <td><input type="tel" name="phone" id="phone" value="123456789"require></td>
-        </tr>
-    </table>
-        <button type="submit">Confirmar comanda</button>
+    <div>
+        
+    </div>
+    <div  class="grid">
+        <div><label for="name">Nom: </label></div>
+        <div><input type="text" name="name" id="name" value="Albert" require></div>
+        <div><label for="email">Correu electrònic: </label></div>
+        <div><input type="email" name="email" id="email" value="albert@gmail.com"require></div>
+        <div><label for="phone">Telèfon: </label></div>
+        <div><input type="tel" name="phone" id="phone" value="123456789"require></div>
+    </div>
+    <button type="submit">Confirmar comanda</button>
     </form>
     <?php 
     include 'footer.php'

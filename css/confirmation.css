@@ -1,0 +1,17 @@
+.grid{
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #4264c0;
+    height: 100%;
+    width: 50%;
+}
+.grid div{
+    background-color: #b3afaf;
+    border: 1px solid #111111;
+    text-align: center;
+    padding: 10px;
+}
+.grid div label{
+    font-family: Arial;
+}
