@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 let productButtons = document.getElementById('product-box');
 let ticketNode = document.getElementById('ticket');
 let buyButton = document.getElementById("purchase-button");
@@ -175,4 +173,3 @@ function getProductById(id) {
     );
 }
   
->>>>>>> Stashed changes

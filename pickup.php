@@ -9,7 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Ordenar</title>
-    <link rel="stylesheet" href=".css/pickup.css">
+    <link rel="stylesheet" href="./css/pickup.css">
     <?php
     include 'header.php';
     ?>
@@ -31,7 +31,7 @@ session_start();
 
             $str .="</tr></table>";
             $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
-
+            $str .= "<input type='hidden' id='basket-product-php' value='' />";
             //
             return $str;
             
@@ -39,10 +39,10 @@ session_start();
 
         function CellProduct(array $product) : string
         {
-            return "<td><div><p>id:".$product["id"]."</p>".
-            "<p>Nombre:".$product["productName"]."<p>".
-            "<p><span>Precio:".$product["price"]."</span><p></div>".
-            "<div><p><button id='button-decrease-".$product["id"]."' value=".$product["id"]." type='button' class='Decrease'  disabled>-</button><span id=quantity-".$product["id"].">0</span><button id='button-increase-".$product["id"]."' value=".$product["id"]." type='button' class='Increase'>+</button></p></div></td>";
+            return "<td><div class='cell-product' id='".$product["id"]."'><div><p>id:".$product["id"]."</p>".
+            "<p>Nombre:".$product["productName"]."</p>".
+            "<p>Precio:".$product["price"]."</p></div>".
+            "<div><p><button type='button' class='decrease'  disabled>-</button><span class='quantity-value'>0</span><button type='button' class='increase'>+</button></p></div></div></td>";
         }
 
         $_SESSION['ticketArray'] = "";
@@ -54,10 +54,14 @@ session_start();
     <h1>PICKUP PAGE (WIP)</h1>
     <?php echo $HTML_products ?>
     <form method="POST" action="./confirmation.php">
-        
+        <button type="button" id="purchase-button" value="">Comprar</button>
         <button type="submit">Següent</button>
     </form>
-    <div id="ticket"></div>
+    <div id="ticket">
+        <div id="total-price">
+
+        </div>
+    </div>
     <?php 
     include 'footer.php'
     ?>

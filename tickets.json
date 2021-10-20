@@ -169,5 +169,14 @@
             "producto": "Coca-Cola",
             "producto2": "BeiconQueso"
         }
+    },
+    {
+        "username": "fgrfgr",
+        "email": "albert@inspedralbes.cat",
+        "phone": "123456789",
+        "products": {
+            "producto": "Coca-Cola",
+            "producto2": "BeiconQueso"
+        }
     }
 ]
