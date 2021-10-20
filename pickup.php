@@ -9,6 +9,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Ordenar</title>
+    <link rel="stylesheet" href=".css/pickup.css">
     <?php
     include 'header.php';
     ?>
