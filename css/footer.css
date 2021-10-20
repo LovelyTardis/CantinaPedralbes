@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: 0;
+    text-decoration: 0;
+}
+.footer{
+    width: 100%;
+    height: 80px;
+    display: block;
+    background-color: #5c5c5c;
+}
+.inner-footer{
+    width: 1000px;
+    height: 100%;
+    display: table;
+    margin: 0 auto;
+}
+.inner-footer a{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    height: 100%;
+    font-family: Arial;
+    font-size: 15px;
+}
+.inner-footer u{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    height: 100%;
+    font-family: Arial;
+    font-size: 15px;
+}
