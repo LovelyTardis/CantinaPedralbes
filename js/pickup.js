@@ -1,72 +1,82 @@
 let productButtons = document.getElementById('product-box');
 let ticketNode = document.getElementById('ticket');
 
-menu = JSON.parse(document.getElementById('JsonProducts').value);
-console.log(menu);
+menuList = JSON.parse(document.getElementById('JsonProducts').value);
+
 
 productButtons.addEventListener('click', e => {
     if(e.target.classList.contains('Increase')){
-        Increase(e.target.parentNode);
+        Increase(e.target);
     }
     else if(e.target.classList.contains('Decrease')){ 
-        Decrease(e.target,e.target.parentNode);
+        Decrease(e.target);
     }
   });
 
 
-function Increase(parent)
+function Increase(button)
 {
-    let quantity = parent.querySelector("p > span");
-
-    if(parseInt(quantity.innerHTML) == 0)
+    let quantityNode = document.getElementById("quantity-"+button.value); //quantitat de producte
+    let productObj = getProductById(button.value);
+    if(parseInt(quantityNode.innerHTML) == 0)
     {
-        let decreaseButton = parent.querySelector("p>button.Decrease");
+        let decreaseButton = document.getElementById("button-decrease-"+button.value);
         decreaseButton.removeAttribute("disabled");
     }
-    quantity.innerHTML = parseInt(quantity.innerHTML)+1;
-    console.log("Increase");
-    AddToTicket(quantity.id, parseInt(quantity.innerHTML), quantity.getAttribute("price"));
+    quantityNode.innerHTML = parseInt(quantityNode.innerHTML)+1; // añadimos +1 a la cantidad
+
+    AddToTicket(productObj, parseInt(quantityNode.innerHTML));
 }
-function Decrease(button, parent)
+function Decrease(button)
 {
-    let quantity = parent.querySelector("p > span");
-    quantity.innerHTML =  parseInt(quantity.innerHTML)-1;
-    console.log("Decrease");
-    if(parseInt(quantity.innerHTML) <= 0)
+    let quantityNode = document.getElementById("quantity-"+button.value);
+    let productObj = getProductById(button.value);
+
+    quantityNode.innerHTML =  parseInt(quantityNode.innerHTML)-1;  // restamos -1 a la cantidad
+    
+    if(parseInt(quantityNode.innerHTML) <= 0)
     {
         button.setAttribute("disabled","");
         // Por si acaso
-        quantity.innerHTML = "0";
+        quantityNode.innerHTML = "0";
     } 
-    RemoveFromTicket(quantity.id, parseInt(quantity.innerHTML), quantity.getAttribute("price"))
+    RemoveFromTicket(productObj,parseInt(quantityNode.innerHTML));
 }
 
 
-function AddToTicket(id, quantity, price)
+function AddToTicket(product, quantity)
 {
-    productNode = document.getElementById("Ticket-"+id);
+    console.log(product['id']);
+    productNode = document.getElementById("Ticket-"+product['id']);
     if(productNode == null)
     {
         let newProduct = document.createElement('div');
-        newProduct.setAttribute("id", ("Ticket-"+id));
-        newProduct.innerHTML = `${id} | ${price} | ${quantity}€`;
+        newProduct.setAttribute("id", ("Ticket-"+product['id']));
+        newProduct.innerHTML = `${product['id']} | ${product['price']} | ${quantity}€`;
         ticketNode.appendChild(newProduct);
     }
     else
     {
-        productNode.innerHTML = `${id} | ${parseFloat(price)*quantity}€ | ${quantity}`;
+        productNode.innerHTML = `${product['id']} | ${parseFloat(product['price'])*quantity}€ | ${quantity}`;
     }
 }
 
-function RemoveFromTicket(id, quantity, price)
+function RemoveFromTicket(product, quantity)
 {
-    productNode = document.getElementById("Ticket-"+id);
+    productNode = document.getElementById("Ticket-"+product['id']);
     if(quantity == 0)
     {
         productNode.remove();
     }
     else
     {
-        productNode.innerHTML = `${id} | ${parseFloat(price)*quantity} | ${quantity}€`;
+        productNode.innerHTML = `${product['id']} | ${parseFloat(product['price'])*quantity} | ${quantity}€`;
     }
 }
+
+function getProductById(id) {
+    return menuList.find(
+        function(menuList){ return menuList.id == id }
+    );
+  }
+  

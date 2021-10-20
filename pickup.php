@@ -42,7 +42,7 @@ session_start();
             return "<td><div><p>id:".$product["id"]."</p>".
             "<p>Nombre:".$product["productName"]."<p>".
             "<p><span>Precio:".$product["price"]."</span><p></div>".
-            "<div><p><button value=".$product["id"]." type='button' class='Decrease'  disabled>-</button><span>0</span><button value=".$product["id"]." type='button' class='Increase'>+</button></p></div></td>";
+            "<div><p><button id='button-decrease-".$product["id"]."' value=".$product["id"]." type='button' class='Decrease'  disabled>-</button><span id=quantity-".$product["id"].">0</span><button id='button-increase-".$product["id"]."' value=".$product["id"]." type='button' class='Increase'>+</button></p></div></td>";
         }
 
         $_SESSION['ticketArray'] = "";
