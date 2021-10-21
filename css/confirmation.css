@@ -4,18 +4,17 @@
     grid-template-columns: 1fr 1fr;
     height: 100%;
     width: 40%;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);;
+    background-color: #eeeeee;
     padding: 10px;
-    border: 1px solid #000000;
     border-radius: 15px;;
 }
 .grid div{
-    background-color: #ffffff;
-    border: 1px solid #0990a1;
+    background-color: #ffffff;;
     text-align: center;
     padding: 10px;
     border-radius: 15px;
     margin: 3px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);;
 }
 .grid div label{
     font-family: Arial;
@@ -24,6 +23,7 @@
     background-color: #ffffff;
     font-family: Arial;
     text-align: center;
-    border: 1px solid #0990a1;
+    border: solid #ffffff;
     border-radius: 15px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);;
 }
