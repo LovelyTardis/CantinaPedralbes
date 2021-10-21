@@ -39,10 +39,11 @@ session_start();
 
         function CellProduct(array $product) : string
         {
-            return "<td><div class='cell-product' id='".$product["id"]."'><div><p>id:".$product["id"]."</p>".
-            "<p>Nombre:".$product["productName"]."</p>".
-            "<p>Precio:".$product["price"]."</p></div>".
-            "<div><p><button type='button' class='decrease'  disabled>-</button><span class='quantity-value'>0</span><button type='button' class='increase'>+</button></p></div></div></td>";
+            return "<td><div class='cell-product' id='".$product["id"]."'>".
+            "<div>".$product["imageId"]."</div>".
+            "<div class='product-cell-price'>Precio: ".$product["price"]."€</div>".
+            "<div class='quantity-value'>0 ud/s</div>".
+            "<div><button type='button' class='decrease'  disabled>-</button><button type='button' class='increase'>+</button></div></div></td>";
         }
 
         $_SESSION['ticketArray'] = "";
@@ -53,9 +54,9 @@ session_start();
 <body>
     <h1>PICKUP PAGE (WIP)</h1>
     <?php echo $HTML_products ?>
-    <form method="POST" action="./confirmation.php">
+    <form method="POST" id="purchase" action="./confirmation.php">
         <button type="button" id="purchase-button" value="">Comprar</button>
-        <button type="submit">Següent</button>
+        <button type="button" >Següent</button>
         <input type='hidden' id='basket-product-php' name="compra" value='' />
     </form>
     <div id="ticket">

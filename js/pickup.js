@@ -1,8 +1,11 @@
 let productButtons = document.getElementById('product-box');
 let ticketNode = document.getElementById('ticket');
 let buyButton = document.getElementById("purchase-button");
-
+let unitMessage = " ud/s."
 let menuList = JSON.parse(document.getElementById('JsonProducts').value);
+
+let purchaseButton = document.getElementById('purchase');
+
 //errors
 const error200 = "La cesta esta vacia";
 //
@@ -38,17 +41,27 @@ productButtons.addEventListener('click', e => {
 function Increase(buttonNode)
 {
     let nodeBox = buttonNode.closest(".cell-product");
-    let quantityNode = nodeBox.querySelector(".quantity-value"); //quantitat de producte
     let productObj = getProductById(nodeBox.id);
 
-    if(parseInt(quantityNode.innerHTML) == 0)
+    let index = basket.findIndex(product => product.productId == productObj['id']);
+    if(index > -1)
     {
+        UpdateBasket(productObj,(basket[index].quantity + 1));
+    }
+    else
+    {
+        UpdateBasket(productObj, 1);
+        index = basket.findIndex(product => product.productId == productObj['id']);
+
+        //Check if enable button needed
         let decreaseButton = nodeBox.querySelector("button.decrease");
         decreaseButton.removeAttribute("disabled");
+        
     }
-    quantityNode.innerHTML = parseInt(quantityNode.innerHTML)+1; // añadimos +1 a la cantidad
+    let quantityNode = nodeBox.querySelector(".quantity-value"); //quantitat de producte
+    quantityNode.innerHTML = basket[index].quantity + unitMessage; 
 
-    UpdateTicket(productObj, parseInt(quantityNode.innerHTML), 0);
+    UpdateTicket(productObj, basket[index].quantity, 0);
 }
 /**
  * This function add the functionality decrease of the product box
@@ -60,13 +73,21 @@ function Decrease(buttonNode)
     let quantityNode = nodeBox.querySelector(".quantity-value");
     let productObj = getProductById(nodeBox.id);
 
-    quantityNode.innerHTML =  parseInt(quantityNode.innerHTML)-1;  // restamos -1 a la cantidad
-    
-    if(parseInt(quantityNode.innerHTML) <= 0)
+    let index = basket.findIndex(product => product.productId == productObj['id']);
+    if(index > -1)
+    {
+        UpdateBasket(productObj,(basket[index].quantity - 1));
+        index = basket.findIndex(product => product.productId == productObj['id']);
+    }
+    //Check if disable button needed
+    if(index == -1)
     {
         buttonNode.setAttribute("disabled","");
+         quantityNode.innerHTML =  0 + unitMessage;
     } 
-    UpdateTicket(productObj,parseInt(quantityNode.innerHTML), 1);
+    let tempVar = (index == -1 ? 0 : basket[index].quantity);
+    quantityNode.innerHTML = tempVar + unitMessage;
+    UpdateTicket(productObj,tempVar, 1);
 }
 
 /**
@@ -80,7 +101,6 @@ function UpdateTicket(product, quantity, option)
     productNode = document.getElementById("Ticket-"+product['id']);
     switch (option) {
         case 0:
-            totalPrice +=  parseFloat(product['price']);
             if(productNode == null) {
                 let newProduct = document.createElement('div');
                 newProduct.setAttribute("id", ("Ticket-"+product['id']));
@@ -110,13 +130,9 @@ function UpdateTicket(product, quantity, option)
             }
             break;
         case 1:
-            totalPrice -= parseFloat(product['price']);
             if(quantity == 0){
                 productNode.remove();
-                if(CheckBasketEmpty())
-                {
-                    //desactivamos el boton de comprar
-                }
+                CheckBasketEmpty();
             }
             else{
                 UpdateProductsOfTicket(product, quantity, productNode);
@@ -125,7 +141,7 @@ function UpdateTicket(product, quantity, option)
         default:
             return false;
     }
-    UpdateTotalPrice(productNode,product, quantity);
+    UpdateTotalPrice(productNode, product, quantity);
 }
 /**
  * 
@@ -135,6 +151,7 @@ function UpdateTicket(product, quantity, option)
  */
 function UpdateProductsOfTicket(product, quantity, productNode)
 {
+    
     let thisProductName = productNode.querySelector(".ticket-product-name");
     let thisProductTotalPrice = productNode.querySelector(".ticket-product-price");
     let thisProductQuantity = productNode.querySelector(".ticket-product-quantity");
@@ -153,25 +170,35 @@ function CheckBasketEmpty()
         basketEmpty = true;
     }
 }
-
+function UpdateBasket(productObj, quantity)
+{
+    basketItem = basket.find(item => item.productId == productObj['id']);
+    if(basketItem == undefined)
+    {
+        let bpo = Object.create(basketProductObject);
+        bpo.productId = parseInt(productObj['id']);
+        bpo.quantity = parseInt(quantity);
+        basket.push(bpo);
+    }
+    else if(quantity <= 0)
+    {
+        let index = basket.findIndex(product => product.productId == productObj['id']);
+        if (index > -1) {
+            basket.splice(index, 1);
+        }
+    }
+    else
+    {
+        basketItem.quantity = quantity;
+    }
+}
 ///se tiene que editar
 function GenerateJsonWithProducts()
 {
     if(!basketEmpty)
     {
-        let ticketProducts = ticketNode.querySelectorAll(".product-in-ticket");
-
-        for (let x = 0; x < ticketProducts.length; x++) {
-            console.log(ticketProducts[x]);
-            let bpo = Object.create(basketProductObject);
-            bpo.productId = parseInt(ticketProducts[x].id.substr(7));
-            bpo.quantity = parseInt(ticketProducts[x].querySelector(".ticket-product-quantity").innerHTML);
-            basket.push(bpo);
-        }
-        console.log(ticketProducts);
-        console.log(basket);
-    
         document.getElementById("basket-product-php").value=JSON.stringify(basket);
+        purchaseButton.submit();
     }
     else
     {
@@ -187,7 +214,15 @@ function GenerateJsonWithProducts()
 
 function UpdateTotalPrice()
 {
-    document.getElementById("total-price").innerHTML = totalPrice+coinType;
+    let total = 0;
+    if(basket.length > 0)
+    {
+        for (let x = 0; x < basket.length; x++) {
+            let productObj = getProductById(basket[x].productId);
+            total += productObj.price * basket[x].quantity;
+        }    
+    }
+    document.getElementById("total-price").innerHTML = total+coinType;
 }
 
 /**
