@@ -4,7 +4,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Entrepà bacó-formatge",
-        "imageId": "./assets/images/morning/bocata_bacon_queso.png",
+        "imageId": "./assets/images/morning/bocata_bacon_queso.jpg",
         "price": "2.50"
     },
     {
@@ -12,7 +12,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Entrepà fuet",
-        "imageId": "./assets/images/morning/bocata_fuet.png",
+        "imageId": "./assets/images/morning/bocata_fuet.jpg",
         "price": "1.50"
     },
     {
@@ -20,7 +20,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Entrepà xocolata",
-        "imageId": "./assets/images/morning/bocata_chocolate.png",
+        "imageId": "./assets/images/morning/bocata_chocolate.jpg",
         "price": "1.85"
     },
     {
@@ -28,7 +28,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Panini pernil-formatge",
-        "imageId": "./assets/images/morning/panini_jamon_queso.png",
+        "imageId": "./assets/images/morning/panini_jamon_queso.jpg",
         "price": "1.50"
     },
     {
@@ -52,7 +52,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Croissant",
-        "imageId": "./assets/images/morning/croissant.png",
+        "imageId": "./assets/images/morning/croissant.jpg",
         "price": ""
     },
     {
@@ -65,47 +65,39 @@
     },
     {
         "id": 2000,
-        "allowed": 0,
+        "allowed": 2,
         "activated": 1,
         "productName": "Coca-Cola",
-        "imageId": "./assets/images/drinks/cocacola.png",
-        "price": "1.50"
-    },
-    {
-        "id": 2001,
-        "allowed": 0,
-        "activated": 1,
-        "productName": "Pepsi",
-        "imageId": "./assets/images/drinks/pepsi.png",
+        "imageId": "./assets/images/drinks/coca_cola.jpg",
         "price": "1.50"
     },
     {
         "id": 2002,
-        "allowed": 0,
+        "allowed": 2,
         "activated": 1,
         "productName": "Nestea",
-        "imageId": "./assets/images/drinks/nestea.png",
+        "imageId": "./assets/images/drinks/nestea.jpg",
         "price": "1.50"
     },
     {
         "id": 2010,
-        "allowed": 0,
+        "allowed": 2,
         "activated": 1,
         "productName": "Fanta taronja",
-        "imageId": "./assets/images/drinks/fanta.png",
+        "imageId": "./assets/images/drinks/fanta_naranja.jpg",
         "price": "1.50"
     },
     {
         "id": 2011,
-        "allowed": 0,
+        "allowed": 2,
         "activated": 1,
         "productName": "Fanta llimona",
-        "imageId": "./assets/images/drinks/fanta_limon.png",
+        "imageId": "./assets/images/drinks/fanta_limon.jpg",
         "price": "1.50"
     },
     {
         "id": 2020,
-        "allowed": 0,
+        "allowed": 2,
         "activated": 1,
         "productName": "Monster",
         "imageId": "./assets/images/drinks/monster.png",
@@ -113,23 +105,23 @@
     },
     {
         "id": 2021,
-        "allowed": 0,
+        "allowed": 2,
         "activated": 1,
         "productName": "Monster ULTRA",
-        "imageId": "./assets/images/drinks/monster_ultra.png",
+        "imageId": "./assets/images/drinks/monster_ultra.jpg",
         "price": "1.50"
     },
     {
         "id": 3000,
-        "allowed": 2,
+        "allowed": 1,
         "activated": 1,
         "productName": "Llenties amb xoriç",
-        "imageId": "./assets/images/lunch/lentejas.png",
+        "imageId": "./assets/images/lunch/lentejas.jpg",
         "price": "3.20"
     },
     {
         "id": 3001,
-        "allowed": 2,
+        "allowed": 1,
         "activated": 1,
         "productName": "",
         "imageId": "./assets/images/lunch/.png",
@@ -137,7 +129,7 @@
     },
     {
         "id": 3002,
-        "allowed": 2,
+        "allowed": 1,
         "activated": 1,
         "productName": "",
         "imageId": "./assets/images/lunch/.png",
