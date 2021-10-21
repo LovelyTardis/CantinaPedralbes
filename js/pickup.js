@@ -1,19 +1,24 @@
 let productButtons = document.getElementById('product-box');
 let ticketNode = document.getElementById('ticket');
 let buyButton = document.getElementById("purchase-button");
+
+let menuList = JSON.parse(document.getElementById('JsonProducts').value);
+//errors
+const error200 = "La cesta esta vacia";
+//
 let basketEmpty = true;
 let totalPrice = 0;
 let basket = [];
 var coinType= "€";
 
 var basketProductObject = {
-    productId: 0,
+    productId: null,
     quantity: 0
 };
-let menuList = JSON.parse(document.getElementById('JsonProducts').value);
+
 
 document.getElementById('purchase-button').addEventListener('click', e => {
-        ThingsToBuy();
+    GenerateJsonWithProducts();
 });
 
 productButtons.addEventListener('click', e => {
@@ -26,7 +31,10 @@ productButtons.addEventListener('click', e => {
 
 });
 
-
+/**
+ * 
+ * @param {*} buttonNode 
+ */
 function Increase(buttonNode)
 {
     let nodeBox = buttonNode.closest(".cell-product");
@@ -42,12 +50,15 @@ function Increase(buttonNode)
 
     UpdateTicket(productObj, parseInt(quantityNode.innerHTML), 0);
 }
-
+/**
+ * This function add the functionality decrease of the product box
+ * @param {*} buttonNode 
+ */
 function Decrease(buttonNode)
 {
     let nodeBox = buttonNode.closest(".cell-product");
     let quantityNode = nodeBox.querySelector(".quantity-value");
-    let productObj = getProductById(quantityNode.closest(".cell-product").id);
+    let productObj = getProductById(nodeBox.id);
 
     quantityNode.innerHTML =  parseInt(quantityNode.innerHTML)-1;  // restamos -1 a la cantidad
     
@@ -92,40 +103,37 @@ function UpdateTicket(product, quantity, option)
                 newProduct.appendChild(thisProductQuantity);
         
                 ticketNode.appendChild(newProduct);
-                CheckBasketEmpty();
+                if(basketEmpty){ basketEmpty = false; }  // llamamos a la function para que ponga en true bas
             }
             else {
-                UpdateProductOfTicket(product, quantity, productNode);
+                UpdateProductsOfTicket(product, quantity, productNode);
             }
             break;
         case 1:
             totalPrice -= parseFloat(product['price']);
             if(quantity == 0){
                 productNode.remove();
-                CheckBasketEmpty();
+                if(CheckBasketEmpty())
+                {
+                    //desactivamos el boton de comprar
+                }
             }
             else{
-                UpdateProductOfTicket(product, quantity, productNode);
+                UpdateProductsOfTicket(product, quantity, productNode);
             }    
             break;
         default:
-            break;
+            return false;
     }
     UpdateTotalPrice(productNode,product, quantity);
 }
-function CheckBasketEmpty()
-{
-    if(document.querySelectorAll(".product-in-ticket").length == 0)
-    {
-        basketEmpty = true;
-    }
-    else if(basketEmpty == true)
-    {
-        basketEmpty = false;
-    }
-}
-
-function UpdateProductOfTicket(product, quantity, productNode)
+/**
+ * 
+ * @param {*} product - Product object.
+ * @param {*} quantity - Bew quantity of the product.
+ * @param {*} productNode - HTML node in ticket.
+ */
+function UpdateProductsOfTicket(product, quantity, productNode)
 {
     let thisProductName = productNode.querySelector(".ticket-product-name");
     let thisProductTotalPrice = productNode.querySelector(".ticket-product-price");
@@ -135,9 +143,19 @@ function UpdateProductOfTicket(product, quantity, productNode)
     thisProductTotalPrice.innerHTML = (product['price']*quantity)+coinType;
     thisProductQuantity.innerHTML = quantity;
 }
+/**
+ * Looks if there is something to buy on the ticket, (if empty => set basketEmpty {true})
+ */
+function CheckBasketEmpty()
+{
+    if(document.querySelectorAll(".product-in-ticket").length == 0)
+    {
+        basketEmpty = true;
+    }
+}
 
 ///se tiene que editar
-function ThingsToBuy()
+function GenerateJsonWithProducts()
 {
     if(!basketEmpty)
     {
@@ -157,7 +175,12 @@ function ThingsToBuy()
     }
     else
     {
-        alert("No es pot comprar res si la cesta esta buida");
+        Swal.fire({
+            title: 'Error!',
+            text: error200,
+            icon: 'error',
+            confirmButtonText: 'Entendido'
+        });
     }
 }
 /// 
@@ -167,6 +190,11 @@ function UpdateTotalPrice()
     document.getElementById("total-price").innerHTML = totalPrice+coinType;
 }
 
+/**
+ * 
+ * @param {*} id - Identifier of the product you want to get.
+ * @returns The product on the menuList
+ */
 function getProductById(id) {
     return menuList.find(
         function(menuList){ return menuList.id == id }

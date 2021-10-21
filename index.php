@@ -7,7 +7,12 @@
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Inici</title>
     <?php
-    include 'header.php';
+        if(isset($_COOKIE["comanda"]))
+        {
+        }
+    ?>
+    <?php
+        include 'header.php';
     ?>
 </head>
 <body>

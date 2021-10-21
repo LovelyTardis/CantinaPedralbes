@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +11,24 @@
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <title>Cantina - Confirmació</title>
     <?php
-        /*$jsonProducts = file_get_contents("products.json");
-        $HTML_ticket = json_decode(file_get_contents("php://input"));*/
+        $jsonProducts = json_decode(file_get_contents("products.json"));
+        $ticketObjects = json_decode($_POST["compra"]);
+        $_SESSION["ticketObjects"] = $ticketObjects;
+        $HTML_ticket = LoadTicket($jsonProducts, $ticketObjects);
+        function LoadTicket($jsonProducts, $ticketObjects)
+        {
+            $str = "";
+            for ($x=0; $x < count($ticketObjects) ; $x++) { 
+                $productObj = $ticketObjects[$x];
+                $key= array_search($productObj->productId, array_column($jsonProducts, 'id'));
+                $str .= "<div class='product-in-ticket'>".
+                "<div>".($jsonProducts[$key]->productName)."</div>".
+                "<div>quantity:".($productObj->quantity)."</div>".
+                "<div>Price: ".( (floatval($jsonProducts[$key]->price) ) *$productObj->quantity)."€</div></div>";
+            }
+            return $str;
+        }
+
         
     ?>
     <?php
@@ -18,6 +37,7 @@
 </head>
 <body>
     <h1>CONFIRMATION PAGE (WIP)</h1>
+    <?php echo print_r($ticketObjects)?>
     <?php echo $HTML_ticket?>
     <form id="credentialsForm" method="POST" action="./checkout.php">
     <table>

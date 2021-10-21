@@ -31,7 +31,6 @@ session_start();
 
             $str .="</tr></table>";
             $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
-            $str .= "<input type='hidden' id='basket-product-php' value='' />";
             //
             return $str;
             
@@ -56,6 +55,7 @@ session_start();
     <form method="POST" action="./confirmation.php">
         <button type="button" id="purchase-button" value="">Comprar</button>
         <button type="submit">Següent</button>
+        <input type='hidden' id='basket-product-php' name="compra" value='' />
     </form>
     <div id="ticket">
         <div id="total-price">

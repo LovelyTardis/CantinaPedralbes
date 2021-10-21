@@ -7,7 +7,7 @@
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Confirmat!</title>
     <?php
-    include 'header.php';
+        include 'header.php';
     ?>
 </head>
 <body>
@@ -17,12 +17,11 @@
         <input type="button" value="Tornar al menú inicial">
     </a>
     <?php 
-    include 'footer.php'
+        include 'footer.php'
     ?>
-</body>
-<script>
+    <script>
     <?php
-        
+        setcookie("comanda","false",(time()+60*60*24));
         $username = $_POST["name"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
@@ -38,4 +37,5 @@
         }
     ?>
 </script>
+</body>
 </html>
