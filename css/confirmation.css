@@ -2,16 +2,28 @@
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: #4264c0;
     height: 100%;
-    width: 50%;
+    width: 40%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 15px;;
 }
 .grid div{
-    background-color: #b3afaf;
-    border: 1px solid #111111;
+    background-color: #ffffff;
+    border: 1px solid #0990a1;
     text-align: center;
     padding: 10px;
+    border-radius: 15px;
+    margin: 3px;
 }
 .grid div label{
     font-family: Arial;
+}
+.grid div input{
+    background-color: #ffffff;
+    font-family: Arial;
+    text-align: center;
+    border: 1px solid #0990a1;
+    border-radius: 15px;
 }
