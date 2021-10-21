@@ -17,23 +17,31 @@ session_start();
     <script>
         <?php
         
+        $time = 0;
+
         $jsonProducts = file_get_contents("products.json");
         $productsObject = json_decode($jsonProducts,true);
-        $HTML_products = LoadProductsHTML($jsonProducts,$productsObject);
-        function LoadProductsHTML($json, $productsLoad) : string
+        $HTML_products = LoadProductsHTML($jsonProducts,$productsObject, $time);
+        function LoadProductsHTML($json, $productsLoad, $time) : string
         {
             $str = "";
             //
             $str .="<div class ='general-background'><div id='product-box' class='grid-products'>";
         
             for ($i=0; $i < count($productsLoad); $i++) { 
-                $str .= CellProduct($productsLoad[$i]);
+                if($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2)
+                {
+                    $str .= CellProduct($productsLoad[$i]);
+                }
             }         
 
             $str .="</div>";
             $str .="<div class='grid-ticket'>";
             for ($i=0; $i < count($productsLoad); $i++) { 
-                $str .= CellProduct($productsLoad[$i]);
+                if($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2)
+                {
+                    $str .= CellProduct($productsLoad[$i]);
+                }
             }  
             $str .="</div></div>";
             $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
