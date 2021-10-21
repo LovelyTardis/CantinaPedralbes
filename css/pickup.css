@@ -1,6 +1,7 @@
-div.product-in-ticket > *{
+div.product-in-ticket > div{
     display: inline;
     border: 1px solid black;
+    max-width: 200px;
 }
 
 div.general-background{
@@ -75,4 +76,3 @@ div.general-background{
     width: 90%;
     margin: auto;
 }
-

@@ -1,26 +1,31 @@
 let productButtons = document.getElementById('product-box');
 let ticketNode = document.getElementById('ticket');
 let buyButton = document.getElementById("purchase-button");
-let unitMessage = " ud/s."
+let form = document.getElementById("form-basket");
+
+let basketJson = document.getElementById("basket-product-php").value;
+
 let menuList = JSON.parse(document.getElementById('JsonProducts').value);
-
-let purchaseButton = document.getElementById('purchase');
-
+window.onload = function() {
+    LoadProducts();
+};
+function LoadProducts()
+{
+    basket = JSON.parse(basketJson);
+    console.log(basket);
+}
 //errors
 const error200 = "La cesta esta vacia";
-//
-let basketEmpty = true;
-let totalPrice = 0;
+//basket variables
 let basket = [];
 var coinType= "€";
-
 var basketProductObject = {
     productId: null,
     quantity: 0
 };
+let unitMessage = " ud/s."
 
-
-document.getElementById('purchase-button').addEventListener('click', e => {
+document.getElementById('purchase-button').addEventListener('click', (e) => {
     GenerateJsonWithProducts();
 });
 
@@ -85,7 +90,7 @@ function Decrease(buttonNode)
         buttonNode.setAttribute("disabled","");
          quantityNode.innerHTML =  0 + unitMessage;
     } 
-    let tempVar = (index == -1 ? 0 : basket[index].quantity);
+    let tempVar = (index == -1 ? 0 : basket[index].quantity); // busca si el producto existe en la cesta "basket" en caso de no existir pone un 0
     quantityNode.innerHTML = tempVar + unitMessage;
     UpdateTicket(productObj,tempVar, 1);
 }
@@ -122,8 +127,7 @@ function UpdateTicket(product, quantity, option)
                 thisProductQuantity.innerHTML = quantity;
                 newProduct.appendChild(thisProductQuantity);
         
-                ticketNode.appendChild(newProduct);
-                if(basketEmpty){ basketEmpty = false; }  // llamamos a la function para que ponga en true bas
+                ticketNode.appendChild(newProduct);  // llamamos a la function para que ponga en true bas
             }
             else {
                 UpdateProductsOfTicket(product, quantity, productNode);
@@ -132,7 +136,6 @@ function UpdateTicket(product, quantity, option)
         case 1:
             if(quantity == 0){
                 productNode.remove();
-                CheckBasketEmpty();
             }
             else{
                 UpdateProductsOfTicket(product, quantity, productNode);
@@ -160,22 +163,18 @@ function UpdateProductsOfTicket(product, quantity, productNode)
     thisProductTotalPrice.innerHTML = (product['price']*quantity)+coinType;
     thisProductQuantity.innerHTML = quantity;
 }
+
 /**
- * Looks if there is something to buy on the ticket, (if empty => set basketEmpty {true})
+ * 
+ * @param {*} productObj - Product To add/remove.
+ * @param {*} quantity - Quantity of the product.
  */
-function CheckBasketEmpty()
-{
-    if(document.querySelectorAll(".product-in-ticket").length == 0)
-    {
-        basketEmpty = true;
-    }
-}
 function UpdateBasket(productObj, quantity)
 {
     basketItem = basket.find(item => item.productId == productObj['id']);
     if(basketItem == undefined)
     {
-        let bpo = Object.create(basketProductObject);
+        let bpo = Object.create(basketProductObject); //bpo => basketProductObject
         bpo.productId = parseInt(productObj['id']);
         bpo.quantity = parseInt(quantity);
         basket.push(bpo);
@@ -191,14 +190,16 @@ function UpdateBasket(productObj, quantity)
     {
         basketItem.quantity = quantity;
     }
+    console.log(basket);
 }
 ///se tiene que editar
 function GenerateJsonWithProducts()
 {
-    if(!basketEmpty)
+    console.log(basket);
+    if(basket.length > 0)
     {
-        document.getElementById("basket-product-php").value=JSON.stringify(basket);
-        purchaseButton.submit();
+        document.getElementById("basket-product-php").value = JSON.stringify(basket);
+        form.submit();
     }
     else
     {

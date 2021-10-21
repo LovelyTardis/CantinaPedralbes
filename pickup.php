@@ -53,15 +53,30 @@ session_start();
         
         function CellProduct(array $product) : string
         {
-            return "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
-            "<div>".$product["productName"]."</div>".
+            $str = "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
+            "<div>Nombre:".$product["productName"]."</div>".
             "<hr class='hr-cell-product'>".
             "<div>".$product["price"]."€/u</div>".
             "<hr class='hr-cell-product'>".
-            "<div class='quantity-value'>0</div></div>".
-            "<div><button type='button' class='decrease'  disabled>-</button><button type='button' class='increase'>+</button></div></div>";
+            ServerInfoProduct($product["id"]);
+            
+            return $str;
         }
-        $_SESSION['ticketArray'] = "";
+        function ServerInfoProduct($id) : string
+        {
+            $str = "<div class='quantity-value'>0 ud/s</div></div>".
+            "<div><button type='button' class='decrease'  disabled>-</button><button type='button' class='increase'>+</button></div></div>";;
+            if(isset($_SESSION["ticketObjects"]))
+            {
+                $index = array_search($id, array_column($_SESSION["ticketObjects"], 'productId'));
+                if($index !== false)
+                {
+                    $str = "<div class='quantity-value'>".$_SESSION["ticketObjects"][$index]->quantity." ud/s</div></div>".
+                    "<div><button type='button' class='decrease'>-</button><button type='button' class='increase'>+</button></div></div>";
+                }
+            }   
+            return $str;
+        }
         ?>
     </script>
 </head>
@@ -69,14 +84,29 @@ session_start();
 <body>
     <h1>PICKUP PAGE (WIP)</h1>
     <?php echo $HTML_products ?>
-    <form method="POST" action="./confirmation.php">
+    <form id="form-basket" method="POST" action="./confirmation.php">
         <button type="button" id="purchase-button" value="">Comprar</button>
-        <button type="submit">Següent</button>
-        <input type='hidden' id='basket-product-php' name="compra" value='' />
+        <input type='hidden' id='basket-product-php' name="basket" value=<?php if(isset($_SESSION["ticketObjects"])){ echo json_encode($_SESSION['ticketObjects']); } else {echo '[]';}?> />
     </form>
     <div id="ticket">
+        <?php
+            if(isset($_SESSION["ticketObjects"]))
+            {
+                $thisjsonProducts = file_get_contents("products.json");
+                $thisproductsObject = json_decode($thisjsonProducts,true);
+                $str = "";
+                for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++) { 
+                    
+                    $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($thisproductsObject, 'id'));
+                    $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$i]->productId." class='product-in-ticket'>".
+                    "<div class='ticket-product-name'>".($thisproductsObject[$index]['productName'])."</div>".  
+                    "<div class='ticket-product-price'>".( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity)."€</div>".
+                    "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$i]->quantity)."</div></div>";
+                }
+                echo $str;
+            }
+        ?>
         <div id="total-price">
-
         </div>
     </div>
     <?php 

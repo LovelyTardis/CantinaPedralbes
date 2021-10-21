@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +11,10 @@
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <title>Cantina - Inici</title>
     <?php
+        if(isset($_SESSION["ticketObjects"]))
+        {
+            $_SESSION["ticketObjects"] = [];
+        }
         if(isset($_COOKIE["comanda"]))
         {
         }

@@ -1,5 +1,7 @@
 <?php
     session_start();
+    $ticketObjects = json_decode($_POST["basket"]);
+    $_SESSION["ticketObjects"] = $ticketObjects;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,8 +15,7 @@
     <title>Cantina - Confirmació</title>
     <?php
         $jsonProducts = json_decode(file_get_contents("products.json"));
-        $ticketObjects = json_decode($_POST["compra"]);
-        $_SESSION["ticketObjects"] = $ticketObjects;
+
         $HTML_ticket = LoadTicket($jsonProducts, $ticketObjects);
         function LoadTicket($jsonProducts, $ticketObjects)
         {
