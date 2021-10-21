@@ -1,227 +1,32 @@
 [
     {
         "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albertasda",
-        "email": "sdf@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@gmail.com",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "fgrfgr",
         "email": "albert@inspedralbes.cat",
         "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 2
+            },
+            {
+                "productId": 1000,
+                "quantity": 2
+            }
+        ]
     },
     {
-        "username": "Albert",
-        "email": "albert@inspedralbes.cat",
+        "username": "Arnau",
+        "email": "arnau@inspedralbes.cat",
         "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@inspedralbes.cat",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@inspedralbes.cat",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@inspedralbes.cat",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
-    },
-    {
-        "username": "Albert",
-        "email": "albert@inspedralbes.cat",
-        "phone": "123456789",
-        "products": {
-            "producto": "Coca-Cola",
-            "producto2": "BeiconQueso"
-        }
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            },
+            {
+                "productId": 2020,
+                "quantity": 1
+            }
+        ]
     }
 ]

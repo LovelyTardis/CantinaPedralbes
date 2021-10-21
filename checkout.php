@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +11,7 @@
     <title>Cantina - Confirmat!</title>
     <?php
         include 'header.php';
+        print_r($_SESSION["ticketObjects"]);
     ?>
 </head>
 <body>
@@ -25,7 +29,7 @@
         $username = $_POST["name"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
-        $productList = array("producto" => "Coca-Cola", "producto2" => "BeiconQueso"); //poner el array con los productos escogidos en pickup.php
+        $productList = $_SESSION["ticketObjects"]; //poner el array con los productos escogidos en pickup.php
 
         $ticket = array("username" => $username, "email" => $email, "phone" => $phone, "products" => $productList);
 

@@ -10,6 +10,7 @@ session_start();
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Ordenar</title>
     <link rel="stylesheet" href="./css/pickup.css">
+    <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <?php
     include 'header.php';
     ?>
