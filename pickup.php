@@ -50,11 +50,11 @@ session_start();
             return $str;
             
         }
-
+        
         function CellProduct(array $product) : string
         {
-            return "<div class='cell-product' id='".$product["id"]."'><div><p>id:".$product["id"]."</p>".
-            "<div>Nombre:".$product["productName"]."</div>".
+            return "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
+            "<div>".$product["productName"]."</div>".
             "<hr class='hr-cell-product'>".
             "<div>".$product["price"]."€/u</div>".
             "<hr class='hr-cell-product'>".
