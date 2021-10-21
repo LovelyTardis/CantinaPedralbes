@@ -54,11 +54,13 @@ session_start();
         function CellProduct(array $product) : string
         {
             return "<div class='cell-product' id='".$product["id"]."'><div><p>id:".$product["id"]."</p>".
-            "<p>Nombre:".$product["productName"]."</p>".
-            "<p>Precio:".$product["price"]."</p></div>".
-            "<div><p><button type='button' class='decrease'  disabled>-</button><span class='quantity-value'>0</span><button type='button' class='increase'>+</button></p></div></div>";
+            "<div>Nombre:".$product["productName"]."</div>".
+            "<hr class='hr-cell-product'>".
+            "<div>".$product["price"]."€/u</div>".
+            "<hr class='hr-cell-product'>".
+            "<div class='quantity-value'>0</div></div>".
+            "<div><button type='button' class='decrease'  disabled>-</button><button type='button' class='increase'>+</button></div></div>";
         }
-
         $_SESSION['ticketArray'] = "";
         ?>
     </script>
