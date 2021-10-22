@@ -20,9 +20,10 @@ div.general-background{
     margin-right: 25px;
 }
 .grid-products img{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 15px;
+    margin: 10px;
 }
 .grid-ticket{
     display: grid;
@@ -59,6 +60,8 @@ div.general-background{
     color: white;
     font-weight: bolder;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .decrease {
     background-color: #eeeeee;
@@ -70,6 +73,8 @@ div.general-background{
     margin: 0px 10px 0px;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);;
     width:  35%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .hr-cell-product{
     border-top: 2px dotted #C4C4C4 ;    
