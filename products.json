@@ -53,7 +53,7 @@
         "activated": 1,
         "productName": "Croissant",
         "imageId": "./assets/images/morning/croissant.jpg",
-        "price": ""
+        "price": "1.20"
     },
     {
         "id": 1021,

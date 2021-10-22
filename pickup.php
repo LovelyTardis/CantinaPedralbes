@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="defaultsheet" href="./css/normalize.css">
     <title>Cantina - Ordenar</title>
     <link rel="stylesheet" href="./css/pickup.css">
@@ -18,15 +18,14 @@ session_start();
         <?php
         
         $time = 0;
-
+        $ticketPrice = 0;
         $jsonProducts = file_get_contents("products.json");
         $productsObject = json_decode($jsonProducts,true);
         $HTML_products = LoadProductsHTML($jsonProducts,$productsObject, $time);
         function LoadProductsHTML($json, $productsLoad, $time) : string
         {
             $str = "";
-            //
-            $str .="<div class ='general-background'><div id='product-box' class='grid-products'>";
+            $str .= "<div class ='general-background'><div id='product-box' class='grid-products'>";
         
             for ($i=0; $i < count($productsLoad); $i++) { 
                 if($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2)
@@ -37,15 +36,12 @@ session_start();
 
             $str .="</div>";
             $str .="<div class='grid-ticket'>";
-            for ($i=0; $i < count($productsLoad); $i++) { 
-                if($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2)
-                {
-                    $str .= CellProduct($productsLoad[$i]);
-                }
-            }  
-            $str .="</div></div>";
+            $str .="<div id='ticket'>";
+            $str .= GetTicketData();
+            $str .="</div><div id='total-price'>".$GLOBALS['ticketPrice']."€</div>";
+            $str .= "</div></div>";
             $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
-            
+
             //
             return $str;
             
@@ -77,19 +73,8 @@ session_start();
             }   
             return $str;
         }
-        ?>
-    </script>
-</head>
-
-<body>
-    <h1>PICKUP PAGE (WIP)</h1>
-    <?php echo $HTML_products ?>
-    <form id="form-basket" method="POST" action="./confirmation.php">
-        <button type="button" id="purchase-button" value="">Comprar</button>
-        <input type='hidden' id='basket-product-php' name="basket" value=<?php if(isset($_SESSION["ticketObjects"])){ echo json_encode($_SESSION['ticketObjects']); } else {echo '[]';}?> />
-    </form>
-    <div id="ticket">
-        <?php
+        function GetTicketData() : string
+        {
             if(isset($_SESSION["ticketObjects"]))
             {
                 $thisjsonProducts = file_get_contents("products.json");
@@ -102,13 +87,22 @@ session_start();
                     "<div class='ticket-product-name'>".($thisproductsObject[$index]['productName'])."</div>".  
                     "<div class='ticket-product-price'>".( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity)."€</div>".
                     "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$i]->quantity)."</div></div>";
+                    $GLOBALS['ticketPrice'] = $GLOBALS['ticketPrice'] + ( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity);
                 }
-                echo $str;
+                return $str;
             }
+            return "";
+        }
         ?>
-        <div id="total-price">
-        </div>
-    </div>
+    </script>
+</head>
+
+<body>
+    <?php echo $HTML_products ?>
+    <form id="form-basket" method="POST" action="./confirmation.php">
+        <button type="button" id="purchase-button" value="">Comprar</button>
+        <input type='hidden' id='basket-product-php' name="basket" value=<?php if(isset($_SESSION["ticketObjects"])){ echo json_encode($_SESSION['ticketObjects']); } else {echo '[]';}?> />
+    </form>
     <?php 
     include 'footer.php'
     ?>
