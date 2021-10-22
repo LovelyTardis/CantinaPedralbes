@@ -24,6 +24,7 @@ div.general-background{
     height: 200px;
     border-radius: 15px;
     margin: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);;
 }
 .grid-ticket{
     display: grid;
