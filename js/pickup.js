@@ -110,22 +110,23 @@ function UpdateTicket(product, quantity, option)
                 let newProduct = document.createElement('div');
                 newProduct.setAttribute("id", ("Ticket-"+product['id']));
                 newProduct.setAttribute("class", "product-in-ticket");
-        
+
+                let thisProductQuantity = document.createElement('div');
+                thisProductQuantity.setAttribute("class", "ticket-product-quantity");
+                thisProductQuantity.innerHTML = quantity;
         
                 let thisProductName = document.createElement('div');
                 thisProductName.setAttribute("class", "ticket-product-name");
                 thisProductName.innerHTML = product['productName'];
-                newProduct.appendChild(thisProductName);
+                
         
                 let thisProductTotalPrice = document.createElement('div');
                 thisProductTotalPrice.setAttribute("class", "ticket-product-price");
-                thisProductTotalPrice.innerHTML = (product['price']*quantity);
-                newProduct.appendChild(thisProductTotalPrice);
-        
-                let thisProductQuantity = document.createElement('div');
-                thisProductQuantity.setAttribute("class", "ticket-product-quantity");
-                thisProductQuantity.innerHTML = quantity;
+                thisProductTotalPrice.innerHTML = (product['price']*quantity)+"€";
+
                 newProduct.appendChild(thisProductQuantity);
+                newProduct.appendChild(thisProductName);
+                newProduct.appendChild(thisProductTotalPrice);
         
                 ticketNode.appendChild(newProduct);  // llamamos a la function para que ponga en true bas
             }
