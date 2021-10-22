@@ -39,5 +39,24 @@
                 "quantity": 8
             }
         ]
+    },
+    {
+        "username": "Albert",
+        "email": "albert@inspedralbes.cat",
+        "phone": "123456789",
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            },
+            {
+                "productId": 1002,
+                "quantity": 4
+            },
+            {
+                "productId": 1010,
+                "quantity": 6
+            }
+        ]
     }
 ]

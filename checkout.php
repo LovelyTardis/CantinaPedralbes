@@ -25,7 +25,7 @@
     ?>
     <script>
     <?php
-        setcookie("comanda","false",(time()+60*60*24));
+        setcookie("comanda","tenemoscookie",(time()+60*60*24));
         $username = $_POST["name"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];

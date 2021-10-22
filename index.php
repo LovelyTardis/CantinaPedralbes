@@ -15,9 +15,6 @@ session_start();
         {
             $_SESSION["ticketObjects"] = [];
         }
-        if(isset($_COOKIE["comanda"]))
-        {
-        }
     ?>
     <?php
         include 'header.php';
@@ -25,14 +22,12 @@ session_start();
 </head>
 <body>
     <h1>LANDING PAGE (WIP)</h1>
-    <a href="./pickup.php">
-        <input type="button" value="Començar comanda">
-    </a>
-    <a href="./admin/ProductAdministration.php">
-        <input type="button" value="Admin">
+    <a>
+        <input type="button" id="continue-button" value="Començar comanda">
     </a>
     <?php 
     include 'footer.php'
     ?>
+    <script src="/js/index.js"></script>
 </body>
 </html>
