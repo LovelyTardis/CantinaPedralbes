@@ -54,7 +54,7 @@ session_start();
         function CellProduct(array $product) : string
         {
             $str = "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
-            "<div>Nombre:".$product["productName"]."</div>".
+            "<div>".$product["productName"]."</div>".
             "<hr class='hr-cell-product'>".
             "<div>".$product["price"]."€/u</div>".
             "<hr class='hr-cell-product'>".
