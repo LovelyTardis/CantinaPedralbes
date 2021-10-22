@@ -28,6 +28,9 @@ session_start();
     <a href="./pickup.php">
         <input type="button" value="Començar comanda">
     </a>
+    <a href="./admin/ProductAdministration.php">
+        <input type="button" value="Admin">
+    </a>
     <?php 
     include 'footer.php'
     ?>

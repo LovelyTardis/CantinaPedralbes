@@ -28,7 +28,7 @@ session_start();
             $str .= "<div class ='general-background'><div id='product-box' class='grid-products'>";
         
             for ($i=0; $i < count($productsLoad); $i++) { 
-                if($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2)
+                if(($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2) && $productsLoad[$i]["activated"] == 1)
                 {
                     $str .= CellProduct($productsLoad[$i]);
                 }
