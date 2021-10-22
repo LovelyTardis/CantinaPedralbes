@@ -6,4 +6,4 @@ Integrants:
 Objectiu:
 Fer una pàgina web funcional per la cantina de l'institut, fent una comanda de menjar.
 
-labs.inspedralbes.cat
+cantina3.alumnes.inspedralbes.cat
