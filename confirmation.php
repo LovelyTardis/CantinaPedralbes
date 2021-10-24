@@ -44,9 +44,9 @@
     <form id="credentialsForm" method="POST" action="./checkout.php">
     <div  class="grid">
         <div><label for="name">Nom: </label></div>
-        <div><input type="text" name="name" id="name" value="Albert" require></div>
+        <div><input type="text" name="name" id="name" value="Try" require></div>
         <div><label for="email">Correu electrònic: </label></div>
-        <div><input type="email" name="email" id="email" value="albert@gmail.com"require></div>
+        <div><input type="email" name="email" id="email" value="try@inspedralbes.cat"require></div>
         <div><label for="phone">Telèfon: </label></div>
         <div><input type="tel" name="phone" id="phone" value="123456789"require></div>
     </div>

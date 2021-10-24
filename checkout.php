@@ -25,13 +25,8 @@
     ?>
     <script>
     <?php
-        setcookie("comanda","tenemoscookie",(time()+60*60*24));
-        $username = $_POST["name"];
-        $email = $_POST["email"];
-        $phone = $_POST["phone"];
-        $productList = $_SESSION["ticketObjects"]; //poner el array con los productos escogidos en pickup.php
-
-        $ticket = array("username" => $username, "email" => $email, "phone" => $phone, "products" => $productList);
+        setcookie("comanda", "tenemoscookie", strtotime('today 23:59'), '/');
+        $ticket = array("username" => $_POST["name"], "email" => $_POST["email"], "phone" => $_POST["phone"], "products" => $_SESSION["ticketObjects"]);
 
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
