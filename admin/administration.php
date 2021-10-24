@@ -9,6 +9,13 @@
     <?php
     include 'header.php';
     ?>
+    <?php
+    if(isset($_POST['senderJson']))
+    {
+        file_put_contents("../products.json", json_encode(json_decode($_POST['senderJson']), JSON_PRETTY_PRINT));
+    }
+    
+    ?>
 </head>
 <body>
     <h1>ADMINISTRATION PAGE (WIP)</h1>

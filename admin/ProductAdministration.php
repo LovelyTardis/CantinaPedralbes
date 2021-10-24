@@ -32,7 +32,9 @@
             "<div>".$product["productName"]."</div>".
             "<hr class='hr-cell-product'>".
             "<div>".$product["price"]."€/u</div>".
-            "<button type='button' class='remove'>remove</button></span></div>";
+            "<button type='button' class='remove'>Remove</button>".
+            "<button type='button' class='activate-product'>Activate</button>".
+            "<button type='button' class='deactivate-product'>Deactivate</button></span></div>";
             
             return $str;
         }
@@ -40,9 +42,9 @@
 </head>
 <body>
     <?php echo $HTML_products?>
-    <form>
+    <form  method="POST" action="./administration.php">
         <input type="submit" value=''>
-        <input type="hidden" id="senderJson" value='<?php echo $jsonProducts ?>'>
+        <input type="hidden" id="senderJson" name="senderJson" value='<?php echo $jsonProducts ?>'>
     </form>
     <script src="./ProductAdministration.js"></script>
 </body>
