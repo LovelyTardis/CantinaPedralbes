@@ -29,7 +29,7 @@
     display: table;
     float: left;
     padding: 0px 20px;
-
+    color: inherit;
 }
 .navigation a :last-child{
     padding-right: 0px;
