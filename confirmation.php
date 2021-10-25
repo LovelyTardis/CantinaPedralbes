@@ -5,8 +5,19 @@
         //cambiar a cantina cuando se suba
         header('Location: http://localhost/error.php');
     }
-    $ticketObjects = json_decode($_POST["basket"]);
-    $_SESSION["ticketObjects"] = $ticketObjects;
+    if(isset($_POST["basket"])
+    {
+        $ticketObjects = json_decode($_POST["basket"]);
+        $_SESSION["ticketObjects"] = $ticketObjects;
+    }
+    else if(isset($_SESSION["ticketObjects"] )
+    {
+        $ticketObjects = json_decode($_SESSION["ticketObjects"]);
+    }
+    else
+    {
+        header('Location: http://localhost/error.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
