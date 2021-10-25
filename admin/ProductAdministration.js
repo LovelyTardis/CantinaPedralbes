@@ -83,7 +83,7 @@ function ConfirmationPopUp(questionPopUp, productObj)
     imageUrl: productObj.imageId,
     icon: 'warning',
     imageWidth: 400,
-    imageHeight: 200,
+    imageHeight: 400,
     imageAlt: 'Custom image',
     showCancelButton: true,
     cancelButtonText: 'Cancel·lar',

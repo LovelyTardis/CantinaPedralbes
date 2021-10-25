@@ -4,7 +4,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Entrepà bacó-formatge",
-        "imageId": "./assets/images/morning/bocata_bacon_queso.jpg",
+        "imageId": "../assets/images/morning/bocata_bacon_queso.jpg",
         "price": "2.50"
     },
     {

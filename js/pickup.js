@@ -1,34 +1,51 @@
-let productButtons = document.getElementById('product-box');
-let ticketNode = document.getElementById('ticket');
-let buyButton = document.getElementById("purchase-button");
-let form = document.getElementById("form-basket");
-
-let basketJson = document.getElementById("basket-product-php").value;
-
-let menuList = JSON.parse(document.getElementById('JsonProducts').value);
 window.onload = function() {
     LoadProducts();
 };
+
+
+
+let productButtons = document.getElementById('product-box'); //nodo donde se encuentran los productos cargados por php
+let ticketNode = document.getElementById('ticket'); //nodo donde se encuentra la informacion del tiquet
+let buyButton = document.getElementById("purchase-button"); //boton de comprar
+let form = document.getElementById("form-basket"); //formulario con la cesta que utilizare para controlar el submit.
+
+let basketJson = document.getElementById("basket-product-php").value; //input hidden donde mandaremos el json de productos para utilizar-lo en el siguiente php.
+
+let menuList = JSON.parse(document.getElementById('JsonProducts').value);
+
+
+//errors
+const error200 = "La cesta esta vacia";
+
+
+//cesta de productos en cliente
+let basket = [];
+
+//Carga los productos a la cesta, en caso de tener un pedido en $_SESSION
 function LoadProducts()
 {
     basket = JSON.parse(basketJson);
     console.log(basket);
 }
-//errors
-const error200 = "La cesta esta vacia";
-//basket variables
-let basket = [];
-var coinType= "€";
+
+//Plantilla para añadir productos a la cesta
 var basketProductObject = {
     productId: null,
     quantity: 0
 };
-let unitMessage = " sud/s."
+
+
+// constant variables
+const coinType= "€";
+const unitMessage = " ud/s."
 
 document.getElementById('purchase-button').addEventListener('click', (e) => {
     GenerateJsonWithProducts();
 });
 
+/**
+ * Se añade la funcionalidad a los botones increase i decrease.
+ */
 productButtons.addEventListener('click', e => {
     if(e.target.classList.contains('increase')){
         Increase(e.target);
@@ -49,13 +66,15 @@ function Increase(buttonNode)
     let productObj = getProductById(nodeBox.id);
 
     let index = basket.findIndex(product => product.productId == productObj['id']);
-    if(index > -1)
+    if(index > -1)// si encuentra el producto, no lo crea, lo actualiza
     {
         UpdateBasket(productObj,(basket[index].quantity + 1));
     }
-    else
+    else// en caso contrario crea 
     {
+        //se envia con valor default 1 ya que si no existe, lo queremos añadir por primera vez, osea la cantidad va a ser 1 siempre, ademas de que se añadira al array basket
         UpdateBasket(productObj, 1);
+        //como este producto no existia en el array basket, al crearlo, necessitamos coger su KEY sobre el array, para eso volvemos a buscarlo.
         index = basket.findIndex(product => product.productId == productObj['id']);
 
         //Check if enable button needed
@@ -90,9 +109,9 @@ function Decrease(buttonNode)
         buttonNode.setAttribute("disabled","");
          quantityNode.innerHTML =  0 + unitMessage;
     } 
-    let tempVar = (index == -1 ? 0 : basket[index].quantity); // busca si el producto existe en la cesta "basket" en caso de no existir pone un 0
-    quantityNode.innerHTML = tempVar + unitMessage;
-    UpdateTicket(productObj,tempVar, 1);
+    let quantityOfProduct = (index == -1 ? 0 : basket[index].quantity); // busca si el producto existe en la cesta "basket" en caso de no existir pone un 0.
+    quantityNode.innerHTML = quantityOfProduct + unitMessage;
+    UpdateTicket(productObj,quantityOfProduct, 1);
 }
 
 /**
@@ -122,7 +141,7 @@ function UpdateTicket(product, quantity, option)
         
                 let thisProductTotalPrice = document.createElement('div');
                 thisProductTotalPrice.setAttribute("class", "ticket-product-price");
-                thisProductTotalPrice.innerHTML = (product['price']*quantity)+"€";
+                thisProductTotalPrice.innerHTML = (product['price']*quantity).toFixed(2)+"€";
 
                 newProduct.appendChild(thisProductQuantity);
                 newProduct.appendChild(thisProductName);
@@ -131,15 +150,15 @@ function UpdateTicket(product, quantity, option)
                 ticketNode.appendChild(newProduct);  // llamamos a la function para que ponga en true bas
             }
             else {
-                UpdateProductsOfTicket(product, quantity, productNode);
+                UpdateNodeFromTicket(product, quantity, productNode);
             }
             break;
         case 1:
-            if(quantity == 0){
+            if(quantity == 0){ // si al hacer "decrease" la cantidad es de 0, queremos quitarlo del ticket
                 productNode.remove();
             }
-            else{
-                UpdateProductsOfTicket(product, quantity, productNode);
+            else{// en caso de ser mayor a 0, actualizamos el producto del ticket
+                UpdateNodeFromTicket(product, quantity, productNode);
             }    
             break;
         default:
@@ -153,13 +172,12 @@ function UpdateTicket(product, quantity, option)
  * @param {*} quantity - Bew quantity of the product.
  * @param {*} productNode - HTML node in ticket.
  */
-function UpdateProductsOfTicket(product, quantity, productNode)
-{
-    
+function UpdateNodeFromTicket(product, quantity, productNode)
+{ 
     let thisProductTotalPrice = productNode.querySelector(".ticket-product-price");
     let thisProductQuantity = productNode.querySelector(".ticket-product-quantity");
     
-    thisProductTotalPrice.innerHTML = (product['price']*quantity)+coinType;
+    thisProductTotalPrice.innerHTML = (product['price']*quantity).toFixed(2)+coinType;
     thisProductQuantity.innerHTML = quantity;
 }
 
@@ -171,27 +189,30 @@ function UpdateProductsOfTicket(product, quantity, productNode)
 function UpdateBasket(productObj, quantity)
 {
     basketItem = basket.find(item => item.productId == productObj['id']);
-    if(basketItem == undefined)
+    if(basketItem == undefined) //si no existe en el array de la cesta, lo creamos
     {
         let bpo = Object.create(basketProductObject); //bpo => basketProductObject
         bpo.productId = parseInt(productObj['id']);
         bpo.quantity = parseInt(quantity);
         basket.push(bpo);
     }
-    else if(quantity <= 0)
+    else if(quantity <= 0)// si existe pero se ha reducido a 0, lo eliminamos de la cesta
     {
         let index = basket.findIndex(product => product.productId == productObj['id']);
         if (index > -1) {
             basket.splice(index, 1);
         }
     }
-    else
+    else //en caso de ninguno de las dos anteriores, actualizamos la con la nueva cantidad
     {
         basketItem.quantity = quantity;
     }
     console.log(basket);
 }
-///se tiene que editar
+
+/**
+ * se llama cuando le damos al boton comprar, carga en JSON el input hidden con todos los productos que vamos a comprar
+ */ 
 function GenerateJsonWithProducts()
 {
     console.log(basket);
@@ -210,8 +231,10 @@ function GenerateJsonWithProducts()
         });
     }
 }
-/// 
 
+/**
+ * Actualiza el precio total de la compra.
+ */
 function UpdateTotalPrice()
 {
     let total = 0;
@@ -222,13 +245,13 @@ function UpdateTotalPrice()
             total += productObj.price * basket[x].quantity;
         }    
     }
-    document.getElementById("total-price").innerHTML = total+coinType;
+    document.getElementById("total-price").innerHTML = total.toFixed(2)+coinType;
 }
 
 /**
  * 
  * @param {*} id - Identifier of the product you want to get.
- * @returns The product on the menuList
+ * @returns The product from the menuList
  */
 function getProductById(id) {
     return menuList.find(
