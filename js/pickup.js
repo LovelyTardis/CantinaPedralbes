@@ -23,7 +23,7 @@ var basketProductObject = {
     productId: null,
     quantity: 0
 };
-let unitMessage = " ud/s."
+let unitMessage = " sud/s."
 
 document.getElementById('purchase-button').addEventListener('click', (e) => {
     GenerateJsonWithProducts();
@@ -156,11 +156,9 @@ function UpdateTicket(product, quantity, option)
 function UpdateProductsOfTicket(product, quantity, productNode)
 {
     
-    let thisProductName = productNode.querySelector(".ticket-product-name");
     let thisProductTotalPrice = productNode.querySelector(".ticket-product-price");
     let thisProductQuantity = productNode.querySelector(".ticket-product-quantity");
     
-    thisProductName.innerHTML = product['productName'];
     thisProductTotalPrice.innerHTML = (product['price']*quantity)+coinType;
     thisProductQuantity.innerHTML = quantity;
 }

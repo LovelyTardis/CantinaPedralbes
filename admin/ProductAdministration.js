@@ -1,120 +1,62 @@
 let productButtons = document.getElementById('product-list');
 let senderJson = document.getElementById('senderJson');
 console.log(senderJson);
-const question100 = "Estas seguro de querer eliminar este producto: ";
-const question101 = "Estas seguro de querer activar este producto: ";
-const question102 = "Estas seguro de querer desactivar este producto: ";
-const confirmation100 = "El producto ha sido eliminado correctamente";
-const confirmation101 = "El producto se ha activado correctamente";
-const confirmation102 = "El producto se ha desactivado correctamente";
+
+let popUpRemove = {
+  questionTitle: 'Esborrar?',
+  questionMessage:  'Estas segur de voler <b>ELIMINAR</b> aquest producte?<hr>',
+  confirmationTitle: 'Esborrat!',
+  confirmationMessage: 'El producte ha estat esborrat correctament'
+};
+
+let popUpActivate = {
+  questionTitle: 'Activar?',
+  questionMessage:  'Estas segur de voler <b>ACTIVAR</b> aquest producte?<hr>',
+  confirmationTitle: 'Activat!',
+  confirmationMessage: 'El producte ha estat activat correctament'
+};
+
+let popUpDeactivate = {
+  questionTitle: 'Desactivar?',
+  questionMessage:  'Estas segur de voler <b>DESACTIVAR</b> aquest producte?<hr>',
+  confirmationTitle: 'Desactivat!',
+  confirmationMessage: 'El producte ha estat desactivat correctament'
+};
+
 let serverProducts = JSON.parse(senderJson.value);
 console.log(serverProducts);
 productButtons.addEventListener('click', e => {
+    let nodeBox = e.target.closest(".cell-product");
+    let productObj = getProductById(nodeBox.id);
+    let index = serverProducts.findIndex(product => product.id == productObj['id']);
     if(e.target.classList.contains('remove')){
-        RemoveObject(e.target);
+        RemoveObject(nodeBox, productObj, index);
     }
     else if(e.target.classList.contains('activate-product')){
-        ActivateProduct(e.target);
+        ActivateProduct(productObj, index);
     }
     else if(e.target.classList.contains('deactivate-product')){
-        DeactivateProduct(e.target);
+        DeactivateProduct(productObj, index);
     }
 });
 
-function RemoveObject(button)
-{
-    let nodeBox = button.closest(".cell-product");
-    let productObj = getProductById(nodeBox.id);
-
-    let index = serverProducts.findIndex(product => product.id == productObj['id']);
+function RemoveObject(nodeBox, productObj, index){
     if(index > -1)
     {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: question100 + serverProducts[index].productName,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Confirmar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'Deleted!',
-                confirmation100,
-                'success'
-              )
-              nodeBox.remove();
-              serverProducts.splice(index, 1);
-              BuildJson()
-            }
-          })
+      ConfirmationPopUp(popUpRemove, productObj);
+      serverProducts.splice(index, 1);
+      nodeBox.remove();
     }
 }
 
-
-function ActivateProduct(button)
-{
-    let nodeBox = button.closest(".cell-product");
-    let productObj = getProductById(nodeBox.id);
-
-    let index = serverProducts.findIndex(product => product.id == productObj['id']);
-    if(index > -1)
-    {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: question101 + serverProducts[index].productName,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Confirmar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'Deleted!',
-                confirmation101,
-                'success'
-              )
-              serverProducts[index].activated = 1;
-              BuildJson();
-            }
-          })
-    }
-}
-function DeactivateProduct(button)
-{
-    let nodeBox = button.closest(".cell-product");
-    let productObj = getProductById(nodeBox.id);
-
-    let index = serverProducts.findIndex(product => product.id == productObj['id']);
-    if(index > -1)
-    {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: question102 + serverProducts[index].productName,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Confirmar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire(
-                'Deleted!',
-                confirmation102,
-                'success'
-              )
-              serverProducts[index].activated = 0;
-              BuildJson();
-            }
-          })
-    }
+function ActivateProduct(productObj , index){
+  ConfirmationPopUp(popUpActivate, productObj);
+  serverProducts[index].activated = 1;   
 }
 
-function BuildJson()
-{
-    senderJson.value = JSON.stringify(serverProducts, true);
+function DeactivateProduct(productObj, index){
+  ConfirmationPopUp(popUpDeactivate, productObj);
+  serverProducts[index].activated = 0; 
 }
 
 /**
@@ -126,4 +68,41 @@ function BuildJson()
     return serverProducts.find(
         function(serverProducts){ return serverProducts.id == id }
     );
+}
+
+/**
+ * 
+ * @param {*} questionPopUp Message of the popup
+ * @param {*} productName Product name to show in the message 
+ */
+function ConfirmationPopUp(questionPopUp, productObj)
+{
+  Swal.fire({
+    title: questionPopUp.questionTitle,  
+    html: questionPopUp.questionMessage + productObj.productName,
+    imageUrl: productObj.imageId,
+    icon: 'warning',
+    imageWidth: 400,
+    imageHeight: 200,
+    imageAlt: 'Custom image',
+    showCancelButton: true,
+    cancelButtonText: 'Cancel·lar',
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Confirmar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        questionPopUp.confirmationTitle,
+        questionPopUp.confirmationMessage,
+        'success'
+      ) 
+      UpdateProducJson();
+    }
+  })
+}
+
+function UpdateProducJson()
+{
+    senderJson.value = JSON.stringify(serverProducts, true);
 }
