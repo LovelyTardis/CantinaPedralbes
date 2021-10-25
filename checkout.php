@@ -29,15 +29,18 @@
         include 'footer.php'
     ?>
     <script>
-    <?php
-        setcookie("comanda", "022729", strtotime('today 23:59'), '/');
-        $ticket = array("username" => $_POST["name"], "email" => $_POST["email"], "phone" => $_POST["phone"], "products" => $_SESSION["ticketObjects"]);
-
+    <?php    
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
+            setcookie("comanda", "022729", strtotime('today 23:59'), '/');
+            $ticket = array("username" => $_POST["name"], "email" => $_POST["email"], "phone" => $_POST["phone"], "products" => $_SESSION["ticketObjects"]);
             $arrayTicket = json_decode(file_get_contents("tickets.json"), true);
             array_push($arrayTicket, $ticket);
             file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
+        }
+        else
+        {
+            setcookie("hacker", "true", strtotime('today 23:59'), '/');
         }
     ?>
 </script>
