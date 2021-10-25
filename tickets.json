@@ -58,5 +58,38 @@
                 "quantity": 6
             }
         ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": "123456789",
+        "products": [
+            {
+                "productId": 2010,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": "123456789",
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": "123456789",
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            }
+        ]
     }
 ]

@@ -1,5 +1,10 @@
 <?php
-session_start();
+    session_start();
+    if(isset($_COOKIE['comanda']))
+    {
+        //cambiar a cantina cuando se suba
+        header('Location: http://localhost/error.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,5 +1,10 @@
 <?php
     session_start();
+    if(isset($_COOKIE['comanda']))
+    {
+        //cambiar a cantina cuando se suba
+        header('Location: http://localhost/error.php');
+    }
     $ticketObjects = json_decode($_POST["basket"]);
     $_SESSION["ticketObjects"] = $ticketObjects;
 ?>
