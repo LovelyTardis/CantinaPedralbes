@@ -37,7 +37,7 @@ var basketProductObject = {
 
 // constant variables
 const coinType= "€";
-const unitMessage = " ud/s."
+const unitMessage = " ud/s"
 
 document.getElementById('purchase-button').addEventListener('click', (e) => {
     GenerateJsonWithProducts();
