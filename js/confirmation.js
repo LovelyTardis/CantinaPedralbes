@@ -61,7 +61,7 @@ function CheckUsername()
 }
 function CheckEmail()
 {
-    if (emailInput.value.endsWith("inspedralbes.cat")) {
+    if (emailInput.value.endsWith("@inspedralbes.cat")) {
         return true;
     }
     return false; 
