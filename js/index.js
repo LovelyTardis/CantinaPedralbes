@@ -9,7 +9,7 @@ continueButton.addEventListener("click", () => {
 
 function CheckCookie()
 {
-    if(document.cookie.includes("tenemoscookie"))
+    if(document.cookie.includes("022729"))
     {
         Swal.fire({
         title: 'Error!',

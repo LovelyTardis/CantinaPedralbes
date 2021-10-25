@@ -25,7 +25,7 @@
     ?>
     <script>
     <?php
-        setcookie("comanda", "tenemoscookie", strtotime('today 23:59'), '/');
+        setcookie("comanda", "022729", strtotime('today 23:59'), '/');
         $ticket = array("username" => $_POST["name"], "email" => $_POST["email"], "phone" => $_POST["phone"], "products" => $_SESSION["ticketObjects"]);
 
         if($_SERVER["REQUEST_METHOD"] == "POST")

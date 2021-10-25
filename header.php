@@ -7,9 +7,7 @@
         </div>
         <ul class="navigation">
             <a href="../index.php"><li>Inici</li></a>
-            <a href="../admin/administration.php"><li>Zona administració</li></a>
-            <a><li>Texto</li></a>
-            <a><li>Texto</li></a>
+            <a href="../admin/administration.php" target="_blank" rel="noopener"><li>Zona administració</li></a>
         </ul>
     </div>
 </div>
