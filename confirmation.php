@@ -38,11 +38,11 @@
             $str = "";
             for ($x=0; $x < count($ticketObjects) ; $x++) { 
                 $productObj = $ticketObjects[$x];
-                $key= array_search($productObj->productId, array_column($jsonProducts, 'id'));
-                $str .= "<div class='product-in-ticket'>".
-                "<div>".($jsonProducts[$key]->productName)."</div>".
-                "<div>quantity:".($productObj->quantity)."</div>".
-                "<div>Price: ".( (floatval($jsonProducts[$key]->price) ) *$productObj->quantity)."€</div></div>";
+                $index= array_search($productObj->productId, array_column($jsonProducts, 'id'));
+                $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$x]->productId." class='product-in-ticket'>".
+                    "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."</div>".
+                    "<div class='ticket-product-name'>".($jsonProducts[$index]->productName)."</div>". 
+                    "<div class='ticket-product-price'>".( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity)."€</div></div>";
             }
             return $str;
         }
@@ -54,9 +54,12 @@
     ?>
 </head>
 <body>
-    <h1>CONFIRMATION PAGE (WIP)</h1>
-    <?php echo print_r($ticketObjects)?>
-    <?php echo $HTML_ticket?>
+    <div class="grid-ticket">
+        <div id="ticket" >
+            <?php echo $HTML_ticket?>
+            <div id="total-price">0€</div>
+        </div>
+    </div>
     <form id="credentialsForm" method="POST" action="./checkout.php">
     <div  class="grid">
         <div><label for="name">Nom: </label></div>
@@ -68,7 +71,7 @@
     </div>
         <button type="button" id="btn-purchase">Confirmar comanda</button>
     </form>
-    <div id="ticket"><div id="total-price">0€</div></div>
+
     <?php 
     include 'footer.php'
     ?>

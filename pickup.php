@@ -90,6 +90,7 @@
                 for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++) { 
                     
                     $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($thisproductsObject, 'id'));
+                    
                     $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$i]->productId." class='product-in-ticket'>".
                     "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$i]->quantity)."</div>".
                     "<div class='ticket-product-name'>".($thisproductsObject[$index]['productName'])."</div>". 
