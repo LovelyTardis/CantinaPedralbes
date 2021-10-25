@@ -4,7 +4,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Entrepà bacó-formatge",
-        "imageId": "../assets/images/morning/bocata_bacon_queso.jpg",
+        "imageId": "./assets/images/morning/bocata_bacon_queso.jpg",
         "price": "2.50"
     },
     {
@@ -44,7 +44,7 @@
         "allowed": 0,
         "activated": 1,
         "productName": "Pizza pernil-formatge",
-        "imageId": "./assets/images/morning/pizza_pernil-formatge.png",
+        "imageId": "./assets/images/morning/pizza_jamon_queso.jpg",
         "price": "1.50"
     },
     {
@@ -54,14 +54,6 @@
         "productName": "Croissant",
         "imageId": "./assets/images/morning/croissant.jpg",
         "price": "1.20"
-    },
-    {
-        "id": 1021,
-        "allowed": 0,
-        "activated": 1,
-        "productName": "",
-        "imageId": "./assets/images/morning/",
-        "price": ""
     },
     {
         "id": 2000,
@@ -123,16 +115,8 @@
         "id": 3001,
         "allowed": 1,
         "activated": 1,
-        "productName": "",
-        "imageId": "./assets/images/lunch/.png",
-        "price": "1.50"
-    },
-    {
-        "id": 3002,
-        "allowed": 1,
-        "activated": 1,
-        "productName": "",
-        "imageId": "./assets/images/lunch/.png",
-        "price": "1.50"
+        "productName": "Macarrons amb tomàquet",
+        "imageId": "./assets/images/lunch/macarrones.jpg",
+        "price": "3.00"
     }
 ]
