@@ -41,8 +41,8 @@
 
             $str .="</div>";
             $str .="<div class='grid-ticket'>";
-            $str .="<div id='ticket'>";
             $str .="<div class='title-ticket'><h1>COMANDA</h1></div>";
+            $str .="<div id='ticket'>";
             $str .= GetTicketData();
             $str .="</div><hr><div class='total-container'><span class='ticket-total-text'>TOTAL :  </span><span id='total-price'>".$GLOBALS['ticketPrice']."€</span></div>";
             $str .= "<div class='buy-button'><button type='button' id='purchase-button' value=''>COMPRAR</button></div>";
