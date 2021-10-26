@@ -31,7 +31,7 @@
     <title>Cantina - Confirmació</title>
     <?php
         $jsonProducts = json_decode(file_get_contents("products.json"));
-
+        $total_price = 0;
         $HTML_ticket = LoadTicket($jsonProducts, $ticketObjects);
         function LoadTicket($jsonProducts, $ticketObjects)
         {
@@ -39,6 +39,7 @@
             for ($x=0; $x < count($ticketObjects) ; $x++) { 
                 $productObj = $ticketObjects[$x];
                 $index= array_search($productObj->productId, array_column($jsonProducts, 'id'));
+                $GLOBALS["total_price"] += ((floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity);
                 $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$x]->productId." class='product-in-ticket'>".
                     "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."</div>".
                     "<div class='ticket-product-name'>".($jsonProducts[$index]->productName)."</div>". 
@@ -54,24 +55,29 @@
     ?>
 </head>
 <body>
-    <div class="grid-ticket">
-        <div id="ticket" >
-            <?php echo $HTML_ticket?>
-            <div id="total-price">0€</div>
+    <div class ="general-background">
+            <form id="credentialsForm" method="POST" action="./checkout.php">
+                <div  class="grid">
+                    <div class="label"><label for="name">Nom: </label></div>
+                    <div class="input"><input type="text" name="name" id="name" value="Try" require></div>
+                    <div class="label"><label for="email">Correu electrònic: </label></div>
+                    <div class="input"><input type="email" name="email" id="email" value="try@inspedralbes.cat"require></div>
+                    <div class="label"><label for="phone">Telèfon: </label></div>
+                    <div class="input"><input type="tel" name="phone" id="phone" value="123456789"require></div>
+                </div>
+                <button type="button" id="btn-purchase" class="confirm">CONFIRMAR COMANDA</button>
+            </form>
+         <div class="grid-ticket">
+            <div id="ticket" >
+                <?php echo $HTML_ticket?>
+                <hr>
+                <div class='total-container'>
+                    <span class='ticket-total-text'>TOTAL :  </span>
+                    <span id='total-price'><?php echo number_format($GLOBALS['total_price'],2)?> €</span>
+                </div>
+            </div>
         </div>
     </div>
-    <form id="credentialsForm" method="POST" action="./checkout.php">
-    <div  class="grid">
-        <div><label for="name">Nom: </label></div>
-        <div><input type="text" name="name" id="name" value="Try" require></div>
-        <div><label for="email">Correu electrònic: </label></div>
-        <div><input type="email" name="email" id="email" value="try@inspedralbes.cat"require></div>
-        <div><label for="phone">Telèfon: </label></div>
-        <div><input type="tel" name="phone" id="phone" value="123456789"require></div>
-    </div>
-        <button type="button" id="btn-purchase">Confirmar comanda</button>
-    </form>
-
     <?php 
     include 'footer.php'
     ?>
