@@ -147,5 +147,20 @@
                 "quantity": 2
             }
         ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 2000,
+                "quantity": 2
+            },
+            {
+                "productId": 2002,
+                "quantity": 1
+            }
+        ]
     }
 ]

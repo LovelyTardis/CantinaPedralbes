@@ -80,9 +80,9 @@
 }
 div.general-background{
     display: flex;
-    max-width: 1903px;
     text-align: center;
     background-color: #C4C4C4;
+    min-height: 100vh; 
 }
 .ticket-product-name{
     width: 220px;
