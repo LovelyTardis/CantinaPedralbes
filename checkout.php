@@ -31,16 +31,41 @@
     <script>
     <?php    
         if($_SERVER["REQUEST_METHOD"] == "POST")
-        {
+        {  
+            $userName = $_POST["name"];
+            $userEmail = $_POST["email"]; 
+            $phoneNumber = strlen(preg_replace("/[^0-9]/", '', $_POST["phone"]));
+            if($userName == '')
+            {
+                setcookie("error", "101", strtotime('today 23:59'), '/');
+                header('Location: http://localhost/error.php');
+                session_destroy();
+            }
+            if(!str_ends_with($userEmail , "@inspedralbes.cat"))
+            {
+                setcookie("error", "102", strtotime('today 23:59'), '/');
+                header('Location: http://localhost/error.php');
+                session_destroy();
+            }
+            
+            if($phoneNumber > 9 || $phoneNumber < 9)
+            {
+                setcookie("error", "103", strtotime('today 23:59'), '/');
+                header('Location: http://localhost/error.php');
+                session_destroy();
+            }
+
+
             setcookie("comanda", "022729", strtotime('today 23:59'), '/');
-            $ticket = array("username" => $_POST["name"], "email" => $_POST["email"], "phone" => $_POST["phone"], "products" => $_SESSION["ticketObjects"]);
+            $ticket = array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $_SESSION["ticketObjects"]);
             $arrayTicket = json_decode(file_get_contents("tickets.json"), true);
             array_push($arrayTicket, $ticket);
             file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
+            session_destroy();
         }
         else
         {
-            setcookie("hacker", "true", strtotime('today 23:59'), '/');
+            setcookie("error", "100", strtotime('today 23:59'), '/');
         }
     ?>
 </script>
