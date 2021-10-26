@@ -4,7 +4,7 @@
     {
         //cambiar a cantina cuando se suba
         setcookie("error", "201", strtotime('today 23:59'), '/');
-        header('Location: http://localhost/error.php');
+        header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
 ?>
 
@@ -17,20 +17,20 @@
         if($userName == '')
         {
             setcookie("error", "101", strtotime('today 23:59'), '/');
-            header('Location: http://localhost/error.php');
+            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
             session_destroy();
         }
         if(!str_ends_with($userEmail , "@inspedralbes.cat"))
         {
             setcookie("error", "102", strtotime('today 23:59'), '/');
-            header('Location: http://localhost/error.php');
+            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
             session_destroy();
         }
         
         if($phoneNumber > 9 || $phoneNumber < 9)
         {
             setcookie("error", "103", strtotime('today 23:59'), '/');
-            header('Location: http://localhost/error.php');
+            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
             session_destroy();
         }
 
