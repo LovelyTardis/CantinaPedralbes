@@ -132,7 +132,7 @@ function UpdateTicket(product, quantity, option)
 
                 let thisProductQuantity = document.createElement('div');
                 thisProductQuantity.setAttribute("class", "ticket-product-quantity");
-                thisProductQuantity.innerHTML = quantity;
+                thisProductQuantity.innerHTML = (quantity+"x");
         
                 let thisProductName = document.createElement('div');
                 thisProductName.setAttribute("class", "ticket-product-name");
@@ -178,7 +178,7 @@ function UpdateNodeFromTicket(product, quantity, productNode)
     let thisProductQuantity = productNode.querySelector(".ticket-product-quantity");
     
     thisProductTotalPrice.innerHTML = (product['price']*quantity).toFixed(2)+coinType;
-    thisProductQuantity.innerHTML = quantity;
+    thisProductQuantity.innerHTML = (quantity+"x");
 }
 
 /**
