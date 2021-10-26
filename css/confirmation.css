@@ -23,21 +23,27 @@
 }
 .grid div label{
     font-family: Arial;
+    vertical-align: middle;
 }
 .grid div input{
     background-color: #ffffff;
     font-family: Arial;
-    text-align: center;
+    text-align: left;
+    padding: 10px;
     border: none;
-    border-radius: 15px;
+    border-radius: 2px;
     box-shadow:  0 3px 10px rgb(0 0 0 / 0.7);;
+    height: 20px;
+    font-weight: bolder;
+    width: 390px;
+    
 }
 .grid-ticket{
     background-color: #EEEEEE;
     margin-top: 51px;
     margin-bottom: 20px;
-    margin-left: 500px;
-    margin-right: 100px;
+    margin-left: 400px;
+    margin-right: 200px;
     min-width: 414px;
     width: 414px;
     border-radius: 15px;
