@@ -21,8 +21,12 @@
     ?>
     <script>
         <?php
+        date_default_timezone_set("Europe/Madrid");
+        $actualTime = date("G:i", time());
+        echo $actualTime;
+        if ($actualTime < "11:30") { $time = 0; }
+        else { $time = 1; }
         
-        $time = 0;
         $ticketPrice = 0;
         $jsonProducts = file_get_contents("products.json");
         $productsObject = json_decode($jsonProducts,true);
