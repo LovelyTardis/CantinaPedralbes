@@ -36,7 +36,7 @@ function CheckForm()
         });
         return false;
     }
-    /*if(!CheckPhone())
+    if(!CheckPhone())
     {
         Swal.fire({
             title: 'Error!',
@@ -45,7 +45,7 @@ function CheckForm()
             confirmButtonText: 'Entendido'
         });
         return false;
-    }*/
+    }
     form.submit();
 }
 

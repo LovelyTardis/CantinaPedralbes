@@ -1,5 +1,6 @@
 <?php
 session_start();
+setcookie("error", "0", strtotime('today 23:59'), '/');
 ?>
 <!DOCTYPE html>
 <html lang="ca">
