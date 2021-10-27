@@ -4,3 +4,9 @@
     border-radius: 10px;
     padding: 15px;
 }
+.general-background{
+    display: flex;
+    text-align: center;
+    background-color: #C4C4C4;
+    min-height: 100vh; 
+}

@@ -162,5 +162,174 @@
                 "quantity": 1
             }
         ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            },
+            {
+                "productId": 1002,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1010,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": null
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": null
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": null
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            },
+            {
+                "productId": 1002,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Try",
+        "email": "try@inspedralbes.cat",
+        "phone": 9,
+        "products": [
+            {
+                "productId": 1001,
+                "quantity": 1
+            }
+        ]
     }
 ]

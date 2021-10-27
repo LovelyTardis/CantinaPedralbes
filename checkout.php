@@ -55,23 +55,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/checkout.css">
     <title>Cantina - Confirmat!</title>
     <?php
         include 'header.php';
-        print_r($_SESSION["ticketObjects"]);
     ?>
 </head>
 <body>
-    <h1>CHECKOUT PAGE (WIP)</h1>
-    <p>La teva comanda ha estat realitzada correctament.</p>
-    <a href="./index.php">
-        <input type="button" value="Tornar al menú inicial">
-    </a>
+    <div class="general-background">
+        <h1 class="titol">LA TEVA COMANDA HA ESTAT CONFIRMADA!</h1>
+        <a href="./index.php">
+            <input type="button" value="Tornar al menú inicial" class="confirm">
+        </a>
+    </div>
     <?php 
         include 'footer.php'
     ?>
-    <script>
-
-</script>
 </body>
 </html>
