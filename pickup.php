@@ -19,94 +19,92 @@
     <?php
     include 'header.php';
     ?>
-    <script>
-        <?php
-        date_default_timezone_set("Europe/Madrid");
-        $actualTime = date("G:i", time());
-        echo $actualTime;
-        if ($actualTime < "11:30") { $time = 0; }
-        else { $time = 1; }
-        
-        $ticketPrice = 0;
-        $jsonProducts = file_get_contents("products.json");
-        $productsObject = json_decode($jsonProducts,true);
-        $HTML_products = LoadProductsHTML($jsonProducts,$productsObject, $time);
-        function LoadProductsHTML($json, $productsLoad, $time) : string
-        {
-            $str = "";
-            $str .= "<div class ='general-background'><div id='product-box' class='grid-products'>";
-        
-            for ($i=0; $i < count($productsLoad); $i++) { 
-                if(($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2) && $productsLoad[$i]["activated"] == 1)
-                {
-                    $str .= CellProduct($productsLoad[$i]);
-                }
-            }         
-
-            $str .="</div>";
-            $str .="<div class='grid-ticket'>";
-            $str .="<div class='title-ticket'><h1>COMANDA</h1></div>";
-            $str .="<div id='ticket'>";
-            $str .= GetTicketData();
-            $str .="</div><hr><div class='total-container'><span class='ticket-total-text'>TOTAL :  </span><span id='total-price'>".$GLOBALS['ticketPrice']."€</span></div>";
-            $str .= "<div class='buy-button'><button type='button' id='purchase-button' value=''>COMPRAR</button></div>";
-            $str .= "</div></div>";
-            $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
-
-            //
-            return $str;
-            
-        }
-        
-        function CellProduct(array $product) : string
-        {
-            $str = "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
-            "<div>".$product["productName"]."</div>".
-            "<hr class='hr-cell-product'>".
-            "<div>".$product["price"]."€/u</div>".
-            "<hr class='hr-cell-product'>".
-            ServerInfoProduct($product["id"]);
-            
-            return $str;
-        }
-        function ServerInfoProduct($id) : string
-        {
-            $str = "<div class='quantity-value'>0 ud/s</div></div>".
-            "<div><button type='button' class='decrease'  disabled>-</button><button type='button' class='increase'>+</button></div></div>";;
-            if(isset($_SESSION["ticketObjects"]))
+    <?php
+    date_default_timezone_set("Europe/Madrid");
+    $actualTime = "today " . date("G:i", time());
+    $time = "";
+    if (strtotime($actualTime) <= strtotime("today 11:30")) { $time = 0; }
+    else { $time = 1; }
+    
+    $ticketPrice = 0;
+    $jsonProducts = file_get_contents("products.json");
+    $productsObject = json_decode($jsonProducts,true);
+    $HTML_products = LoadProductsHTML($jsonProducts,$productsObject, $time);
+    function LoadProductsHTML($json, $productsLoad, $time) : string
+    {
+        $str = "";
+        $str .= "<div class ='general-background'><div id='product-box' class='grid-products'>";
+    
+        for ($i=0; $i < count($productsLoad); $i++) { 
+            if(($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2) && $productsLoad[$i]["activated"] == 1)
             {
-                $index = array_search($id, array_column($_SESSION["ticketObjects"], 'productId'));
-                if($index !== false)
-                {
-                    $str = "<div class='quantity-value'>".$_SESSION["ticketObjects"][$index]->quantity." ud/s</div></div>".
-                    "<div><button type='button' class='decrease'>-</button><button type='button' class='increase'>+</button></div></div>";
-                }
-            }   
-            return $str;
-        }
-        function GetTicketData() : string
-        {
-            if(isset($_SESSION["ticketObjects"]))
-            {
-                $thisjsonProducts = file_get_contents("products.json");
-                $thisproductsObject = json_decode($thisjsonProducts,true);
-                $str = "";
-                for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++) { 
-                    
-                    $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($thisproductsObject, 'id'));
-                    
-                    $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$i]->productId." class='product-in-ticket'>".
-                    "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$i]->quantity)."x</div>".
-                    "<div class='ticket-product-name'>".($thisproductsObject[$index]['productName'])."</div>". 
-                    "<div class='ticket-product-price'>".( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity)."€</div></div>";
-                    $GLOBALS['ticketPrice'] = $GLOBALS['ticketPrice'] + ( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity);
-                }
-                return $str;
+                $str .= CellProduct($productsLoad[$i]);
             }
-            return "";
+        }         
+
+        $str .="</div>";
+        $str .="<div class='grid-ticket'>";
+        $str .="<div class='title-ticket'><h1>COMANDA</h1></div>";
+        $str .="<div id='ticket'>";
+        $str .= GetTicketData();
+        $str .="</div><hr><div class='total-container'><span class='ticket-total-text'>TOTAL :  </span><span id='total-price'>".$GLOBALS['ticketPrice']."€</span></div>";
+        $str .= "<div class='buy-button'><button type='button' id='purchase-button' value=''>COMPRAR</button></div>";
+        $str .= "</div></div>";
+        $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
+
+        //
+        return $str;
+        
+    }
+    
+    function CellProduct(array $product) : string
+    {
+        $str = "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
+        "<div>".$product["productName"]."</div>".
+        "<hr class='hr-cell-product'>".
+        "<div>".$product["price"]."€/u</div>".
+        "<hr class='hr-cell-product'>".
+        ServerInfoProduct($product["id"]);
+        
+        return $str;
+    }
+    function ServerInfoProduct($id) : string
+    {
+        $str = "<div class='quantity-value'>0 ud/s</div></div>".
+        "<div><button type='button' class='decrease'  disabled>-</button><button type='button' class='increase'>+</button></div></div>";;
+        if(isset($_SESSION["ticketObjects"]))
+        {
+            $index = array_search($id, array_column($_SESSION["ticketObjects"], 'productId'));
+            if($index !== false)
+            {
+                $str = "<div class='quantity-value'>".$_SESSION["ticketObjects"][$index]->quantity." ud/s</div></div>".
+                "<div><button type='button' class='decrease'>-</button><button type='button' class='increase'>+</button></div></div>";
+            }
+        }   
+        return $str;
+    }
+    function GetTicketData() : string
+    {
+        if(isset($_SESSION["ticketObjects"]))
+        {
+            $thisjsonProducts = file_get_contents("products.json");
+            $thisproductsObject = json_decode($thisjsonProducts,true);
+            $str = "";
+            for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++) { 
+                
+                $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($thisproductsObject, 'id'));
+                
+                $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$i]->productId." class='product-in-ticket'>".
+                "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$i]->quantity)."x</div>".
+                "<div class='ticket-product-name'>".($thisproductsObject[$index]['productName'])."</div>". 
+                "<div class='ticket-product-price'>".( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity)."€</div></div>";
+                $GLOBALS['ticketPrice'] = $GLOBALS['ticketPrice'] + ( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity);
+            }
+            return $str;
         }
-        ?>
-    </script>
+        return "";
+    }
+    ?>
 </head>
 
 <body>
