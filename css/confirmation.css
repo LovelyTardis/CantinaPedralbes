@@ -13,7 +13,7 @@
 }
 .grid div{
     background-color: #ffffff;;
-    padding: 10px;
+    padding: 20px;
 }
 .label{
     text-align: left;
@@ -24,6 +24,7 @@
 .grid div label{
     font-family: Arial;
     vertical-align: middle;
+    height: 40px;
 }
 .grid div input{
     background-color: #ffffff;
