@@ -39,16 +39,28 @@
         setcookie("comanda", "022729", strtotime('today 23:59'), '/');
         $ticket = array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $_SESSION["ticketObjects"]);
         $arrayTicket = json_decode(file_get_contents("tickets.json"), true);
+
+        /////MAIL
         $mailMessage = "";
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        $mailMessage = "<html><body><h1>Your Ticket</h1><table>";
+
         for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++)
         { 
+            $mailMessage .= "<tr>";
             $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($GLOBALS['products'], 'id'));
             if($index > -1)
             {
-                $mailMessage .= $_SESSION["ticketObjects"][$i]->quantity."x| ".$GLOBALS['products'][$index]['productName']."\n";
+                $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
+                $mailMessage .= "<td>".$GLOBALS['products'][$index]['productName']."</td>";
+                $mailMessage .= "<td>".$GLOBALS['products'][$index]['price']."</td>";
             }
+            $mailMessage .= "</tr>";
         }
-        mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage);
+        $mailMessage .= "</table></body></html>";
+        mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage, $headers);
+        //////////
         array_push($arrayTicket, $ticket);
         file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
         session_destroy();
@@ -57,6 +69,7 @@
     {
         setcookie("error", "100", strtotime('today 23:59'), '/');
     }
+    /*robado de internet porque la function str_ends_with no funciona en el servidor*/
     function endsWith( $haystack, $needle ) {
         $length = strlen( $needle );
         if( !$length ) {
