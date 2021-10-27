@@ -53,21 +53,14 @@ function CheckForm()
 ////////////////////////////////////////////////
 function CheckUsername()
 {
-    if(nameInput.value == '')
-    {
-        return false
-    }
-    return true;
+    return (nameInput.value == '');
 }
 function CheckEmail()
 {
-    if (emailInput.value.endsWith("@inspedralbes.cat")) {
-        return true;
-    }
-    return false; 
+    return (emailInput.value.endsWith("@inspedralbes.cat"));
 }
 
 function CheckPhone()
 {
-    return(phoneInput.value.replace(/\D/g,'').length == 9)
+    return (phoneInput.value.replace(/\D/g,'').length == 9);
 }
