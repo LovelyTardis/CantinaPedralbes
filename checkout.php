@@ -20,7 +20,7 @@
             header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
             session_destroy();
         }
-        if(!str_ends_with($userEmail , "@inspedralbes.cat"))
+        if(!endsWith($userEmail , "@inspedralbes.cat"))
         {
             setcookie("error", "102", strtotime('today 23:59'), '/');
             header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
@@ -48,6 +48,14 @@
     {
         setcookie("error", "100", strtotime('today 23:59'), '/');
     }
+    function endsWith( $haystack, $needle ) {
+        $length = strlen( $needle );
+        if( !$length ) {
+            return true;
+        }
+        return substr( $haystack, -$length ) === $needle;
+    }
+
 ?>
 
 <!DOCTYPE html>
