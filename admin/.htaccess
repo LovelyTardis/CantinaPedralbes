@@ -1,0 +1,3 @@
+AuthType Basic
+AuthUserFile "E:\2n DAW\ProjectesTransversals\CantinaPedralbes/.htpasswd"
+Require user pedralbes
