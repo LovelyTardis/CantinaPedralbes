@@ -39,7 +39,7 @@
         $ticket = array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $_SESSION["ticketObjects"]);
         $arrayTicket = json_decode(file_get_contents("tickets.json"), true);
 
-        mail($userEmail, "REBUT COMANDA - Cantina", $_SESSION["ticketObjects"])
+        mail($userEmail, "REBUT COMANDA - Cantina", $_SESSION["ticketObjects"]);
         array_push($arrayTicket, $ticket);
         file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
         session_destroy();
