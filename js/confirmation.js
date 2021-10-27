@@ -69,5 +69,5 @@ function CheckEmail()
 
 function CheckPhone()
 {
-    return(phoneInput.value.replace(/\D/g,'').length == 9)
+    return (phoneInput.value.replace(/\D/g,'').length == 9);
 }

@@ -11,10 +11,10 @@
 <?php
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
-            $products = json_decode(file_get_contents("./products.json"),true);  
+            $allProductsInfo = json_decode(file_get_contents("./products.json"),true);  
             $userName = $_POST["name"];
             $userEmail = $_POST["email"]; 
-            $phoneNumber = strlen(preg_replace("/[^0-9]/", '', $_POST["phone"]));
+            $phoneNumber = preg_replace("/[^0-9]/", '', $_POST["phone"]);
             if($userName == '')
             {
                 setcookie("error", "101", strtotime('today 23:59'), '/');
@@ -28,17 +28,14 @@
                 session_destroy();
             }
             
-            if($phoneNumber > 9 || $phoneNumber < 9)
+            if(strlen($phoneNumber) > 9 || strlen($phoneNumber) < 9)
             {
                 setcookie("error", "103", strtotime('today 23:59'), '/');
                 header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
                 session_destroy();
             }
-    
-    
             setcookie("comanda", "022729", strtotime('today 23:59'), '/');
-                      
-            $newTicket = GenerateTicket();
+            $newTicket = GenerateTicket($userName, $userEmail, $phoneNumber, $_SESSION["ticketObjects"]);
             SendTicketToServer($newTicket);
             //SendMail($userEmail);
             
@@ -60,13 +57,13 @@
             for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++)
             { 
                 $mailMessage .= "<tr>";
-                $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($GLOBALS['products'], 'id'));
+                $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($GLOBALS['allProductsInfo'], 'id'));
                 if($index > -1)
                 {
                     $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
-                    $mailMessage .= "<td>".$GLOBALS['products'][$index]['productName']."</td>";
+                    $mailMessage .= "<td>".$GLOBALS['allProductsInfo'][$index]['productName']."</td>";
     
-                    $priceTotalProduct = round((floatval($GLOBALS['products'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)) , 2);
+                    $priceTotalProduct = round((floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)) , 2);
                     $totalPrice += $priceTotalProduct;            
                     $mailMessage .= "<td>".$priceTotalProduct."€</td>";
                 }
@@ -78,13 +75,9 @@
             mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage, $headers);
         }
         
-        function GenerateTicket()
+        function GenerateTicket($userName, $userEmail, $phoneNumber, $ticketObjects)
         {
-            setcookie("comanda", "022729", strtotime('today 23:59'), '/');
-            $userName = $_POST["name"];
-            $userEmail = $_POST["email"]; 
-            $phoneNumber = strlen(preg_replace("/[^0-9]/", '', $_POST["phone"]));
-            return array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $_SESSION["ticketObjects"]);
+            return array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $ticketObjects);
         }
     
         function SendTicketToServer($tickedToPush)

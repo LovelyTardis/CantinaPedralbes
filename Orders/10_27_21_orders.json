@@ -1,0 +1,17 @@
+[
+    {
+        "username": "Albert",
+        "email": "Albert@inspedralbes.cat",
+        "phone": "123456789",
+        "products": [
+            {
+                "productId": 2000,
+                "quantity": 1
+            },
+            {
+                "productId": 2020,
+                "quantity": 1
+            }
+        ]
+    }
+]

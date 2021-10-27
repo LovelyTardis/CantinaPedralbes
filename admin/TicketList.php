@@ -2,10 +2,19 @@
 <?php
         $today = date("m_d_y"); 
         $fileName = "../Orders/".$today."_orders.json";   
-        $products = json_decode(file_get_contents($fileName),true);
-        $ticketJson = file_get_contents($fileName);
-        $tickets = json_decode($ticketJson,true);
-        $ticketHTML = LoadTickets($tickets);
+        $ticketHTML = "";
+        if(is_file($fileName))
+        {
+            $allProductsInfo = json_decode(file_get_contents("../products.json"),true);        
+            $ticketJson = file_get_contents($fileName);
+            $tickets = json_decode($ticketJson,true);
+            $ticketHTML = LoadTickets($tickets);
+
+        }
+        else
+        {
+            $ticketHTML = "<h1>No hi ha Tickets</h1>";
+        }
         function LoadTickets($tickets) : string
         {
             $str = "";
@@ -30,12 +39,12 @@
             $ticketCell .= "<div class='cell-ticket-phone'>Telèfon: ".$ticket['phone']."</div>";
             $ticketCell .= "<div class='ticket-products'>";
             for ($x=0; $x < count($ticket['products']); $x++) { 
-                $index = array_search($ticket['products'][$x]['productId'], array_column($GLOBALS['products'], 'id'));
+                $index = array_search($ticket['products'][$x]['productId'], array_column($GLOBALS['allProductsInfo'], 'id'));
                 if($index > -1)
                 {
                     $ticketCell .= "<div class='ticket-products' id='".$ticket['products'][$x]['productId']."'>";
                     $ticketCell .= "<span>".$ticket['products'][$x]['quantity']."x</span>";
-                    $ticketCell .= "<span> | ".$GLOBALS['products'][$index]['productName']."</span>";
+                    $ticketCell .= "<span> | ".$GLOBALS['allProductsInfo'][$index]['productName']."</span>";
                     $ticketCell .= "</div>";
                 }
 

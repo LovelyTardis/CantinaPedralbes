@@ -19,6 +19,28 @@
         header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
 ?>
+
+<?php
+    $jsonProducts = json_decode(file_get_contents("products.json"));
+    $total_price = 0;
+    $HTML_ticket = LoadTicket($jsonProducts, $ticketObjects);
+
+    function LoadTicket($jsonProducts, $ticketObjects)
+    {
+        $str = "";
+        for ($x=0; $x < count($ticketObjects) ; $x++) { 
+            $productObj = $ticketObjects[$x];
+            $index= array_search($productObj->productId, array_column($jsonProducts, 'id'));
+            $GLOBALS["total_price"] += ((floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity);
+            $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$x]->productId." class='product-in-ticket'>".
+                "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."</div>".
+                "<div class='ticket-product-name'>".($jsonProducts[$index]->productName)."</div>". 
+                "<div class='ticket-product-price'>".( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity)."€</div></div>";
+        }
+        return $str;
+    }   
+?>
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
@@ -29,27 +51,7 @@
     <link rel="stylesheet" href="./css/confirmation.css">
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <title>Cantina - Confirmació</title>
-    <?php
-        $jsonProducts = json_decode(file_get_contents("products.json"));
-        $total_price = 0;
-        $HTML_ticket = LoadTicket($jsonProducts, $ticketObjects);
-        function LoadTicket($jsonProducts, $ticketObjects)
-        {
-            $str = "";
-            for ($x=0; $x < count($ticketObjects) ; $x++) { 
-                $productObj = $ticketObjects[$x];
-                $index= array_search($productObj->productId, array_column($jsonProducts, 'id'));
-                $GLOBALS["total_price"] += ((floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity);
-                $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$x]->productId." class='product-in-ticket'>".
-                    "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."</div>".
-                    "<div class='ticket-product-name'>".($jsonProducts[$index]->productName)."</div>". 
-                    "<div class='ticket-product-price'>".( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity)."€</div></div>";
-            }
-            return $str;
-        }
 
-        
-    ?>
     <?php
     include 'header.php';
     ?>

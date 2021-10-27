@@ -1,6 +1,13 @@
 
 let newProductForm = document.getElementById('newProduct');
 let addProductButton = document.getElementById('AddButton');
+///errortype
+let idTypeError=0;
+let productNameTypeError=0;
+let productPriceTypeError=0;
+///
+
+
 addProductButton.addEventListener('click', function(){
     CheckForm();
 });
@@ -13,42 +20,105 @@ let inputs ={
     productPrice: document.getElementById('productPrice'),
 }
 
-console.log(inputs);
 
 function CheckForm()
 {
-    if(inputs.productId.value == "")
+    let idHasErrors = CheckId();
+    let productNameHasErrors = CheckProductName();
+    let priceHasErrors = CheckProductPrice();
+
+    if(idHasErrors)
     {
-        allOk = false;
-        Swal.fire({
-            title: 'Error!',
-            text: 'haha1',
-            icon: 'error',
-            confirmButtonText: 'Entendido'
-        })
+        switch (idTypeError) {
+            case 101:
+                PaintError("El id no puede estar vacio");
+                break;
+            case 102:
+                PaintError("El id tiene que ser numerico (No puede contener caracteres/letras)");
+                break;
+            default:
+                PaintError("Error Desconocido En el nombre");
+                break;
+        }
     }
-    else if(inputs.productName.value == "")
+    else if(productNameHasErrors)
     {
-        allOk = false;
-        Swal.fire({
-            title: 'Error!',
-            text: 'haha2',
-            icon: 'error',
-            confirmButtonText: 'Entendido'
-        })
+        switch (productNameTypeError) {
+            case 201:
+                PaintError("El nombre no puede estar vacio");
+                break;
+            default:
+                PaintError("Error Desconocido");
+                break;
+        }
     }
-    else if(isNaN(inputs.productPrice.value))
+    else if(priceHasErrors)
     {
-        allOk = false;
-        Swal.fire({
-            title: 'Error!',
-            text: 'haha3',
-            icon: 'error',
-            confirmButtonText: 'Entendido'
-        })
+        switch (productPriceTypeError) {
+            case 301:
+                PaintError("El precio introducido no es un valor numerico");
+                break;
+            case 302:
+                PaintError("El precio no puede ser negativo");
+                break;
+            default:
+                PaintError("Error Desconocido");
+                break;
+        }
+        
     }
     else
     {
-       newProductForm.submit(); 
+        newProductForm.submit(); 
     }
+}
+
+function CheckId()
+{
+    if(inputs.productId.value == "")
+    {
+        idTypeError = 101;
+        return true;
+    }
+    else if(isNaN(inputs.productId.value))
+    {
+        idTypeError = 102;
+        return true;
+    }
+    return false;
+}
+function CheckProductName()
+{
+    if(inputs.productName.value == "")
+    {
+        productNameTypeError = 201;
+        return true;
+    }
+    return false;
+}
+
+function CheckProductPrice()
+{
+    if(isNaN(inputs.productPrice.value))
+    {
+        productPriceTypeError = 301;
+        return true;
+    }
+    else if(parseFloat(inputs.productPrice.value) < 0)
+    {
+        productPriceTypeError = 302;
+        return true;
+    }
+    return false;
+}
+
+
+function PaintError(message)
+{
+    Swal.fire({
+        title: 'Error!',
+        text: message,
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+    })
 }
