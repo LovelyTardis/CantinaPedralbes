@@ -9,80 +9,105 @@
 ?>
 
 <?php
-    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $products = json_decode(file_get_contents("./products.json"),true);  
-        $userName = $_POST["name"];
-        $userEmail = $_POST["email"]; 
-        $phoneNumber = strlen(preg_replace("/[^0-9]/", '', $_POST["phone"]));
-        if($userName == '')
+        if($_SERVER["REQUEST_METHOD"] == "POST")
         {
-            setcookie("error", "101", strtotime('today 23:59'), '/');
-            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
+            $products = json_decode(file_get_contents("./products.json"),true);  
+            $userName = $_POST["name"];
+            $userEmail = $_POST["email"]; 
+            $phoneNumber = strlen(preg_replace("/[^0-9]/", '', $_POST["phone"]));
+            if($userName == '')
+            {
+                setcookie("error", "101", strtotime('today 23:59'), '/');
+                header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
+                session_destroy();
+            }
+            if(!endsWith($userEmail , "@inspedralbes.cat"))
+            {
+                setcookie("error", "102", strtotime('today 23:59'), '/');
+                header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
+                session_destroy();
+            }
+            
+            if($phoneNumber > 9 || $phoneNumber < 9)
+            {
+                setcookie("error", "103", strtotime('today 23:59'), '/');
+                header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
+                session_destroy();
+            }
+    
+    
+            setcookie("comanda", "022729", strtotime('today 23:59'), '/');
+                      
+            $newTicket = GenerateTicket();
+            SendTicketToServer($newTicket);
+            //SendMail($userEmail);
+            
             session_destroy();
         }
-        if(!endsWith($userEmail , "@inspedralbes.cat"))
+        else
         {
-            setcookie("error", "102", strtotime('today 23:59'), '/');
-            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
-            session_destroy();
+            setcookie("error", "100", strtotime('today 23:59'), '/');
+        }
+    
+    
+        function SendMail($userEmail)
+        {
+            $mailMessage = "";
+            $headers  = 'MIME-Version: 1.0' . "\r\n";
+            $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+            $mailMessage = "<html><body><h1>Your Ticket</h1><table style='border: 1px solid black'>";
+            $totalPrice = 0;
+            for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++)
+            { 
+                $mailMessage .= "<tr>";
+                $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($GLOBALS['products'], 'id'));
+                if($index > -1)
+                {
+                    $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
+                    $mailMessage .= "<td>".$GLOBALS['products'][$index]['productName']."</td>";
+    
+                    $priceTotalProduct = round((floatval($GLOBALS['products'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)) , 2);
+                    $totalPrice += $priceTotalProduct;            
+                    $mailMessage .= "<td>".$priceTotalProduct."€</td>";
+                }
+                $mailMessage .= "</tr>";
+                
+            }
+            $mailMessage .= "</table><h2>Total Price:     ".round($totalPrice,2) ."€</h2>";
+            $mailMessage .= "</body></html>";
+            mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage, $headers);
         }
         
-        if($phoneNumber > 9 || $phoneNumber < 9)
+        function GenerateTicket()
         {
-            setcookie("error", "103", strtotime('today 23:59'), '/');
-            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
-            session_destroy();
+            setcookie("comanda", "022729", strtotime('today 23:59'), '/');
+            $userName = $_POST["name"];
+            $userEmail = $_POST["email"]; 
+            $phoneNumber = strlen(preg_replace("/[^0-9]/", '', $_POST["phone"]));
+            return array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $_SESSION["ticketObjects"]);
         }
-
-
-        setcookie("comanda", "022729", strtotime('today 23:59'), '/');
-        $ticket = array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $_SESSION["ticketObjects"]);
-        $arrayTicket = json_decode(file_get_contents("tickets.json"), true);
-
-        /////MAIL
-        $mailMessage = "";
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $mailMessage = "<html><body><h1>Your Ticket</h1><table style='border: 1px solid black'>";
-        $totalPrice = 0;
-        for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++)
-        { 
-            $mailMessage .= "<tr>";
-            $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($GLOBALS['products'], 'id'));
-            if($index > -1)
+    
+        function SendTicketToServer($tickedToPush)
+        {
+            $today = date("m_d_y"); 
+            $fileName = "./Orders/".$today."_orders.json";   
+            if(!is_file($fileName))
             {
-                $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
-                $mailMessage .= "<td>".$GLOBALS['products'][$index]['productName']."</td>";
-
-                $priceTotalProduct = round((floatval($GLOBALS['products'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)) , 2);
-                $totalPrice += $priceTotalProduct;            
-                $mailMessage .= "<td>".$priceTotalProduct."€</td>";
+                file_put_contents($fileName, "[]");
             }
-            $mailMessage .= "</tr>";
-            
+            $arrayTicket = json_decode(file_get_contents($fileName), true); 
+            array_push($arrayTicket, $tickedToPush);
+            file_put_contents($fileName, json_encode($arrayTicket, JSON_PRETTY_PRINT));
         }
-        $mailMessage .= "</table><h2>Total Price:     ".round($totalPrice,2) ."€</h2>";
-        $mailMessage .= "</body></html>";
-        mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage, $headers);
-        //////////
-        array_push($arrayTicket, $ticket);
-        file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
-        session_destroy();
-    }
-    else
-    {
-        setcookie("error", "100", strtotime('today 23:59'), '/');
-    }
-    /*robado de internet porque la function str_ends_with no funciona en el servidor*/
-    function endsWith( $haystack, $needle ) {
-        $length = strlen( $needle );
-        if( !$length ) {
-            return true;
+    
+        /*Escrito de internet porque la function str_ends_with no funciona en el servidor*/
+        function endsWith( $haystack, $needle ) {
+            $length = strlen( $needle );
+            if( !$length ) {
+                return true;
+            }
+            return substr( $haystack, -$length ) === $needle;
         }
-        return substr( $haystack, -$length ) === $needle;
-    }
-
 ?>
 
 <!DOCTYPE html>

@@ -1,7 +1,9 @@
 
 <?php
-        $products = json_decode(file_get_contents("../products.json"),true);
-        $ticketJson = file_get_contents("../tickets.json");
+        $today = date("m_d_y"); 
+        $fileName = "../Orders/".$today."_orders.json";   
+        $products = json_decode(file_get_contents($fileName),true);
+        $ticketJson = file_get_contents($fileName);
         $tickets = json_decode($ticketJson,true);
         $ticketHTML = LoadTickets($tickets);
         function LoadTickets($tickets) : string
