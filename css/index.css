@@ -1,12 +1,34 @@
 #continue-button{
-    font-size: 20px;
-    background-color: #008CBA;
-    border-radius: 10px;
-    padding: 15px;
+    background-color: #00A3FF;
+    border: none;
+    border-radius: 10px;;
+    height: 70px;
+    width: 300px;
+    font-size: 25px;
+    color: white;
+    font-weight: bolder;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);;
+    margin-top: 20px;
+}
+#continue-button:hover{
+    font-size: 160%;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 1);;
+
 }
 .general-background{
-    display: flex;
     text-align: center;
     background-color: #C4C4C4;
     min-height: 100vh; 
+}
+.general-background h1{
+    padding-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.general-background img{
+    width: 1000px;
+    height: 600px;
+    border-radius: 15px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);;
+    margin-top: 30px;
+
 }

@@ -31,10 +31,12 @@
     padding: 0px 20px;
     color: inherit;
 }
-.navigation a :last-child{
-    padding-right: 0px;
+.navigation a li:hover{
+    box-shadow: 0 1px 10px rgb(0 0 0 / 1);;
+    border-radius: 15px;
 }
 .navigation a li{
+    padding: 10px;
     display: table-cell;
     vertical-align: middle;
     height: 100%;
