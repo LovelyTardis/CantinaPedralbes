@@ -44,11 +44,10 @@
         $mailMessage = "";
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        $mailMessage = "<html><body><h1>Your Ticket</h1><table>";
-
+        $mailMessage = "<html><body><h1>Your Ticket</h1><table style='border: 1px solid black'>";
+        $totalPrice = 0;
         for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++)
         { 
-            $totalPrice = 0;
             $mailMessage .= "<tr>";
             $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($GLOBALS['products'], 'id'));
             if($index > -1)
@@ -61,9 +60,10 @@
                 $mailMessage .= "<td>".$priceTotalProduct."€</td>";
             }
             $mailMessage .= "</tr>";
-            $mailMessage .= "<h2>Total Price:     ".round($totalPrice,2) ."</h2>";
+            
         }
-        $mailMessage .= "</table></body></html>";
+        $mailMessage .= "</table><h2>Total Price:     ".round($totalPrice,2) ."€</h2>";
+        $mailMessage .= "</body></html>";
         mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage, $headers);
         //////////
         array_push($arrayTicket, $ticket);
