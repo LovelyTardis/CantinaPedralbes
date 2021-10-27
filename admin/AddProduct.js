@@ -1,4 +1,3 @@
-
 let newProductForm = document.getElementById('newProduct');
 let addProductButton = document.getElementById('AddButton');
 ///errortype
@@ -69,7 +68,18 @@ function CheckForm()
     }
     else
     {
-        newProductForm.submit(); 
+        
+        Swal.fire({
+            title: 'Creat',
+            icon: 'succes',
+            confirmButtonText: 'Acceptar',
+        }).then((result) => {
+            if(result.isConfirmed)
+            {
+                newProductForm.submit(); 
+            }
+        })
+        
     }
 }
 
@@ -111,7 +121,6 @@ function CheckProductPrice()
     }
     return false;
 }
-
 
 function PaintError(message)
 {
