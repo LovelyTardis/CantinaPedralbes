@@ -8,9 +8,10 @@
     }
 ?>
 
-<?php    
+<?php
     if($_SERVER["REQUEST_METHOD"] == "POST")
-    {  
+    {
+        $products = json_decode(file_get_contents("./products.json"),true);  
         $userName = $_POST["name"];
         $userEmail = $_POST["email"]; 
         $phoneNumber = strlen(preg_replace("/[^0-9]/", '', $_POST["phone"]));
@@ -38,8 +39,16 @@
         setcookie("comanda", "022729", strtotime('today 23:59'), '/');
         $ticket = array("username" => $userName, "email" => $userEmail , "phone" => $phoneNumber, "products" => $_SESSION["ticketObjects"]);
         $arrayTicket = json_decode(file_get_contents("tickets.json"), true);
-
-        mail($userEmail, "REBUT COMANDA - Cantina", $_SESSION["ticketObjects"]);
+        $mailMessage = "";
+        for ($i=0; $i < count($_SESSION["ticketObjects"]); $i++)
+        { 
+            $index = array_search($_SESSION["ticketObjects"][$i]->productId, array_column($GLOBALS['products'], 'id'));
+            if($index > -1)
+            {
+                $mailMessage .= $_SESSION["ticketObjects"][$i]->quantity."x| ".$GLOBALS['products'][$index]['productName']."\n";
+            }
+        }
+        mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage);
         array_push($arrayTicket, $ticket);
         file_put_contents("tickets.json", json_encode($arrayTicket, JSON_PRETTY_PRINT));
         session_destroy();
@@ -65,23 +74,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/checkout.css">
     <title>Cantina - Confirmat!</title>
     <?php
         include 'header.php';
-        print_r($_SESSION["ticketObjects"]);
     ?>
 </head>
 <body>
-    <h1>CHECKOUT PAGE (WIP)</h1>
-    <p>La teva comanda ha estat realitzada correctament.</p>
-    <a href="./index.php">
-        <input type="button" value="Tornar al menú inicial">
-    </a>
+    <div class="general-background">
+        <h1 class="titol">LA TEVA COMANDA HA ESTAT CONFIRMADA!</h1>
+        <a href="./index.php">
+            <input type="button" value="Tornar al menú inicial" class="confirm">
+        </a>
+    </div>
     <?php 
         include 'footer.php'
     ?>
-    <script>
-
-</script>
 </body>
 </html>

@@ -23,10 +23,11 @@ setcookie("error", "0", strtotime('today 23:59'), '/');
     ?>
 </head>
 <body>
-    <h1>LANDING PAGE (WIP)</h1>
-    <a>
-        <input type="button" id="continue-button" value="Començar comanda">
-    </a>
+    <div class="general-background">
+         <a>
+            <input type="button" id="continue-button" value="Començar comanda">
+        </a>
+    </div>
     <?php 
     include 'footer.php'
     ?>
