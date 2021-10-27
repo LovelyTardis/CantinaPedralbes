@@ -24,9 +24,11 @@ setcookie("error", "0", strtotime('today 23:59'), '/');
 </head>
 <body>
     <div class="general-background">
-         <a>
-            <input type="button" id="continue-button" value="Començar comanda">
-        </a>
+        <h1 class="title">BENVINGUTS A LA CANTINA!</h1>
+        <img src="./assets/images/test.jpg" alt="Cantina Pedralbes">
+         <div class="button-container">
+             <input type="button" id="continue-button" value="Començar comanda">
+         </div>
     </div>
     <?php 
     include 'footer.php'

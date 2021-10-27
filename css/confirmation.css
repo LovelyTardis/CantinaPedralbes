@@ -140,3 +140,7 @@ div.general-background{
     margin-top: 20px;
     margin-left: 450px;
 }
+.confirm:hover{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 1);;
+    font-size: x-large;
+}

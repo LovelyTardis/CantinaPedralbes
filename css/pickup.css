@@ -62,6 +62,9 @@ div.general-background{
     margin-bottom: 20px;
     margin-top: 20px;
 }
+.increase:hover{
+    box-shadow: 0 1px 10px rgb(0 0 0 / 1);;
+}
 .decrease {
     background-color: #eeeeee;
     border: 1px solid black;
@@ -149,6 +152,10 @@ div.general-background{
     clear: right;
     margin-bottom: 10px;
     
+}
+#purchase-button:hover{
+    box-shadow: 0 1px 10px rgb(0 0 0 / 1);;
+    font-size: x-large;
 }
 #purchase-button{
     background-color: #00A3FF;
