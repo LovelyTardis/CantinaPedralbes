@@ -5,7 +5,7 @@
         //cambiar a cantina cuando se suba
         header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
-    if(isset($_POST["basket"]) && count($_POST["basket"]) > 0)
+    if(isset($_POST["basket"]) && count(json_decode($_POST["basket"])) > 0)
     {
         $ticketObjects = json_decode($_POST["basket"]);
         $_SESSION["ticketObjects"] = $ticketObjects;
