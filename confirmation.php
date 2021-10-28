@@ -57,8 +57,12 @@
     ?>
 </head>
 <body>
+    <div class="general-title">
+        <button id="back-button" onClick='javascript:history.go(-1)'>TORNAR</button>
+        <h1>DADES DE CONTACTE</h1>
+    </div>
     <div class ="general-background">
-            <form id="credentialsForm" method="POST" action="./checkout.php">
+        <form id="credentialsForm" method="POST" action="./checkout.php">
                 <div  class="grid">
                     <div class="label"><label for="name">Nom: </label></div>
                     <div class="input"><input type="text" name="name" id="name" require></div>

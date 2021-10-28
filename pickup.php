@@ -35,10 +35,11 @@
         $str = "";
 
         //Title for the schedule
-        $str .= "<div class ='general-title'>MENÚ DEL ";
+        $str .= "<div class ='general-title'>";
+        $str .= "<button id='back-button' onClick='javascript:history.go(-1)'>TORNAR</button><h1>MENÚ DEL ";
         if($time == 0){ $str .= "MATÍ"; }
         else{ $str .= "MIGDIA"; }
-        $str .= "</div>";
+        $str .= "</h1></div>";
         $str .= "<div class ='general-background'><div id='product-box' class='grid-products'>";
         for ($i=0; $i < count($productsLoad); $i++) { 
             if(($productsLoad[$i]["allowed"] == $time || $productsLoad[$i]["allowed"] == 2) && $productsLoad[$i]["activated"] == 1)
