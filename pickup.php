@@ -35,9 +35,9 @@
         $str = "";
 
         //Title for the schedule
-        $str .= "<div class ='general-title'>HORARI DE ";
+        $str .= "<div class ='general-title'>MENÚ DEL ";
         if($time == 0){ $str .= "MATÍ"; }
-        else{ $str .= "TARDA"; }
+        else{ $str .= "MIGDIA"; }
         $str .= "</div>";
         $str .= "<div class ='general-background'><div id='product-box' class='grid-products'>";
         for ($i=0; $i < count($productsLoad); $i++) { 
