@@ -1,15 +1,12 @@
-*{
-    margin: 0;
-    padding: 0;
-    list-style: 0;
-    text-decoration: 0;
-}
+
 .footer{
     width: 100%;
     height: 25px;
     display: block;
-    background-color: #5c5c5c;
+    background-color: #fafafa;
     /*min-height: 25px;*/
+    font-weight: bold;
+    text-decoration: 0;
 }
 .inner-footer{
     width: 1000px;

@@ -16,15 +16,12 @@
             {
                 $str = "";
                 //
-                $str .= "<div class='general-title'>";
-                $str .= "<button id='back-button'>TORNAR</button>";
-                $str .= "<h1>GESTIONA ELS PRODUCTES</h1></div>";
-                $str .= "<div class='general-background'><div id ='product-list'>";
+                $str .= "<div id ='product-list'>";
                 for ($i=0; $i < count($productsLoad); $i++) { 
                     $str .= CellProduct($productsLoad[$i]); 
                 }         
     
-                $str .="</div></div>"; 
+                $str .="</div>"; 
                 //
                 return $str;
             }
@@ -36,8 +33,7 @@
             "<div class='product-price'>".$product["price"]."€/u</div>".
             "<div class='button-container'><button type='button' class='remove'>Remove</button>".
             "<button type='button' class='activate-product'>Activate</button>".
-            "<button type='button' class='deactivate-product'>Deactivate</button></span></div></div>".
-            "<hr class='hr-cell-product'>";
+            "<button type='button' class='deactivate-product'>Deactivate</button></span></div></div>";
             return $str;
         }
     ?>
@@ -47,16 +43,17 @@
     <?php
     include '../header.php';
     ?>
-    
-    <?php echo $HTML_products?>
-    <div class="general-title">
-        <button id="back-button">TORNAR</button>
-        <h1>AFEGEIX UN PRODUCTE</h1>
+    <div class='general-title'>
+        <button id='back-button'>TORNAR</button>
+        <h1>GESTIONA ELS PRODUCTES</h1>
     </div>
-    <form  method="POST" action="./administration.php">
-        <input type="submit" value=''>
-        <input type="hidden" id="senderJson" name="senderJson" value='<?php echo $jsonProducts ?>'>
-    </form>
+    <div class='general-background'>
+        <?php echo $HTML_products?>
+        <form  method="POST" action="./administration.php">
+            <input type="submit" value="Guardar Canvis" class="save-button">
+            <input type="hidden" id="senderJson" name="senderJson" value='<?php echo $jsonProducts ?>'>
+        </form>
+    </div>
     <?php 
     include '../footer.php';
     ?>

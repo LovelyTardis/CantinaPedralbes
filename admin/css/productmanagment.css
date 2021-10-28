@@ -26,6 +26,7 @@ div.general-title{
     width: 200px;
     height: 200px;
 }
+
 .general-background{
     background-color: #C4C4C4;
     min-height: 100vh; 
@@ -39,6 +40,11 @@ div.general-title{
 }
 .item-container{
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #EEEEEE;
+    margin: 10px;
+    padding-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.7);;
 }
 .product-name{
     margin: 10px;
@@ -64,6 +70,20 @@ div.general-title{
 .button-container button:hover{
     box-shadow: 0 3px 10px rgb(0 0 0 / 1);;
 }
-form{
-    display: none;
+
+#product-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.save-button{
+    margin: 10px;
+    background-color: #ff7b00;
+    border: none;
+    border-radius: 10px;;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);;
+    height: 40px;
+    width: 220px;
 }

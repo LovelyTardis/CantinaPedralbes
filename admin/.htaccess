@@ -1,4 +1,4 @@
 AuthType Basic
-AuthUserFile "E:\2n DAW\ProjectesTransversals\CantinaPedralbes\admin\.htpasswd"
+AuthUserFile "C:\Users\Mati\Documents\ProyectoCantina\CantinaPedralbes\admin\.htpasswd"
 AuthName "Administració Cantina Pedralbes"
 Require user pedralbes

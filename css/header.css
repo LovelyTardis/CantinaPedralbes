@@ -1,14 +1,11 @@
-*{
-    margin: 0;
-    padding: 0;
-    list-style: 0;
-    text-decoration: 0;
-}
+
 .header{
     width: 100%;
     height: 80px;
     display: block;
     background-color: #fcfcfc;
+    font-weight: bold;
+    text-decoration: 0;
 }
 .inner-header{
     width: 1000px;

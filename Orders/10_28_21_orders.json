@@ -52,5 +52,20 @@
                 "quantity": 1
             }
         ]
+    },
+    {
+        "username": "Arnau",
+        "email": "a19arnortbri@inspedralbes.cat",
+        "phone": "123456789",
+        "products": [
+            {
+                "productId": 3001,
+                "quantity": 1
+            },
+            {
+                "productId": 2000,
+                "quantity": 1
+            }
+        ]
     }
 ]
