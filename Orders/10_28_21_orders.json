@@ -1,0 +1,56 @@
+[
+    {
+        "username": "aLBERT",
+        "email": "a19albchavas@inspedralbes.cat",
+        "phone": "674742600",
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            },
+            {
+                "productId": 1010,
+                "quantity": 1
+            },
+            {
+                "productId": 2020,
+                "quantity": 2
+            },
+            {
+                "productId": 1020,
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "username": "Eric",
+        "email": "a19ericlecas@inspedralbes.cat",
+        "phone": "648057062",
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 3
+            },
+            {
+                "productId": 1012,
+                "quantity": 3
+            },
+            {
+                "productId": 2020,
+                "quantity": 2
+            },
+            {
+                "productId": 2021,
+                "quantity": 1
+            },
+            {
+                "productId": 1011,
+                "quantity": 1
+            },
+            {
+                "productId": 2000,
+                "quantity": 1
+            }
+        ]
+    }
+]

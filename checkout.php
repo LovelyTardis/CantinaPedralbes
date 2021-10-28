@@ -8,9 +8,11 @@
     }
 ?>
 
+
 <?php
         if($_SERVER["REQUEST_METHOD"] == "POST")
         {
+            //COMPROVACIONES
             $allProductsInfo = json_decode(file_get_contents("./products.json"),true);  
             $userName = $_POST["name"];
             $userEmail = $_POST["email"]; 
@@ -34,10 +36,13 @@
                 header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
                 session_destroy();
             }
+            //
+            
+            //GENERACION DE COOKIE, TICKET Y EMAIL
             setcookie("comanda", "022729", strtotime('today 23:59'), '/');
             $newTicket = GenerateTicket($userName, $userEmail, $phoneNumber, $_SESSION["ticketObjects"]);
             SendTicketToServer($newTicket);
-            //SendMail($userEmail);
+            SendMail($userEmail);
             
             session_destroy();
         }
@@ -62,7 +67,6 @@
                 {
                     $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
                     $mailMessage .= "<td>".$GLOBALS['allProductsInfo'][$index]['productName']."</td>";
-    
                     $priceTotalProduct = round((floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)) , 2);
                     $totalPrice += $priceTotalProduct;            
                     $mailMessage .= "<td>".$priceTotalProduct."€</td>";

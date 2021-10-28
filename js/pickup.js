@@ -3,7 +3,6 @@ window.onload = function() {
 };
 
 
-
 let productButtons = document.getElementById('product-box'); //nodo donde se encuentran los productos cargados por php
 let ticketNode = document.getElementById('ticket'); //nodo donde se encuentra la informacion del tiquet
 let buyButton = document.getElementById("purchase-button"); //boton de comprar
@@ -107,7 +106,7 @@ function Decrease(buttonNode)
     if(index == -1)
     {
         buttonNode.setAttribute("disabled","");
-         quantityNode.innerHTML =  0 + unitMessage;
+        quantityNode.innerHTML =  0 + unitMessage;
     } 
     let quantityOfProduct = (index == -1 ? 0 : basket[index].quantity); // busca si el producto existe en la cesta "basket" en caso de no existir pone un 0.
     quantityNode.innerHTML = quantityOfProduct + unitMessage;
