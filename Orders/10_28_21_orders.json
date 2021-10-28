@@ -52,5 +52,20 @@
                 "quantity": 1
             }
         ]
+    },
+    {
+        "username": "Albert",
+        "email": "a19albchavas@inspedralbes.cat",
+        "phone": "674742600",
+        "products": [
+            {
+                "productId": 2000,
+                "quantity": 1
+            },
+            {
+                "productId": 3001,
+                "quantity": 1
+            }
+        ]
     }
 ]

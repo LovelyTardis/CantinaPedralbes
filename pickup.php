@@ -36,7 +36,7 @@
 
         //Title for the schedule
         $str .= "<div class ='general-title'>";
-        $str .= "<button id='back-button' onClick='javascript:history.go(-1)'>TORNAR</button><h1>MENÚ DEL ";
+        $str .= "<button id='back-button'>TORNAR</button><h1>MENÚ DEL ";
         if($time == 0){ $str .= "MATÍ"; }
         else{ $str .= "MIGDIA"; }
         $str .= "</h1></div>";
