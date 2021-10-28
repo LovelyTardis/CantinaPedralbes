@@ -1,4 +1,52 @@
-img{
+.general-background img{
     width: 200px;
     height: 200px;
+}
+.general-background{
+    background-color: #C4C4C4;
+    min-height: 100vh; 
+    padding: 20px;
+    text-align: center;
+}
+.item-container img{
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.8);;
+    margin: 5px;
+}
+.item-container{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.product-name{
+    margin: 10px;
+}
+.product-price{
+    margin: 10px;
+}
+.button-container{
+    margin: 10px;
+}
+.button-container button{
+    margin: 10px;
+    background-color: #00A3FF;
+    border: none;
+    border-radius: 10px;;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);;
+    height: 40px;
+    width: 120px;
+}
+.button-container button:hover{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 1);;
+}
+form{
+    display: none;
+}
+.title{
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 30px;
 }

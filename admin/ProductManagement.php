@@ -7,7 +7,7 @@
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <link rel="defaultsheet" href="../css/normalize.css">
     <link rel="stylesheet" href="./css/productmanagment.css">
-    <title>Document</title>
+    <title>Product Managment</title>
     <?php
             $jsonProducts = file_get_contents("../products.json");
             $productsObject = json_decode($jsonProducts,true);
@@ -16,37 +16,43 @@
             {
                 $str = "";
                 //
-                $str .="<div id ='product-list'>";
-            
+                $str .="<div class='general-background'><div id ='product-list'><div class='title'>GESTIONA ELS TEUS PRODUCTES!</div>";
                 for ($i=0; $i < count($productsLoad); $i++) { 
                     $str .= CellProduct($productsLoad[$i]); 
                 }         
     
-                $str .="</div>"; 
+                $str .="</div></div>"; 
                 //
                 return $str;
             }
                     
         function CellProduct(array $product) : string
         {
-            $str = "<div class='cell-product' id='".$product["id"]."'><span><img src=".$product["imageId"]."></img>".
-            "<div>".$product["productName"]."</div>".
-            "<hr class='hr-cell-product'>".
-            "<div>".$product["price"]."€/u</div>".
-            "<button type='button' class='remove'>Remove</button>".
+            $str = "<div class='item-container'><div class='cell-product' id='".$product["id"]."'><span><img src=".$product["imageId"]."></img>".
+            "<div class='product-name'>".$product["productName"]."</div></div>".
+            "<div class='product-price'>".$product["price"]."€/u</div>".
+            "<div class='button-container'><button type='button' class='remove'>Remove</button>".
             "<button type='button' class='activate-product'>Activate</button>".
-            "<button type='button' class='deactivate-product'>Deactivate</button></span></div>";
-            
+            "<button type='button' class='deactivate-product'>Deactivate</button></span></div></div>".
+            "<hr class='hr-cell-product'>";
             return $str;
         }
     ?>
 </head>
 <body>
+
+    <?php
+    include '../header.php';
+    ?>
+    
     <?php echo $HTML_products?>
     <form  method="POST" action="./administration.php">
         <input type="submit" value=''>
         <input type="hidden" id="senderJson" name="senderJson" value='<?php echo $jsonProducts ?>'>
     </form>
+    <?php 
+    include '../footer.php';
+    ?>
     <script src="./ProductManagement.js"></script>
 </body>
 </html>
