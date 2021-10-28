@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="./css/administration.css">
     <title>Cantina - Admin</title>
     <?php
     include '../header.php';
@@ -17,13 +18,18 @@
     ?>
 </head>
 <body>
-    <h1>ADMINISTRATION PAGE (WIP)</h1>
-    <a>
-        <input type="button" id="product-admin" value="Administrar productes">
-    </a>
-    <a>
-        <input type="button" id="product-manage" value="Modificar productes">
-    </a>
+    <div class="general-background">
+        <div class="button">
+            <input type="button" id="product-admin" value="Administrar Productes">
+        </div>
+        <div class="button">
+            <input type="button" id="product-manage" value="Agregar Productes">
+        </div>
+        <div class="button">
+            <input type="button" id="ticket-admin" value="Mostrar Tickets">
+        </div>
+    </div>
+    
     <?php 
     include '../footer.php';
     ?>
