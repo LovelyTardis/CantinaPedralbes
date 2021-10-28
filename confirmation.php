@@ -58,7 +58,7 @@
 </head>
 <body>
     <div class="general-title">
-        <button id="back-button" onClick='javascript:history.go(-1)'>TORNAR</button>
+        <button id="back-button">TORNAR</button>
         <h1>DADES DE CONTACTE</h1>
     </div>
     <div class ="general-background">

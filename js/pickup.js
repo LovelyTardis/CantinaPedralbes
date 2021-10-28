@@ -3,7 +3,7 @@ window.onload = function() {
 };
 
 //Back button funtionality
-document.getElementById("back-button").addEventListener('click',(e)=>{
+document.getElementById("back-button").addEventListener('click', () =>{
     Back("/index.php");
 });
 function Back(url){

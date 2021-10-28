@@ -11,7 +11,7 @@ const error102 = "El numero de teléfono introducido no és correcto/compatible,
 //
 
 //Back button funtionality
-document.getElementById("back-button").addEventListener('click',(e)=>{
+document.getElementById("back-button").addEventListener('click',()=>{
     Back("/pickup.php");
 });
 function Back(url){

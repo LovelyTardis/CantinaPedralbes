@@ -2,6 +2,15 @@ let productButtons = document.getElementById('product-list');
 let senderJson = document.getElementById('senderJson');
 console.log(senderJson);
 
+//Back button funtionality
+document.getElementById("back-button").addEventListener('click',()=>{
+  Back("/administration.php");
+});
+function Back(url){
+  window.location.href = document.URL.substr(0,document.URL.lastIndexOf('/'))+url;
+};
+//
+
 let popUpRemove = {
   questionTitle: 'Esborrar?',
   questionMessage:  'Estas segur de voler <b>ELIMINAR</b> aquest producte?<hr>',

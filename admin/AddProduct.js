@@ -7,7 +7,7 @@ let productPriceTypeError=0;
 ///
 
 //Back button funtionality
-document.getElementById("back-button").addEventListener('click',(e)=>{
+document.getElementById("back-button").addEventListener('click',()=>{
     Back("/administration.php");
 });
 function Back(url){
