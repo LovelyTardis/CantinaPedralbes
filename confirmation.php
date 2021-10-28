@@ -69,7 +69,7 @@
                 </div>
                 <button type="button" id="btn-purchase" class="confirm">CONFIRMAR COMANDA</button>
             </form>
-         <div class="grid-ticket">
+            <div class="grid-ticket">
             <div id="ticket" >
                 <?php echo $HTML_ticket?>
                 <hr>

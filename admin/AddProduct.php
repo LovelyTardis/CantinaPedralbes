@@ -159,40 +159,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
-    <title>Document</title>
+    <link rel="defaultsheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="./css/addproduct.css">
+    <title>Afegir Producte</title>
+    <?php
+    include '../header.php';
+    ?>
 </head>
 <body>
-    <form id="newProduct" method="POST" action="./AddProduct.php" enctype="multipart/form-data">
-        <div><span><label for="productId">Id del producto:</label></span><span><input type="text" name="productId" id="productId" value=""></span></div>
-        <div><span><label for="productName">Nombre del producto</label></span><span><input type="text" name="productName" id="productName" value=""></span></div>
-        <div><span><label for="ImageName">Imagen del producto</label></span><span><input type="file" accept=".png, .jpg, .jpeg" name="ImageName" value=""></span><span><?php  echo $GLOBALS['imageErrorMessage'] ?></span></div>
-        <div>
-            <span><label for="isActived"></label></span>
-            <span>        
-                <select name="isActived" id="isActived">
-                    <option value="1">Activado</option>
-                    <option value="0">Desactivado</option>
-                </select>
-            </span>
-        </div>
-        <div>
-            <span><label for="schedule">Horario:</label></span>
-            <span>        
-                <select name="schedule" id="schedule">
-                    <option value="0">Mañana</option>
-                    <option value="1">Tarde</option>
-                    <option value="2">Siempre</option>
-                </select>
-            </span>
-        </div>
-        <div>
-            <span><label for="productPrice">Precio del producto:</label></span>
-            <span><input type="text" name="productPrice" id="productPrice" value=""></span>
-        </div>
-        <button type="button" id="AddButton" class="button-confirm">Crear</button>
-    </form>
+  <div class="general-background">
+    <h1>AFEGEIX UN PRODUCTE!</h1>
+    <div class="grid-container">
+      <form id="newProduct" method="POST" action="./AddProduct.php" enctype="multipart/form-data">
+        <div class="grid">
+          <div><label for="productId" class="info-text">Id del producte:</label></div><div ><input type="text" name="productId" id="productId" value="" class="input"></div>
+          <div><label for="productName" class="info-text">Nom del producte</label></div><div ><input type="text" name="productName" id="productName" value="" class="input"></div>
+          <div><label for="ImageName" class="info-text">Imatge del producte</label></div><div ><input type="file" accept=".png, .jpg, .jpeg" name="ImageName" value=""><?php  echo $GLOBALS['imageErrorMessage'] ?></div>
+          <div><label for="isActived" class="info-text">Activat?</label></div>
+          <div>        
+              <select name="isActived" id="isActived">
+                  <option value="1">Activat</option>
+                  <option value="0">Desactivat</option>
+              </select>
+          </div>
+          <div><label for="schedule" class="info-text">Horari:</label></div>
+          <div>        
+              <select name="schedule" id="schedule">
+                  <option value="0">Matí</option>
+                  <option value="1">Tarde</option>
+                  <option value="2">Sempre</option>
+              </select>
+          </div>
+          <div><label for="productPrice" class="info-text">Preu del producte:</label></div><div><input type="text" name="productPrice" id="productPrice" value="" class="input"></div>    
+          <div class="button"><button type="button" id="AddButton" class="button-confirm">Crear</button></div>
+          </div>
+      </form>
+
+    </div>
+    
+  </div>
     <script src="./AddProduct.js"></script>
     
     <?php echo $GLOBALS['creationMessage']?>
+    <?php 
+    include '../footer.php'
+    ?>
 </body>
 </html>

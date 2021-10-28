@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="../css/normalize.css">
     <link rel="stylesheet" href="./css/administration.css">
+
     <title>Cantina - Admin</title>
     <?php
     include '../header.php';
@@ -18,7 +19,7 @@
     ?>
 </head>
 <body>
-    <div class="general-background">
+    <div class="general-background" id="navigation">
         <div class="button">
             <input type="button" id="product-admin" value="Administrar Productes">
         </div>
@@ -33,5 +34,6 @@
     <?php 
     include '../footer.php';
     ?>
+    <script src="./js/administration.js"></script>
 </body>
 </html>
