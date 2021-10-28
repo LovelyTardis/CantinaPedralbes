@@ -3,7 +3,7 @@
 <div class="header">
     <div class="inner-header">
         <div class="logo-container">
-            <img src="../assets/images/LogoInspedralbes.png" alt="LogoInstitutPedralbes">
+            <img src="../assets/images/LogoInspedralbesNom.png" alt="LogoInstitutPedralbes">
         </div>
         <ul class="navigation">
             <a href="../index.php"><li>Inici</li></a>
