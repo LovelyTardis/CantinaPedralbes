@@ -16,7 +16,10 @@
             {
                 $str = "";
                 //
-                $str .="<div class='general-background'><div id ='product-list'><div class='title'>GESTIONA ELS TEUS PRODUCTES!</div>";
+                $str .= "<div class='general-title'>";
+                $str .= "<button id='back-button'>TORNAR</button>";
+                $str .= "<h1>GESTIONA ELS PRODUCTES</h1></div>";
+                $str .= "<div class='general-background'><div id ='product-list'>";
                 for ($i=0; $i < count($productsLoad); $i++) { 
                     $str .= CellProduct($productsLoad[$i]); 
                 }         
@@ -46,6 +49,10 @@
     ?>
     
     <?php echo $HTML_products?>
+    <div class="general-title">
+        <button id="back-button">TORNAR</button>
+        <h1>AFEGEIX UN PRODUCTE</h1>
+    </div>
     <form  method="POST" action="./administration.php">
         <input type="submit" value=''>
         <input type="hidden" id="senderJson" name="senderJson" value='<?php echo $jsonProducts ?>'>

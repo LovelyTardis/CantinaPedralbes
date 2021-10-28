@@ -6,6 +6,15 @@ let productNameTypeError=0;
 let productPriceTypeError=0;
 ///
 
+//Back button funtionality
+document.getElementById("back-button").addEventListener('click',(e)=>{
+    Back("/administration.php");
+});
+function Back(url){
+    window.location.href = document.URL.substr(0,document.URL.lastIndexOf('/'))+url;
+};
+//
+
 
 addProductButton.addEventListener('click', function(){
     CheckForm();

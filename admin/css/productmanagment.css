@@ -1,3 +1,27 @@
+div.general-title{
+    background-color: #C4C4C4;
+    display: flex;
+    padding-top: 50px;
+    font-weight: bolder;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: none;
+}
+#back-button{
+    background-color: #00A3FF;
+    border: none;
+    border-radius: 10px;;
+    padding: auto;
+    height: 40px;
+    width: 100px;
+    margin: 0px 20px 0px;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);;
+}
+#back-button:hover{
+    box-shadow: 0 1px 10px rgb(0 0 0 / 1);;
+}
 .general-background img{
     width: 200px;
     height: 200px;
@@ -42,11 +66,4 @@
 }
 form{
     display: none;
-}
-.title{
-    margin: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: underline;
-    font-weight: bold;
-    font-size: 30px;
 }

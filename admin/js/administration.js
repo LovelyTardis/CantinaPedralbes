@@ -1,4 +1,3 @@
-console.log(document.getElementById("navigation"));
 document.getElementById("navigation").addEventListener('click',(e)=>{
     if(e.target.getAttribute('id') == "product-admin"){
         Redirect("/AddProduct.php");

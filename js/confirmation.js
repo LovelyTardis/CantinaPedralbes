@@ -10,6 +10,15 @@ const error101 = "La dirección de correo no es correcta. El dominio tiene que s
 const error102 = "El numero de teléfono introducido no és correcto/compatible, Tiene que tener 9 digitos.";
 //
 
+//Back button funtionality
+document.getElementById("back-button").addEventListener('click',(e)=>{
+    Back("/pickup.php");
+});
+function Back(url){
+    window.location.href = document.URL.substr(0,document.URL.lastIndexOf('/'))+url;
+};
+//
+
 purchaseButton.addEventListener("click", () => {
     CheckForm();
 })

@@ -2,6 +2,14 @@ window.onload = function() {
     LoadProducts();
 };
 
+//Back button funtionality
+document.getElementById("back-button").addEventListener('click',(e)=>{
+    Back("/index.php");
+});
+function Back(url){
+    window.location.href = document.URL.substr(0,document.URL.lastIndexOf('/'))+url;
+};
+//
 
 let productButtons = document.getElementById('product-box'); //nodo donde se encuentran los productos cargados por php
 let ticketNode = document.getElementById('ticket'); //nodo donde se encuentra la informacion del tiquet

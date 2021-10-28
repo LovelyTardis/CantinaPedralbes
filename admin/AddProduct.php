@@ -167,8 +167,11 @@
     ?>
 </head>
 <body>
+    <div class="general-title">
+        <button id="back-button">TORNAR</button>
+        <h1>AFEGEIX UN PRODUCTE</h1>
+    </div>
   <div class="general-background">
-    <h1>AFEGEIX UN PRODUCTE!</h1>
     <div class="grid-container">
       <form id="newProduct" method="POST" action="./AddProduct.php" enctype="multipart/form-data">
         <div class="grid">
