@@ -21,10 +21,10 @@
 <body>
     <div class="general-background" id="navigation">
         <div class="button">
-            <input type="button" id="product-admin" value="Administrar Productes">
+            <input type="button" id="product-admin" value="Agregar Productes">
         </div>
         <div class="button">
-            <input type="button" id="product-manage" value="Agregar Productes">
+            <input type="button" id="product-manage" value="Administrar Productes">
         </div>
         <div class="button">
             <input type="button" id="ticket-admin" value="Mostrar Tickets">
