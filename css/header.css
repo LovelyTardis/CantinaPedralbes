@@ -8,7 +8,7 @@
     width: 100%;
     height: 80px;
     display: block;
-    background-color: #5c5c5c;
+    background-color: #fcfcfc;
 }
 .inner-header{
     width: 1000px;
@@ -45,7 +45,7 @@
 }
 img{
     width: 64px;
-    margin-top: 3px;
+    margin-top: 4px;
 }
 
 
