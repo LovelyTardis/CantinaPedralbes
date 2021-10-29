@@ -1,0 +1,17 @@
+[
+    {
+        "username": "Albert",
+        "email": "a19albchavas@inspedralbes.cat",
+        "phone": "674742600",
+        "products": [
+            {
+                "productId": 3001,
+                "quantity": 1
+            },
+            {
+                "productId": 2000,
+                "quantity": 1
+            }
+        ]
+    }
+]
