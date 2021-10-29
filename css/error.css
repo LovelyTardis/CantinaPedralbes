@@ -1,0 +1,18 @@
+.general-background{
+    text-align: center;
+    background-color: #C4C4C4;
+    min-height: 100vh; 
+}
+.error-box{
+    background-color: #00A3FF;
+    margin: 20px auto 20px;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.error-message-number{
+    font-size: 72px;
+}
+.error-message{
+    font-size: 40px;
+}

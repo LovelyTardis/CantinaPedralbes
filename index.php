@@ -1,6 +1,6 @@
 <?php
 session_start();
-setcookie("error", "0", strtotime('today 23:59'), '/');
+$_SESSION["error"] = 0;
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -15,7 +15,7 @@ setcookie("error", "0", strtotime('today 23:59'), '/');
     <?php
         if(isset($_SESSION["ticketObjects"]))
         {
-            $_SESSION["ticketObjects"] = [];
+            $_SESSION["ticketObjects"] = "[]";
         }
     ?>
     <?php

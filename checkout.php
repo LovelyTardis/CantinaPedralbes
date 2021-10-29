@@ -1,10 +1,5 @@
 <?php
     session_start();
-    if(isset($_COOKIE['comanda']))
-    {
-        setcookie("error", "201", strtotime('today 23:59'), '/');
-        header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
-    }
 ?>
 
 
@@ -18,36 +13,35 @@
             $phoneNumber = preg_replace("/[^0-9]/", '', $_POST["phone"]);
             if($userName == '')
             {
-                setcookie("error", "101", strtotime('today 23:59'), '/');
+                $_SESSION['error'] = 101;
                 header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
-                session_destroy();
             }
-            if(!endsWith($userEmail , "@inspedralbes.cat"))
+            else if(!endsWith($userEmail , "@inspedralbes.cat"))
             {
-                setcookie("error", "102", strtotime('today 23:59'), '/');
+                $_SESSION['error'] = 102;
                 header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
-                session_destroy();
             }
-            
-            if(strlen($phoneNumber) > 9 || strlen($phoneNumber) < 9)
+            else if(strlen($phoneNumber) > 9 || strlen($phoneNumber) < 9)
             {
-                setcookie("error", "103", strtotime('today 23:59'), '/');
+                $_SESSION['error'] = 103;
                 header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
+            }
+            else
+            {
+                //GENERACION DE COOKIE, TICKET Y EMAIL
+                setcookie("comanda", "022729", strtotime('today 23:59'), '/');
+                $newTicket = GenerateTicket($userName, $userEmail, $phoneNumber, $_SESSION["ticketObjects"]);
+                SendTicketToServer($newTicket);
+                SendMail($userEmail);
+                
                 session_destroy();
             }
-            //
-            
-            //GENERACION DE COOKIE, TICKET Y EMAIL
-            setcookie("comanda", "022729", strtotime('today 23:59'), '/');
-            $newTicket = GenerateTicket($userName, $userEmail, $phoneNumber, $_SESSION["ticketObjects"]);
-            SendTicketToServer($newTicket);
-            SendMail($userEmail);
-            
-            session_destroy();
+
         }
         else
         {
-            setcookie("error", "100", strtotime('today 23:59'), '/');
+            $_SESSION['error'] = 100;
+            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
         }
     
     
@@ -66,14 +60,14 @@
                 {
                     $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
                     $mailMessage .= "<td>".$GLOBALS['allProductsInfo'][$index]['productName']."</td>";
-                    $priceTotalProduct = round((floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)),2);
+                    $priceTotalProduct = (floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity));
                     $totalPrice += $priceTotalProduct;            
-                    $mailMessage .= "<td>".$priceTotalProduct."€</td>";
+                    $mailMessage .= "<td>".number_format($priceTotalProduct,2,',','.')."€</td>";
                 }
                 $mailMessage .= "</tr>";
                 
             }
-            $mailMessage .= "</table><h2>Total Price:     ".number_format($totalPrice,2,',') ."€</h2>";
+            $mailMessage .= "</table><h2>Total Price:     ".number_format($totalPrice,2,',','.') ."€</h2>";
             $mailMessage .= "</body></html>";
             mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage, $headers);
         }
