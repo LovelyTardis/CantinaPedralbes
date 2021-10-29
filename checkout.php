@@ -67,14 +67,14 @@
                 {
                     $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
                     $mailMessage .= "<td>".$GLOBALS['allProductsInfo'][$index]['productName']."</td>";
-                    $priceTotalProduct = round((floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)) , 2);
+                    $priceTotalProduct = number_format((floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)),2,',');
                     $totalPrice += $priceTotalProduct;            
                     $mailMessage .= "<td>".$priceTotalProduct."€</td>";
                 }
                 $mailMessage .= "</tr>";
                 
             }
-            $mailMessage .= "</table><h2>Total Price:     ".round($totalPrice,2) ."€</h2>";
+            $mailMessage .= "</table><h2>Total Price:     ".number_format($totalPrice,2,',') ."€</h2>";
             $mailMessage .= "</body></html>";
             mail($userEmail, "REBUT COMANDA - Cantina", $mailMessage, $headers);
         }

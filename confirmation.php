@@ -35,7 +35,7 @@
             $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$x]->productId." class='product-in-ticket'>".
                 "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."</div>".
                 "<div class='ticket-product-name'>".($jsonProducts[$index]->productName)."</div>". 
-                "<div class='ticket-product-price'>".( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity)."€</div></div>";
+                "<div class='ticket-product-price'>".number_format(( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity),2,',')."€</div></div>";
         }
         return $str;
     }   

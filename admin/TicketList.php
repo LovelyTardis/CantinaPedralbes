@@ -43,7 +43,7 @@
                 {
                     //Vamos calculando el precio total de la comanda y del producto
                     $totalPrice += floatval($GLOBALS['allProductsInfo'][$index]['price']) * $ticket['products'][$x]['quantity'];
-                    $totalProductPrice = round(floatval($GLOBALS['allProductsInfo'][$index]['price']) * $ticket['products'][$x]['quantity'],2);
+                    $totalProductPrice = number_format(floatval($GLOBALS['allProductsInfo'][$index]['price']) * $ticket['products'][$x]['quantity'],2,',');
                     //
                     $ticketCell .= "<div class='ticket-products' id='".$ticket['products'][$x]['productId']."'>";
                     $ticketCell .= "<span class='ticket-product-quantity'>".$ticket['products'][$x]['quantity']."x</span>";
@@ -54,7 +54,7 @@
 
             }
             $ticketCell .= "</div>";
-            $ticketCell .= "<div class='cell-ticket-totalPrice'>TOTAL: ".round($totalPrice,2)."€</div>";
+            $ticketCell .= "<div class='cell-ticket-totalPrice'>TOTAL: ".number_format($totalPrice,2,',')."€</div>";
             $ticketCell .= "</div>";
             return $ticketCell;
         }

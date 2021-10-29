@@ -68,7 +68,7 @@
         $str = "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
         "<div>".$product["productName"]."</div>".
         "<hr class='hr-cell-product'>".
-        "<div>".$product["price"]."€/u</div>".
+        "<div>".number_format(floatval($product["price"]),2,',')."€/u</div>".
         "<hr class='hr-cell-product'>".
         ServerInfoProduct($product["id"]);
         
