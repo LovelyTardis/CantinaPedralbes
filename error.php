@@ -7,10 +7,10 @@ session_start();
     if(isset($_COOKIE['error']))
     {
         switch (intval($_COOKIE['error'])) {
-            case 5:
-                # code...
+            case 0:
+                $errorMessage = "No hi ha cap error i no hauries d'estar aquí.";
                 break;
-            
+            case 
             default:
                 $errorMessage = 'Error no registrat al servidor!'; 
                 break;
@@ -37,7 +37,7 @@ session_start();
 <body>
     <div class ="general-background">
         <div class="error-box">
-            <div class="error-message-number"><?php  if(isset($_COOKIE['error'])){echo $_COOKIE['error']}else{echo "???"}?></div>
+            <div class="error-message-number">Codi error: <?php if(isset($_COOKIE['error'])){echo $_COOKIE['error'];}else{echo "???";}?></div>
             <div class="error-message"><?php echo $GLOBALS['errorMessage']?></div>
         </div>
     </div>
