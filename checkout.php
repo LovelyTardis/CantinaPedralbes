@@ -2,7 +2,6 @@
     session_start();
     if(isset($_COOKIE['comanda']))
     {
-        //cambiar a cantina cuando se suba
         setcookie("error", "201", strtotime('today 23:59'), '/');
         header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }

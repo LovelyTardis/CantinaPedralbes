@@ -2,7 +2,6 @@
     session_start();
     if(isset($_COOKIE['comanda']))
     {
-        //cambiar a cantina cuando se suba
         header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
     if(isset($_POST["basket"]) && count(json_decode($_POST["basket"])) > 0)
