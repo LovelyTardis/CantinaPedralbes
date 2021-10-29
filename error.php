@@ -4,9 +4,9 @@ session_start();
 
 <?php
     $errorMessage = ''; 
-    if(isset($_COOKIE['error']))
+    if(isset($_SESSION['error']))
     {
-        switch (intval($_COOKIE['error'])) {
+        switch ($_SESSION['error']) {
             case 0:
                 $errorMessage = "No hi ha cap error i no hauries d'estar aquí.";
                 break;
@@ -46,6 +46,7 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/error.css">
     <title>Error</title>
     <?php 
         include 'header.php'
@@ -54,7 +55,7 @@ session_start();
 <body>
     <div class ="general-background">
         <div class="error-box">
-            <div class="error-message-number">Codi error: <?php if(isset($_COOKIE['error'])){echo $_COOKIE['error'];}else{echo "???";}?></div>
+            <div class="error-message-number">Codi error: <?php if(isset($_SESSION['error'])){echo $_SESSION['error'];}else{echo "???";}?></div>
             <div class="error-message"><?php echo $GLOBALS['errorMessage']?></div>
         </div>
     </div>

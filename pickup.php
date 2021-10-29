@@ -2,7 +2,7 @@
     session_start();
     if(isset($_COOKIE['comanda']))
     {
-        //cambiar a cantina cuando se suba
+        $_SESSION["error"] = 100;
         header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
 ?>
@@ -53,7 +53,7 @@
         $str .="<div class='title-ticket'><h1>COMANDA</h1></div>";
         $str .="<div id='ticket'>";
         $str .= GetTicketData();
-        $str .="</div><hr><div class='total-container'><span class='ticket-total-text'>TOTAL :  </span><span id='total-price'>".$GLOBALS['ticketPrice']."€</span></div>";
+        $str .="</div><hr><div class='total-container'><span class='ticket-total-text'>TOTAL :  </span><span id='total-price'>".number_format($GLOBALS['ticketPrice'],2,',','.')."€</span></div>";
         $str .= "<div class='buy-button'><button type='button' id='purchase-button' value=''>COMPRAR</button></div>";
         $str .= "</div></div>";
         $str .= "<input type='hidden' id='JsonProducts' value='".$json."' />";
@@ -68,7 +68,7 @@
         $str = "<div class='cell-product' id='".$product["id"]."'><div><img src=".$product["imageId"]."></img>".
         "<div>".$product["productName"]."</div>".
         "<hr class='hr-cell-product'>".
-        "<div>".number_format(floatval($product["price"]),2,',')."€/u</div>".
+        "<div>".number_format(floatval($product["price"]),2,',','.')."€/u</div>".
         "<hr class='hr-cell-product'>".
         ServerInfoProduct($product["id"]);
         
@@ -103,8 +103,8 @@
                 $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$i]->productId." class='product-in-ticket'>".
                 "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$i]->quantity)."x</div>".
                 "<div class='ticket-product-name'>".($thisproductsObject[$index]['productName'])."</div>". 
-                "<div class='ticket-product-price'>".number_format(( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity),2,',')."€</div></div>";
-                $GLOBALS['ticketPrice'] = number_format((floatval($GLOBALS['ticketPrice']) + ( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity)),2,',');
+                "<div class='ticket-product-price'>".number_format(( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity),2,',','.')."€</div></div>";
+                $GLOBALS['ticketPrice'] = (floatval($GLOBALS['ticketPrice']) + ( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity));
             }
             return $str;
         }

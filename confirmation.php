@@ -2,19 +2,29 @@
     session_start();
     if(isset($_COOKIE['comanda']))
     {
+        $_SESSION['error'] = 100;
         header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
-    if(isset($_POST["basket"]) && count(json_decode($_POST["basket"])) > 0)
+    else if($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        $ticketObjects = json_decode($_POST["basket"]);
-        $_SESSION["ticketObjects"] = $ticketObjects;
-    }
-    else if(isset($_SESSION["ticketObjects"] ))
-    {
-        $ticketObjects = json_decode($_SESSION["ticketObjects"]);
+        if(isset($_POST["basket"]) && count(json_decode($_POST["basket"])) == 0)
+        {
+            $_SESSION['error'] = 200;
+            header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
+        }
+        else if(isset($_POST["basket"]) && count(json_decode($_POST["basket"])) > 0)
+        {
+            $ticketObjects = json_decode($_POST["basket"]);
+            $_SESSION["ticketObjects"] = $ticketObjects;
+        }
+        else if(isset($_SESSION["ticketObjects"] ))
+        {
+            $ticketObjects = json_decode($_SESSION["ticketObjects"]);
+        }
     }
     else
     {
+        $_SESSION['error'] = 201;
         header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
 ?>
@@ -34,7 +44,7 @@
             $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$x]->productId." class='product-in-ticket'>".
                 "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."x</div>".
                 "<div class='ticket-product-name'>".($jsonProducts[$index]->productName)."</div>". 
-                "<div class='ticket-product-price'>".number_format(( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity),2,',')."€</div></div>";
+                "<div class='ticket-product-price'>".number_format(( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity),2,',','.')."€</div></div>";
         }
         return $str;
     }   
@@ -79,7 +89,7 @@
                 <hr>
                 <div class='total-container'>
                     <span class='ticket-total-text'>TOTAL :  </span>
-                    <span id='total-price'><?php echo number_format($GLOBALS['total_price'],2,',')?> €</span>
+                    <span id='total-price'><?php echo number_format($GLOBALS['total_price'],2,',','.')?> €</span>
                 </div>
             </div>
         </div>
