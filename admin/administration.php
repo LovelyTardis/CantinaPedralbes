@@ -7,7 +7,7 @@
     <link rel="defaultsheet" href="../css/normalize.css">
     <link rel="stylesheet" href="./css/administration.css">
 
-    <title>Cantina - Admin</title>
+    <title>Cantina - Administració</title>
     <?php
     include '../header.php';
     ?>

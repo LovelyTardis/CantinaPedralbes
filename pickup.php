@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="defaultsheet" href="./css/normalize.css">
-    <title>Cantina - Ordenar</title>
+    <title>Cantina - Comanda</title>
     <link rel="stylesheet" href="./css/pickup.css">
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <?php

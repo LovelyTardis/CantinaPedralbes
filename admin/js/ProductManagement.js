@@ -13,23 +13,23 @@ function Back(url){
 
 let popUpRemove = {
   questionTitle: 'Esborrar?',
-  questionMessage:  'Estas segur de voler <b>ELIMINAR</b> aquest producte?<hr>',
+  questionMessage:  'Estàs segur de voler <b>ELIMINAR</b> aquest producte?<hr>',
   confirmationTitle: 'Esborrat!',
-  confirmationMessage: 'El producte ha estat esborrat correctament'
+  confirmationMessage: 'El producte ha estat esborrat correctament.'
 };
 
 let popUpActivate = {
   questionTitle: 'Activar?',
-  questionMessage:  'Estas segur de voler <b>ACTIVAR</b> aquest producte?<hr>',
+  questionMessage:  'Estàs segur de voler <b>ACTIVAR</b> aquest producte?<hr>',
   confirmationTitle: 'Activat!',
-  confirmationMessage: 'El producte ha estat activat correctament'
+  confirmationMessage: 'El producte ha estat activat correctament.'
 };
 
 let popUpDeactivate = {
   questionTitle: 'Desactivar?',
-  questionMessage:  'Estas segur de voler <b>DESACTIVAR</b> aquest producte?<hr>',
+  questionMessage:  'Estàs segur de voler <b>DESACTIVAR</b> aquest producte?<hr>',
   confirmationTitle: 'Desactivat!',
-  confirmationMessage: 'El producte ha estat desactivat correctament'
+  confirmationMessage: 'El producte ha estat desactivat correctament.'
 };
 
 let serverProducts = JSON.parse(senderJson.value);

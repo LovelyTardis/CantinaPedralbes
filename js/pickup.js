@@ -22,7 +22,7 @@ let menuList = JSON.parse(document.getElementById('JsonProducts').value);
 
 
 //errors
-const error200 = "La cesta esta vacia";
+const error200 = "No hi ha res a la comanda!";
 
 
 //cesta de productos en cliente
@@ -231,7 +231,7 @@ function GenerateJsonWithProducts()
     else
     {
         Swal.fire({
-            title: 'Oh no!',
+            title: 'Error!',
             text: error200,
             icon: 'error',
             confirmButtonText: 'Entendido'

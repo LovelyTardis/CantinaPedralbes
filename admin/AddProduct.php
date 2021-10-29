@@ -161,7 +161,7 @@
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <link rel="defaultsheet" href="../css/normalize.css">
     <link rel="stylesheet" href="./css/addproduct.css">
-    <title>Afegir Producte</title>
+    <title>Afegir productes</title>
     <?php
     include '../header.php';
     ?>
@@ -201,7 +201,7 @@
     </div>
     
   </div>
-    <script src="./AddProduct.js"></script>
+    <script src="./js/AddProduct.js"></script>
     
     <?php echo $GLOBALS['creationMessage']?>
     <?php 

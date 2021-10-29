@@ -7,7 +7,7 @@
     <script src="/SweetAlert2/dist/sweetalert2.all.min.js"></script>
     <link rel="defaultsheet" href="../css/normalize.css">
     <link rel="stylesheet" href="./css/productmanagment.css">
-    <title>Product Managment</title>
+    <title>Administrar productes</title>
     <?php
             $jsonProducts = file_get_contents("../products.json");
             $productsObject = json_decode($jsonProducts,true);
@@ -29,11 +29,11 @@
         function CellProduct(array $product) : string
         {
             $str = "<div class='item-container'><div class='cell-product' id='".$product["id"]."'><span><img src=".$product["imageId"]."></img>".
-            "<div class='product-name'>".$product["productName"]."</div></div>".
+            "<div class='product-name'>".$product["productName"]."</div>".
             "<div class='product-price'>".$product["price"]."€/u</div>".
             "<div class='button-container'><button type='button' class='remove'>Remove</button>".
             "<button type='button' class='activate-product'>Activate</button>".
-            "<button type='button' class='deactivate-product'>Deactivate</button></span></div></div>";
+            "<button type='button' class='deactivate-product'>Deactivate</button></span></div></div></div>";
             return $str;
         }
     ?>
@@ -57,6 +57,6 @@
     <?php 
     include '../footer.php';
     ?>
-    <script src="./ProductManagement.js"></script>
+    <script src="./js/ProductManagement.js"></script>
 </body>
 </html>

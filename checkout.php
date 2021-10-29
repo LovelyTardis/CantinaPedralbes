@@ -115,7 +115,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="defaultsheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/checkout.css">
-    <title>Cantina - Confirmat!</title>
+    <title>Cantina - Comanda confirmada</title>
     <?php
         include 'header.php';
     ?>

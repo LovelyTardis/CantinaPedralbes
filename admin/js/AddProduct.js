@@ -39,13 +39,13 @@ function CheckForm()
     {
         switch (idTypeError) {
             case 101:
-                PaintError("El id no puede estar vacio");
+                PaintError("L'id no pot estar buit.");
                 break;
             case 102:
-                PaintError("El id tiene que ser numerico (No puede contener caracteres/letras)");
+                PaintError("L'id ha de ser numèric (no pot tenir caràcters/lletres).");
                 break;
             default:
-                PaintError("Error Desconocido En el nombre");
+                PaintError("Error desconegut al nom.");
                 break;
         }
     }
@@ -53,10 +53,10 @@ function CheckForm()
     {
         switch (productNameTypeError) {
             case 201:
-                PaintError("El nombre no puede estar vacio");
+                PaintError("El nom no pot estar buit.");
                 break;
             default:
-                PaintError("Error Desconocido");
+                PaintError("Error desconegut.");
                 break;
         }
     }
@@ -64,13 +64,13 @@ function CheckForm()
     {
         switch (productPriceTypeError) {
             case 301:
-                PaintError("El precio introducido no es un valor numerico");
+                PaintError("El preu introduït no és un valor numèric.");
                 break;
             case 302:
-                PaintError("El precio no puede ser negativo");
+                PaintError("El preu no pot ser negatiu.");
                 break;
             default:
-                PaintError("Error Desconocido");
+                PaintError("Error desconegut.");
                 break;
         }
         
@@ -137,6 +137,6 @@ function PaintError(message)
         title: 'Error!',
         text: message,
         icon: 'error',
-        confirmButtonText: 'Entendido'
+        confirmButtonText: 'Entesos'
     })
 }

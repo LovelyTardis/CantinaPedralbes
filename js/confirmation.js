@@ -5,9 +5,9 @@ let phoneInput = document.getElementById("phone");
 let form = document.getElementById("credentialsForm");
 
 //ERRORS
-const error100 = "El nombre de usuario no puede estar vacio."
-const error101 = "La dirección de correo no es correcta. El dominio tiene que ser de '@inspedralbes.cat'.";
-const error102 = "El numero de teléfono introducido no és correcto/compatible, Tiene que tener 9 digitos.";
+const error100 = "El nom no pot estar buit."
+const error101 = "La direcció de correu no és correcta. El domini ha de ser '@inspedralbes.cat'.";
+const error102 = "El format de número de telèfon introduït no és correcte. Ha de tenir 9 dígits.";
 //
 
 //Back button funtionality

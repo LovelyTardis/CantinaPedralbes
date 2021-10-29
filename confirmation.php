@@ -74,6 +74,7 @@
                 <button type="button" id="btn-purchase" class="confirm">CONFIRMAR COMANDA</button>
             </form>
             <div class="grid-ticket">
+            <div class='title-ticket'><h1>COMANDA</h1></div>
             <div id="ticket" >
                 <?php echo $HTML_ticket?>
                 <hr>
