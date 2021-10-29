@@ -3,7 +3,7 @@
     if(isset($_COOKIE['comanda']))
     {
         //cambiar a cantina cuando se suba
-        header('Location: http://localhost/error.php');
+        header('Location: http://cantina3.alumnes.inspedralbes.cat/error.php');
     }
 ?>
 <!DOCTYPE html>

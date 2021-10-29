@@ -102,22 +102,22 @@
     if(isset($_POST["submit"])) {
       $check = getimagesize($_FILES["ImageName"]["tmp_name"]);
       if($check !== false) {
-        $GLOBALS['imageErrorMessage'] = "File is an image - " . $check["mime"] . ".";
+        $GLOBALS['imageErrorMessage'] = "L'arxiu és una imatge - " . $check["mime"] . ".";
       } else {
-        $GLOBALS['imageErrorMessage'] = "File is not an image.";
+        $GLOBALS['imageErrorMessage'] = "L'arxiu no és una imatge.";
         return false;
       }
     }
     
     // Check if file already exists
     if (file_exists($target_file)) {
-      $GLOBALS['imageErrorMessage'] = "Sorry, file already exists.";
+      $GLOBALS['imageErrorMessage'] = "L'arxiu ja existeix.";
       return false;
     }       
     
     // Allow certain file formats
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-      $GLOBALS['imageErrorMessage'] = "Sorry, only JPG, JPEG, PNG files are allowed.";
+      $GLOBALS['imageErrorMessage'] = "Només s'accepten fitxers del tipus JPG, JPEG, PNG.";
       return false;
     }
     // if everything is ok, try to upload file
