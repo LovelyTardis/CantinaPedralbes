@@ -1,0 +1,40 @@
+[
+    {
+        "username": "Albert",
+        "email": "a19albchavas@inspedralbes.cat",
+        "phone": "674742600",
+        "products": [
+            {
+                "productId": 1010,
+                "quantity": 1
+            },
+            {
+                "productId": 1002,
+                "quantity": 1
+            },
+            {
+                "productId": 1000,
+                "quantity": 3
+            },
+            {
+                "productId": 1001,
+                "quantity": 3
+            }
+        ]
+    },
+    {
+        "username": "Albert",
+        "email": "a19albchavas@inspedralbes.cat",
+        "phone": "674742600",
+        "products": [
+            {
+                "productId": 1000,
+                "quantity": 1
+            },
+            {
+                "productId": 2000,
+                "quantity": 1
+            }
+        ]
+    }
+]

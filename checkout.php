@@ -67,7 +67,7 @@
                 {
                     $mailMessage .= "<td>".$_SESSION["ticketObjects"][$i]->quantity."x</td>";
                     $mailMessage .= "<td>".$GLOBALS['allProductsInfo'][$index]['productName']."</td>";
-                    $priceTotalProduct = number_format((floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)),2,',');
+                    $priceTotalProduct = round((floatval($GLOBALS['allProductsInfo'][$index]['price']) * floatval($_SESSION["ticketObjects"][$i]->quantity)),2);
                     $totalPrice += $priceTotalProduct;            
                     $mailMessage .= "<td>".$priceTotalProduct."€</td>";
                 }

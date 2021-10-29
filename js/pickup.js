@@ -148,7 +148,7 @@ function UpdateTicket(product, quantity, option)
         
                 let thisProductTotalPrice = document.createElement('div');
                 thisProductTotalPrice.setAttribute("class", "ticket-product-price");
-                thisProductTotalPrice.innerHTML = (product['price']*quantity).toFixed(2)+"€";
+                thisProductTotalPrice.innerHTML = (product['price']*quantity).toFixed(2).replace(".",",")+coinType;
 
                 newProduct.appendChild(thisProductQuantity);
                 newProduct.appendChild(thisProductName);
@@ -184,7 +184,7 @@ function UpdateNodeFromTicket(product, quantity, productNode)
     let thisProductTotalPrice = productNode.querySelector(".ticket-product-price");
     let thisProductQuantity = productNode.querySelector(".ticket-product-quantity");
     
-    thisProductTotalPrice.innerHTML = (product['price']*quantity).toFixed(2)+coinType;
+    thisProductTotalPrice.innerHTML = (product['price']*quantity).toFixed(2).replace(".",",")+coinType;
     thisProductQuantity.innerHTML = (quantity+"x");
 }
 
@@ -252,7 +252,7 @@ function UpdateTotalPrice()
             total += productObj.price * basket[x].quantity;
         }    
     }
-    document.getElementById("total-price").innerHTML = total.toFixed(2)+coinType;
+    document.getElementById("total-price").innerHTML = total.toFixed(2).replace(".",",")+coinType;
 }
 
 /**

@@ -103,8 +103,8 @@
                 $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$i]->productId." class='product-in-ticket'>".
                 "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$i]->quantity)."x</div>".
                 "<div class='ticket-product-name'>".($thisproductsObject[$index]['productName'])."</div>". 
-                "<div class='ticket-product-price'>".( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity)."€</div></div>";
-                $GLOBALS['ticketPrice'] = $GLOBALS['ticketPrice'] + ( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity);
+                "<div class='ticket-product-price'>".number_format(( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity),2,',')."€</div></div>";
+                $GLOBALS['ticketPrice'] = number_format((floatval($GLOBALS['ticketPrice']) + ( (floatval($thisproductsObject[$index]['price']) ) *$_SESSION["ticketObjects"][$i]->quantity)),2,',');
             }
             return $str;
         }

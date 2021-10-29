@@ -33,7 +33,7 @@
             $index= array_search($productObj->productId, array_column($jsonProducts, 'id'));
             $GLOBALS["total_price"] += ((floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity);
             $str .= "<div id=Ticket-".$_SESSION["ticketObjects"][$x]->productId." class='product-in-ticket'>".
-                "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."</div>".
+                "<div class='ticket-product-quantity'>".($_SESSION["ticketObjects"][$x]->quantity)."x</div>".
                 "<div class='ticket-product-name'>".($jsonProducts[$index]->productName)."</div>". 
                 "<div class='ticket-product-price'>".number_format(( (floatval($jsonProducts[$index]->price) ) *$_SESSION["ticketObjects"][$x]->quantity),2,',')."€</div></div>";
         }
@@ -79,7 +79,7 @@
                 <hr>
                 <div class='total-container'>
                     <span class='ticket-total-text'>TOTAL :  </span>
-                    <span id='total-price'><?php echo number_format($GLOBALS['total_price'],2)?> €</span>
+                    <span id='total-price'><?php echo number_format($GLOBALS['total_price'],2,',')?> €</span>
                 </div>
             </div>
         </div>
