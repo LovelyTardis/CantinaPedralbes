@@ -1,3 +1,30 @@
+<?php
+  if (!isset($_SESSION)) {
+    session_start();
+  }
+    if(isset($_SESSION['account']))
+    {
+        $userAccounts = json_decode(file_get_contents("../adminaccounts.json"));
+        $index = array_search($_SESSION['account']->username, array_column($userAccounts, 'username'));
+        if($index > -1)
+        {
+            if($_SESSION['account']->password != $userAccounts[$index]->password)
+            {
+                $_SESSION['error'] = 4003;
+                header('Location: http://localhost/error.php');
+            }
+        }
+        else
+        {
+            $_SESSION['error'] = 4005;
+            header('Location: http://localhost/error.php');
+        }
+    }
+    else
+    {
+        header('Location: http://localhost/admin/logAdmin.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="ca">
 <head>

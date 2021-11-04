@@ -28,6 +28,18 @@ session_start();
             case 201:
                 $errorMessage = "Vols confirmar una comanda que no has fet?";
                 break;
+            case 4000:
+                $errorMessage = "No s'ha pogut crear l'usuari";
+                break;
+            case 4001:
+                $errorMessage = "l'usuari o la contrasenya esta buit";
+                break;
+            case 4002:
+                $errorMessage = "l'usuari o la contrasenya no es correcta";
+                break;
+            case 4002:
+                $errorMessage = "La contrasenya no es correcta";
+                break;
             default:
                 $errorMessage = 'Error no registrat al servidor!'; 
                 break;
