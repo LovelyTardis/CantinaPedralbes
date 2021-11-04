@@ -24,25 +24,39 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log In</title>
+    <link rel="stylesheet" href="./css/logadmin.css">
+    <?php 
+        include '../header.php'
+    ?>
+    <title>Login</title>
 </head>
 <body>
-    <form id="Log-In" method="GET" action="./administration.php">
-        <div  class="grid">
-            <div class="label"><label for="user">Usuari: </label></div>
-            <div class="input"><input type="text" name="user" id="user" require></div>
-            <div class="label"><label for="password">Contraseña: </label></div>
-            <div class="input"><input type="password" name="password" id="password" require></div>
-        </div>
-        <button type="submit" id="btn-log" class="login">LogIn</button>
-    </form>
-    <form action="./signUp.php">
-        <button type="submit" id="btn-log" class="signUp">signUp</button>
-    </form>
+    <div class="general-title">
+        <button id="back-button">TORNAR</button>
+        <h1>ENTRA AL TEU PERFIL</h1>
+    </div>
+    <div class ="general-background">
+        <form id="Log-In" method="GET" action="./administration.php">
+            <div  class="grid">
+                <div class="label"><label for="user">Usuari: </label></div>
+                <div class="input"><input type="text" name="user" id="user" require></div>
+                <div class="label"><label for="password">Contrasenya: </label></div>
+                <div class="input"><input type="password" name="password" id="password" require></div>
+            </div>
+            <button type="submit" id="btn-log" class="confirm">Entrar</button>
+        </form>
+        <form action="./signUp.php">
+            <button type="submit" id="btn-sign" class="confirm">Registrar-se</button>
+        </form>
+    </div>
+    <?php 
+        include '../footer.php'
+    ?>
+    <script type="module" src="./js/logadmin.js"></script>
 </body>
 </html>
