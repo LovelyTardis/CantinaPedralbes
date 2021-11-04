@@ -8,7 +8,7 @@
         {
             //COMPROVACIONES
             $allProductsInfo = json_decode(file_get_contents("./products.json"),true);  
-            $userName = $_POST["name"];
+            $userName = htmlspecialchars($_POST["name"]);
             $userEmail = $_POST["email"];
             $phoneNumber = preg_replace("/[^0-9]/", '', $_POST["phone"]);
             if($userName == '')

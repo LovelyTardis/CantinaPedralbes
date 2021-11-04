@@ -76,7 +76,7 @@
     }
     else
     {
-      $GLOBALS['newProduct']['productName'] = $_POST['productName'];
+      $GLOBALS['newProduct']['productName'] = htmlspecialchars($_POST['productName']);
     }
   }
   function CheckActivation()
